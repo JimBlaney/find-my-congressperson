@@ -28,6 +28,9 @@ define("loc/views/SearchView", [
 
     startup: function() {
       this.inherited(arguments);
+
+      
+
     },
 
     _doGeolocation: function() {
@@ -73,6 +76,8 @@ define("loc/views/SearchView", [
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(d.resolve, d.reject);
+      } else {
+        d.reject();
       }
 
       return d;
