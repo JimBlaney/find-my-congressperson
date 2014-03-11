@@ -63,6 +63,18 @@ define("loc/dal/sunlight", [
 
     },
 
+    getAllMembers: function() {
+
+      var d = new Deferred();
+
+      this._makeApiCall("legislators", {
+        per_page: "all"
+      }).then(lang.hitch(this, this._populateModel, Member, d));
+
+      return d;
+
+    },
+
     getMemberById: function(id) {
 
       var d = new Deferred();
@@ -76,12 +88,24 @@ define("loc/dal/sunlight", [
 
     },
 
+    getAllCommittees: function() {
+
+      var d = new Deferred();
+
+      this._makeApiCall("committees", {
+        per_page: "all"
+      }).then(lang.hitch(this, this._populateModel, Committee, d));
+
+      return d;
+
+    },
+
     getCommitteesForMembers: function(members) {
 
       var d = new Deferred();
 
       this._makeApiCall("committees", {
-        member_ids: members.join(","),
+        member_ids: [].concat(members).join(","),
         per_page: "all"
       }).then(lang.hitch(this, this._populateModel, Committee, d));
 
