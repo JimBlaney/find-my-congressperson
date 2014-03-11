@@ -43,7 +43,7 @@ define("loc/views/SearchView", [
         console.log(point);
         console.groupEnd("Geolocation Success");
 
-        topic.publish("/loc/search/geometry", {
+        topic.publish("/loc/search/members/geometry", {
           geometry: point
         });
 

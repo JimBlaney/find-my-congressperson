@@ -46,9 +46,9 @@ define("loc/Application", [
       this.highlightSymbol = null; // TODO
       topic.subscribe("/loc/map/highlight", lang.hitch(this, this._highlightGeometries));
 
-      topic.subscribe("/loc/search/geometry", lang.hitch(this, this._doGeometrySearch));
-      topic.subscribe("/loc/search/zip", lang.hitch(this, this._doZIPSearch));
-      topic.subscribe("/loc/search/state", lang.hitch(this, this._doStateSearch));
+      topic.subscribe("/loc/search/members/geometry", lang.hitch(this, this._doGeometrySearch));
+      topic.subscribe("/loc/search/members/zip", lang.hitch(this, this._doZIPSearch));
+      topic.subscribe("/loc/search/members/state", lang.hitch(this, this._doStateSearch));
 
       // "/loc/results/members"
 
