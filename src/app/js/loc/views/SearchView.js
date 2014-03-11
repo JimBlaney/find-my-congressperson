@@ -29,11 +29,9 @@ define("loc/views/SearchView", [
     startup: function() {
       this.inherited(arguments);
 
-      
-
     },
 
-    _doGeolocation: function() {
+    _doGeolocationSearch: function() {
 
       this._getGeolocation().then(function(location) {
 
@@ -81,6 +79,10 @@ define("loc/views/SearchView", [
       }
 
       return d;
+    },
+
+    _doStateSearch: function() {
+      // TODO
     }
 
   });

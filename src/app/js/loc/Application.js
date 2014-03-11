@@ -95,7 +95,7 @@ define("loc/Application", [
         return;
       }
 
-      if (!!geom.getCentroid) {}
+      if (!!geom.getCentroid) {
         geom = geom.getCentroid();
       }
 

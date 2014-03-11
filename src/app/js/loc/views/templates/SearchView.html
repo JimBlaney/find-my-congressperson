@@ -12,11 +12,14 @@
       </div>
       <div class="col-sm-1 text-muted text-center">Or</div>
       <div class="col-sm-3">
-        <input class="form-control" placeholder="State"/><!-- TODO: impl select tag -->
+        <select class="form-control" placeholder="State/Territory" data-dojo-attach-event="change: _doStateSearch">
+          <option value="CA">California</option>
+          <option value="MD">Maryland</option>
+        </select>
       </div>
       <div class="col-sm-1 text-muted text-center">Or</div>
       <div class="col-sm-4">
-        <button class="btn btn-success" data-dojo-attach-event="click: _doGeolocation">
+        <button class="btn btn-success" data-dojo-attach-event="click: _doGeolocationSearch">
           <span class="glyphicon glyphicon-map-marker"></span>
           My Location
         </button>

@@ -7,7 +7,7 @@ define("loc/model/Committee", [
   var PROPERTY_MAP = {
     "chamber": "chamber",
     "committe_id": "committeeId",
-    "member_ids": "memberIds"
+    "member_ids": "memberIds",
     "name": "name",
     "office": "office",
     "parent_committee_id": "parentCommitteeId",
@@ -43,7 +43,7 @@ define("loc/model/Committee", [
 
   });
 
-  lang.mixin(Committe, {
+  lang.mixin(Committee, {
     PROPERTY_MAP: PROPERTY_MAP
   })
 
