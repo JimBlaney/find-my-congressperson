@@ -32,6 +32,10 @@
       </div>
     </nav>
 
+    <div class="container">
+      <div data-dojo-type="loc/Application"></div>
+    </div>
+    
     <div>
       <div class="container">
         <div class="col-sm-12">
@@ -176,6 +180,7 @@
     <script>
       var dojoConfig = {
         async: true,
+        parseOnLoad: true,
         packages: [
           {
             name: "loc",
@@ -198,6 +203,7 @@
         "esri/geometry/Extent", 
         "esri/SpatialReference",
         "esri/layers/ArcGISDynamicMapServiceLayer",
+        "loc/Application",
         "dojo/domReady!"
       ], 
       function(Color, registry, Map, SimpleLineSymbol, SimpleFillSymbol, SimpleRenderer, Extent, SpatialReference, ArcGISDynamicMapServiceLayer) {

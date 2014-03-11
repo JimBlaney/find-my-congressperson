@@ -1,4 +1,4 @@
-declare("loc/Application", [
+define("loc/Application", [
   "dojo/_base/config",
   "dojo/_base/declare",
   "dojo/_base/lang",
@@ -6,13 +6,16 @@ declare("loc/Application", [
   "dojo/on",
   "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
+  "dijit/_WidgetsInTemplateMixin",
+  "dojo/text!./templates/Application.html",
   "esri/map"
-], function(config, declare, lang, topic, on, _WidgetBase, _TemplatedMixin, Map) {
+], function(config, declare, lang, topic, on, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, template, Map) {
 
-  return ([ _WidgetBase, _TemplatedMixin ], {
+console.log(template);
 
-    // TODO: load this from template (dojo/text)
-    templateString: "<div class='loc-application'></div>",
+  return declare([ _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin ], {
+
+    templateString: template,
 
     startup: function() {
       this.inherited(arguments);
