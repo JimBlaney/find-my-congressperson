@@ -35,7 +35,7 @@
     <div class="container">
       <div data-dojo-type="loc/Application"></div>
     </div>
-    
+    <!--
     <div>
       <div class="container">
         <div class="col-sm-12">
@@ -58,7 +58,7 @@
           </div>
           
           <ul class="list-group"> 
-            <!-- small baseball card -->
+            
             <li class="list-group-item active">
               <div class="pull-left" style="margin-right: 15px;">
                 <img src="images/avatar.jpg" style="height: 80px;" />
@@ -134,7 +134,7 @@
         <div class="col-sm-7" style="margin-top: 15px; margin-bottom: 15px;">
           <div style="margin-top: 15px;">
             
-            <!-- large baseball card -->
+            
             <div class="pull-left" style="margin-right: 15px;">
               <div>
                 <img src="images/avatar.jpg" style="width: 200px;" />
@@ -173,8 +173,8 @@
         </div>
       </div>
     </div>
-
-    <script src="js/libs/jquery-1.10.2.min.js"></script>
+-->
+    <script src="js/libs/jquery-1.11.0.min.js"></script>
     <script src="js/libs/bootstrap-3.1.0.min.js"></script>
 
     <script>
@@ -192,46 +192,46 @@
     <script src="js/loc/config.js"></script>
     <script src="//js.arcgis.com/3.9/"></script>
     <script>
-      // TODO: move this back into application/controller
-      require([
-        "dojo/_base/Color",
-        "dijit/registry",
-        "esri/map",
-        "esri/symbols/SimpleLineSymbol",
-        "esri/symbols/SimpleFillSymbol",
-        "esri/renderers/SimpleRenderer",
-        "esri/geometry/Extent", 
-        "esri/SpatialReference",
-        "esri/layers/ArcGISDynamicMapServiceLayer",
-        "loc/Application",
-        "dojo/domReady!"
-      ], 
-      function(Color, registry, Map, SimpleLineSymbol, SimpleFillSymbol, SimpleRenderer, Extent, SpatialReference, ArcGISDynamicMapServiceLayer) {
+      // // TODO: move this back into application/controller
+      // require([
+      //   "dojo/_base/Color",
+      //   "dijit/registry",
+      //   "esri/map",
+      //   "esri/symbols/SimpleLineSymbol",
+      //   "esri/symbols/SimpleFillSymbol",
+      //   "esri/renderers/SimpleRenderer",
+      //   "esri/geometry/Extent", 
+      //   "esri/SpatialReference",
+      //   "esri/layers/ArcGISDynamicMapServiceLayer",
+      //   "loc/Application",
+      //   "dojo/domReady!"
+      // ], 
+      // function(Color, registry, Map, SimpleLineSymbol, SimpleFillSymbol, SimpleRenderer, Extent, SpatialReference, ArcGISDynamicMapServiceLayer) {
 
-        esri.config.defaults.io.proxyUrl = "./proxy.js";
-        esri.config.defaults.io.alwaysUseProxy = true;
+      //   esri.config.defaults.io.proxyUrl = "./proxy.js";
+      //   esri.config.defaults.io.alwaysUseProxy = true;
 
-        // var sr = new SpatialReference({ wkt: 'PROJCS["WGC 84 / WRF Lambert",GEOGCS["GCS_WGS_1984",DATUM["D_World Geodetic System 1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Lambert_Conformal_Conic"],PARAMETER["false_easting",0.0],PARAMETER["false_northing",0.0],PARAMETER["central_meridian",-97.0],PARAMETER["standard_parallel_1",33.0],PARAMETER["standard_parallel_2",45.0],PARAMETER["latitude_of_origin",40.0],UNIT["m",1.0]]'});
-        // var extent = new Extent(-2848969.758022259, -2090749.3112599135, 3051755.229195686, 1843067.3468853834, sr);
+      //   // var sr = new SpatialReference({ wkt: 'PROJCS["WGC 84 / WRF Lambert",GEOGCS["GCS_WGS_1984",DATUM["D_World Geodetic System 1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Lambert_Conformal_Conic"],PARAMETER["false_easting",0.0],PARAMETER["false_northing",0.0],PARAMETER["central_meridian",-97.0],PARAMETER["standard_parallel_1",33.0],PARAMETER["standard_parallel_2",45.0],PARAMETER["latitude_of_origin",40.0],UNIT["m",1.0]]'});
+      //   // var extent = new Extent(-2848969.758022259, -2090749.3112599135, 3051755.229195686, 1843067.3468853834, sr);
 
-        var map = new Map("map", {
-          showAttribution: false,
-          basemap: "streets"
-        });
+      //   var map = new Map("map", {
+      //     showAttribution: false,
+      //     basemap: "streets"
+      //   });
 
-        require(["esri/layers/FeatureLayer"], function(FeatureLayer) {
+      //   require(["esri/layers/FeatureLayer"], function(FeatureLayer) {
 
-          var featureLayer = new FeatureLayer(location.protocol + "//dcdev.esri.com/arcgis/rest/services/Congress/StatesByParty/MapServer/0", {
-            outfields: [ "*" ]
-          });
+      //     var featureLayer = new FeatureLayer(location.protocol + "//dcdev.esri.com/arcgis/rest/services/Congress/StatesByParty/MapServer/0", {
+      //       outfields: [ "*" ]
+      //     });
 
-          var outline = new SimpleLineSymbol("solid", new Color([255, 255, 255, 1]), 1);
-          var fill = new SimpleFillSymbol("solid", outline, new Color([64, 64, 64, 0.5]));
-          featureLayer.setRenderer(new SimpleRenderer(fill));
+      //     var outline = new SimpleLineSymbol("solid", new Color([255, 255, 255, 1]), 1);
+      //     var fill = new SimpleFillSymbol("solid", outline, new Color([64, 64, 64, 0.5]));
+      //     featureLayer.setRenderer(new SimpleRenderer(fill));
 
-          map.addLayer(featureLayer);
-        });
-      });
+      //     map.addLayer(featureLayer);
+      //   });
+      // });
     </script>
   </body>
 </html>

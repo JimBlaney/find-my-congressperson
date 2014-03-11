@@ -86,6 +86,10 @@ define("loc/model/Member", [
     /* String */
     termEnd: null,
 
+    _getDisplayNameAttr: function() {
+
+    },
+
     /* String */
     _getAvatarAttr: function() {
 

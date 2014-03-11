@@ -58,7 +58,9 @@ define("loc/dal/sunlight", [
         deferred.resolve(tArr);
 
       } else {
+
         deferred.reject();
+        
       }
 
     },

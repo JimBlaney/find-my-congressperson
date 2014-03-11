@@ -1,5 +1,5 @@
 body {
-  overflow: hidden;  
+  /* overflow: hidden; */
 }
 
 .navbar-default {
@@ -101,7 +101,7 @@ ul.list-group li.list-group-item.active {
   background-color: #0078ae;
   color: white;
 }
-
+/*
 .esriSimpleSlider {
   border-color: #00618d !important;
   color: #00618d !important;
@@ -109,4 +109,32 @@ ul.list-group li.list-group-item.active {
 
 .esriSimpleSliderVertical .esriSimpleSliderIncrementButton {
   border-bottom-color: #00618d !important;
+}
+*/
+.loc-location-search {
+
+}
+
+.loc-member-view {
+  
+}
+
+.loc-search-area-heading>h2 {
+  /*display: inline;*/
+}
+
+.loc-search-area-footer>div {
+  padding-top: 10px !important;
+}
+
+.loc-map-area {
+  padding-left: 15px !important;
+}
+
+.loc-map {
+  background-color: #0078ae;
+}
+
+.loc-bordered-component {
+  border: solid #00618d 1px;
 }

@@ -1,0 +1,49 @@
+<div class="loc-search-area-parent">
+  <div class="loc-search-area loc-location-search">
+    <div class="loc-search-area-heading loc-name-location-heading">
+      <h2>By Location</h2>
+      <p>
+        Find your legislator by location. Enter your ZIP code or select a State to begin the search.
+      </p>
+    </div>
+    <div class="loc-search-area-content loc-name-location-content">
+      <div class="col-sm-3">
+        <input class="form-control" placeholder="ZIP"/>
+      </div>
+      <div class="col-sm-1 text-muted text-center">Or</div>
+      <div class="col-sm-3">
+        <input class="form-control" placeholder="State"/><!-- TODO: impl select tag -->
+      </div>
+      <div class="col-sm-1 text-muted text-center">Or</div>
+      <div class="col-sm-4">
+        <button class="btn btn-success" data-dojo-attach-event="click: _doGeolocation">
+          <span class="glyphicon glyphicon-map-marker"></span>
+          My Location
+        </button>
+      </div>
+    </div>
+    <div class="loc-search-area-footer">
+      <div class="pull-right">
+        or simply click on the map &raquo;
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <div class="loc-search-area loc-name-search">
+    <div class="loc-search-area-heading loc-name-search-heading">
+      <h2>By Name</h2>
+      <p>
+        If you know the name of the legislator or committee you are looking for, enter the name below
+      </p>
+    </div>
+    <div class="loc-search-area-content loc-name-search-content">
+      <div class="col-sm-5">
+        <input class="form-control" placeholder="Senator or Representative"/>
+      </div>
+      <div class="col-sm-2 text-muted text-center">Or</div>
+      <div class="col-sm-5">
+        <input class="form-control" placeholder="Committee"/>
+      </div>
+    </div>
+  </div>
+</div>
