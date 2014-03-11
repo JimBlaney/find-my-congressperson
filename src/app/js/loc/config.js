@@ -1,5 +1,5 @@
 if (!dojoConfig) {
-  window.dojoConfig = {};
+  dojoConfig = {};
 }
 
 dojoConfig.app = {
