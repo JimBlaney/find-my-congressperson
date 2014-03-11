@@ -25,7 +25,8 @@ define("loc/dal/sunlight", [
     _makeApiCall: function(methodName, data) {
 
       data = lang.mixin({
-        apikey: this.API_KEY
+        apikey: this.API_KEY,
+        per_page: "all"
       }, data || {});
 
       return script.get(this.BASE_URL + methodName, {
@@ -60,7 +61,7 @@ define("loc/dal/sunlight", [
       } else {
 
         deferred.reject();
-        
+
       }
 
     },
@@ -70,7 +71,7 @@ define("loc/dal/sunlight", [
       var d = new Deferred();
 
       this._makeApiCall("legislators", {
-        per_page: "all"
+        
       }).then(lang.hitch(this, this._populateModel, Member, d));
 
       return d;
@@ -82,8 +83,52 @@ define("loc/dal/sunlight", [
       var d = new Deferred();
 
       this._makeApiCall("legislators", {
-        bioguide_id: id,
-        per_page: "all"
+      
+        bioguide_id: id
+      
+      }).then(lang.hitch(this, this._populateModel, Member, d));
+
+      return d;
+
+    },
+
+    getMembersAtLocation: function(point) {
+
+      var d = new Deferred();
+
+      this._makeApiCall("legislators/locate", {
+      
+        latitude:  point.y,
+        longitude: point.x
+      
+      }).then(lang.hitch(this, this._populateModel, Member, d));
+
+      return d;
+
+    },
+
+    getMembersForZIP: function(zip) {
+
+      var d = new Deferred();
+
+      this._makeApiCall("legislators/locate", {
+      
+        zip: zip
+      
+      }).then(lang.hitch(this, this._populateModel, Member, d));
+
+      return d;
+
+    },
+
+    getMembersForState: function(state) {
+
+      var d = new Deferred();
+
+      this._makeApiCall("legislators/locate", {
+      
+        state: state
+      
       }).then(lang.hitch(this, this._populateModel, Member, d));
 
       return d;
@@ -95,7 +140,7 @@ define("loc/dal/sunlight", [
       var d = new Deferred();
 
       this._makeApiCall("committees", {
-        per_page: "all"
+        
       }).then(lang.hitch(this, this._populateModel, Committee, d));
 
       return d;
@@ -107,8 +152,9 @@ define("loc/dal/sunlight", [
       var d = new Deferred();
 
       this._makeApiCall("committees", {
-        member_ids: [].concat(members).join(","),
-        per_page: "all"
+
+        member_ids: [].concat(members).join(",")
+      
       }).then(lang.hitch(this, this._populateModel, Committee, d));
 
       return d;

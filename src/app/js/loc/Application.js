@@ -11,7 +11,8 @@ define("loc/Application", [
   "dojo/text!loc/templates/Application.html",
   "loc/views/SearchView",
   "esri/map",
-  "esri/graphic"
+  "esri/graphic",
+  "loc/dal/sunlight"
 ], function(
   config, 
   declare, 
@@ -25,7 +26,8 @@ define("loc/Application", [
   template, 
   SearchView, 
   Map, 
-  Graphic
+  Graphic,
+  sunlight
 ) {
 
   return declare([ _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin ], {
@@ -41,10 +43,14 @@ define("loc/Application", [
     startup: function() {
       this.inherited(arguments);
 
-      // TODO: create map here
       this.highlightSymbol = null; // TODO
-
       topic.subscribe("/loc/map/highlight", lang.hitch(this, this._highlightGeometries));
+
+      topic.subscribe("/loc/search/geometry", lang.hitch(this, this._doGeometrySearch));
+      topic.subscribe("/loc/search/zip", lang.hitch(this, this._doZIPSearch));
+      topic.subscribe("/loc/search/state", lang.hitch(this, this._doStateSearch));
+
+      // "/loc/results/members"
 
       this._createMap();
 
@@ -79,6 +85,88 @@ define("loc/Application", [
         for (var i = 0; i < geometries.length; i++) {
           graphics.add(new Graphic(geometries[i], this.highlightSymbol, {}, null));
         }
+    },
+
+    _doGeometrySearch: function(e) {
+
+      var geom = e.geometry || null;
+      if (geom === null) {
+        console.warn("could not search on null geometry");
+        return;
+      }
+
+      if (!!geom.getCentroid) {}
+        geom = geom.getCentroid();
+      }
+
+      sunlight.getMembersAtLocation(geom).then(function(members) {
+
+        topic.publish("/loc/results/members", {
+          members: members
+        });
+
+      }, function(error) {
+
+        console.error(error);
+        topic.publish("/loc/app/error", {
+          error: error,
+          during: "Point Search"
+        });
+
+      });
+
+    },
+
+    _doZIPSearch: function(e) {
+
+      var zip = e.zip || null;
+      if (zip === null) {
+        console.warn("could not search on null ZIP");
+        return;
+      }
+
+      sunlight.getMembersForZIP(zip).then(function(members) {
+
+        topic.publish("/loc/results/members", {
+          members: members
+        });
+
+      }, function(error) {
+
+        console.error(error);
+        topic.publish("/loc/app/error", {
+          error: error,
+          during: "ZIP Search"
+        });
+
+      });
+
+    },
+
+    _doStateSearch: function(e) {
+
+      var state = e.state || null;
+      if (state === null) {
+        console.warn("could not search on null State");
+        return;
+      }
+
+      sunlight.getMembersForState(state).then(function(members) {
+
+        topic.publish("/loc/results/members", {
+          members: members
+        });
+
+      }, function(error) {
+
+        console.error(error);
+        topic.publish("/loc/app/error", {
+          error: error,
+          during: "State Search"
+        });
+
+      });
+
     }
 
   });
