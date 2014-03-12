@@ -6,7 +6,7 @@ define("loc/model/Committee", [
 
   var PROPERTY_MAP = {
     "chamber": "chamber",
-    "committe_id": "committeeId",
+    "committee_id": "committeeId",
     "member_ids": "memberIds",
     "name": "name",
     "office": "office",
@@ -19,7 +19,7 @@ define("loc/model/Committee", [
   var Committee = declare([ _ModelBase ], {
 
     /* String */
-    commiteeId: null,
+    committeeId: null,
 
     /* String ("house" | "senate") */
     chamber: null,

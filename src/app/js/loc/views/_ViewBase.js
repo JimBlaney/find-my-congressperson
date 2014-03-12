@@ -3,7 +3,8 @@ define("loc/views/_ViewBase", [
   "dojo/_base/lang",
   "dojo/query",
   "dojo/dom-attr",
-  "dojo/dom-construct"
+  "dojo/dom-construct",
+  "dojo/NodeList-data"
 ], function(
   declare,
   lang,
@@ -31,20 +32,24 @@ define("loc/views/_ViewBase", [
 
       var nodes = query("*", this.domNode);
 
+      console.log(query("[data-view-model-property]"));
+
       for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i];
         
         if (domAttr.has(node, MODEL_PROPERTY_ATTR)) {
           var property = domAttr.get(node, MODEL_PROPERTY_ATTR);
           var tag = "span";
-          var attr = "innerHTML";
+          var attrs = ["innerHTML"];
 
           if (domAttr.has(node, MODEL_ELEM_TAG_ATTR)) {
             tag = domAttr.get(node, MODEL_ELEM_TAG_ATTR);
           }
 
           if (tag === "img") {
-            attr = "src";
+            attrs = ["src"];
+          } else if (tag === "a") {
+            attrs.push("href");
           }
 
           var props = {};
@@ -54,9 +59,12 @@ define("loc/views/_ViewBase", [
             format = domAttr.get(node, MODEL_ELEM_FMT_ATTR);
           }
 
-          props[attr] = lang.replace(format, {
-            value: model.get(property)
-          });
+          for (var j = 0; j < attrs.length; j++) {
+            var attr = attrs[j];
+            props[attr] = lang.replace(format, {
+              value: model.get(property)
+            });
+          }
 
           if (domAttr.has(node, MODEL_ELEM_STY_ATTR)) {
             props["style"] = domAttr.get(node, MODEL_ELEM_STY_ATTR);

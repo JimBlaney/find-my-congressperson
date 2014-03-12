@@ -5,17 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- TODO: ios home screen icon(s) and status bar settings -->
+    <!-- TODO: ios home screen icon(s) and status bar settings? -->
     
-    <title>Library of Congress | Find Your Congressperson</title>
+    <title>Find Your Legislator</title>
     
-    <link href="css/bootstrap-3.1.0.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.png">
+
+    <link rel="stylesheet" href="css/bootstrap-3.1.0.css" />
+    <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="js/libs/html5shiv.js"></script>
       <script src="js/libs/respond.min.js"></script>
     <![endif]-->
+    
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
 
     <link rel="stylesheet" href="//js.arcgis.com/3.9/js/esri/css/esri.css" />
 
@@ -27,7 +32,7 @@
     <nav class="navbar navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img src="images/brand.png" style="height: 22px;" /></a>
+          <!--<a class="navbar-brand" href="#"><img src="images/brand.png" style="height: 22px;" /></a>-->
         </div>
       </div>
     </nav>
@@ -36,9 +41,8 @@
       <div class="container">
         <h1>Find your Legislator</h1>
         <p class="lead">
-          Search below to find out who represents your interests in the 113th Congress
+          Search to find out who represents your interests in the 113<sup>TH</sup> Congress
         </p>
-
       </div>
     </nav>
 
@@ -48,6 +52,7 @@
     
     <script src="js/libs/jquery-1.11.0.min.js"></script>
     <script src="js/libs/bootstrap-3.1.0.min.js"></script>
+    <script src="js/libs/bootstrap-select.js"></script>
 
     <script>
       var dojoConfig = {
@@ -63,6 +68,12 @@
     </script>
     <script src="js/loc/config.js"></script>
     <script src="//js.arcgis.com/3.9/"></script>
-
+    <script>
+      $(function() {
+        console.log("selectpicker");
+        $('.selectpicker').selectpicker();
+      });
+    </script>
   </body>
 </html>
+<!-- 410-239-1500 -->

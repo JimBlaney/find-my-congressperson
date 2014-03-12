@@ -53,14 +53,15 @@ define("loc/Application", [
       topic.subscribe("/loc/search/members/geometry", lang.hitch(this, this._doGeometrySearch));
       topic.subscribe("/loc/search/members/zip", lang.hitch(this, this._doZIPSearch));
       topic.subscribe("/loc/search/members/state", lang.hitch(this, this._doStateSearch));
+      topic.subscribe("/loc/search/members/name", lang.hitch(this, this._doNameSearch));
 
-      // "/loc/results/members"
+      topic.subscribe("/loc/search/committees/id", lang.hitch(this, this._doCommitteeSearch));
 
       this._createMap();
 
       this._setupViewArea();
 
-      // DEBUG
+      // DEBUG ONLY
       topic.subscribe("/loc/results/members", lang.hitch(this, function(e) {
 
         console.group("onmembers");
@@ -71,14 +72,12 @@ define("loc/Application", [
         view.startup();
         view.set("members", e.members);
 
-        domConstruct.empty(this.testNode);
-        domConstruct.place(view.domNode, this.testNode);
+        domConstruct.empty(this.resultsNode);
+        domConstruct.place(view.domNode, this.resultsNode);
 
         console.groupEnd("onmembers");
 
       }));
-
-      //this._doStateSearch({ state: "MD" });
 
     },
 
@@ -93,14 +92,15 @@ define("loc/Application", [
           ymax: 13306157.883879967,
           spatialReference: { wkid: 102100 }
         }),
-        slider: false
+        slider: false,
+        showAttribution: false
       });
 
     },
 
     _setupViewArea: function() {
 
-      var d = domConstruct.create("div", {}, this.viewAreaNode)
+      var d = domConstruct.create("div", {}, this.searchAreaNode)
 
       this.searchView = new SearchView({}, d);
       this.searchView.startup();

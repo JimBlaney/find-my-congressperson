@@ -87,46 +87,50 @@ body {
 }
 
 
-.btn-default {
+.btn-loc-default {
   color: #f8f8f8;
   background-color: #0078ae;
   border-color: #0078ae;
 }
-.btn-default:hover,
-.btn-default:focus,
-.btn-default:active,
-.btn-default.active,
-.open .dropdown-toggle.btn-default {
+.btn-loc-default:hover,
+.btn-loc-default:focus,
+.btn-loc-default:active,
+.btn-loc-default.active,
+.open .dropdown-toggle.btn-loc-default {
   color: #f8f8f8;
   background-color: #00618d;
   border-color: #00618d;
 }
-.btn-default:active,
-.btn-default.active,
-.open .dropdown-toggle.btn-default {
+.btn-loc-default:active,
+.btn-loc-default.active,
+.open .dropdown-toggle.btn-loc-default {
   background-image: none;
 }
-.btn-default.disabled,
-.btn-default[disabled],
-fieldset[disabled] .btn-default,
-.btn-default.disabled:hover,
-.btn-default[disabled]:hover,
-fieldset[disabled] .btn-default:hover,
-.btn-default.disabled:focus,
-.btn-default[disabled]:focus,
-fieldset[disabled] .btn-default:focus,
-.btn-default.disabled:active,
-.btn-default[disabled]:active,
-fieldset[disabled] .btn-default:active,
-.btn-default.disabled.active,
-.btn-default[disabled].active,
-fieldset[disabled] .btn-default.active {
+.btn-loc-default.disabled,
+.btn-loc-default[disabled],
+fieldset[disabled] .btn-loc-default,
+.btn-loc-default.disabled:hover,
+.btn-loc-default[disabled]:hover,
+fieldset[disabled] .btn-loc-default:hover,
+.btn-loc-default.disabled:focus,
+.btn-loc-default[disabled]:focus,
+fieldset[disabled] .btn-loc-default:focus,
+.btn-loc-default.disabled:active,
+.btn-loc-default[disabled]:active,
+fieldset[disabled] .btn-loc-default:active,
+.btn-loc-default.disabled.active,
+.btn-loc-default[disabled].active,
+fieldset[disabled] .btn-loc-default.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.btn-default .badge {
+.btn-loc-default .badge {
   color: #ffffff;
   background-color: #333333;
+}
+
+.btn-default {
+  color: #999;
 }
 
 nav.navbar:first-of-type {
@@ -136,6 +140,7 @@ nav.navbar:first-of-type {
 nav.navbar {
   color: #f8f8f8;
   border: none;
+  margin-bottom: 15px;
 }
 
 .esri-map-shadow {
@@ -172,9 +177,21 @@ ul.list-group li.list-group-item.active {
 }
 
 
+
+/*.loc-member-avatar>img {
+  position: absolute;
+  display: block;
+  width: 80px;
+  height: 80px;
+  clip: rect(9px, 0px, 89px, 80px);
+  border-radius: 40px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+}*/
+
 .loc-view-area {
   background-color: #eee;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 .loc-search-area-heading:first-of-type>h2 {
@@ -210,6 +227,11 @@ p.lead {
   width: 100%;
 }
 
+.loc-search-area-content .btn {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
 .loc-search-area-footer>div {
   padding-top: 10px !important;
 }
@@ -229,3 +251,17 @@ p.lead {
 .loc-second-navbar {
 
 }
+
+sup { /* not much. sup with you? */
+  font-size: 0.55em;
+}
+
+.loc-option-committee {
+  font-weight: bold;
+}
+
+.loc-option-subcommittee {
+  padding-left: 15px;
+  font-style: italic;
+}
+

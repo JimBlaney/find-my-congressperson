@@ -28,7 +28,7 @@ define("loc/views/SearchView", [
 
     startup: function() {
       this.inherited(arguments);
-
+      $('.selectpicker').selectpicker();
     },
 
     _doGeolocationSearch: function() {
@@ -85,6 +85,14 @@ define("loc/views/SearchView", [
 
       topic.publish("/loc/search/members/state", {
         state: e.target.value
+      });
+
+    },
+
+    _doCommitteeSearch: function(e) {
+
+      topic.publish("/loc/search/committees/id", {
+        committeeId: e.target.value
       });
 
     }

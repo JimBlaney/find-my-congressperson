@@ -37,9 +37,9 @@ define("loc/dal/sunlight", [
     },
 
     _populateModel: function(T, deferred, data) {
-console.group("_populateModel");
-console.log(arguments);
-console.groupEnd("_populateModel");
+
+      T.PROPERTY_MAP = T.PROPERTY_MAP || {};
+
       if (!!data.results.length) {
 
         var tArr = array.map(data.results, function(d) {
@@ -58,11 +58,16 @@ console.groupEnd("_populateModel");
 
         });
 
+        if (!!T.SORT_FUNCTION) {
+          console.log("sorting");
+          tArr.sort(T.SORT_FUNCTION);
+        }
+
         deferred.resolve(tArr);
 
       } else {
 
-        deferred.reject();
+        deferred.resolve([]);
 
       }
 
@@ -156,6 +161,35 @@ console.groupEnd("_populateModel");
       this._makeApiCall("committees", {
 
         member_ids: [].concat(members).join(",")
+      
+      }).then(lang.hitch(this, this._populateModel, Committee, d));
+
+      return d;
+
+    },
+
+    getNonSubCommittees: function() {
+
+      var d = new Deferred();
+
+      this._makeApiCall("committees", {
+
+        subcommittee: false
+      
+      }).then(lang.hitch(this, this._populateModel, Committee, d));
+
+      return d;
+
+    },
+
+    getSubCommittees: function(committeeId) {
+
+      var d = new Deferred();
+
+      this._makeApiCall("committees", {
+
+        subcommittee: true,
+        parent_committee_id: committeeId
       
       }).then(lang.hitch(this, this._populateModel, Committee, d));
 

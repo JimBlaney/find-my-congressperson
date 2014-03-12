@@ -126,12 +126,44 @@ define("loc/model/Member", [
 
       return (this.party === "D" ? "Democrat" : (this.party === "R" ? "Republican" : "Independent"));
 
+    },
+
+    _getFacebookUrlAttr: function() {
+
+      return lang.replace("http://www.facebook.com/{facebookId}", this);
+
     }
 
   });
 
+  var sortFunction = function(lhs, rhs) {
+    if (lhs.chamber === rhs.chamber) {
+console.log("chamber match");
+      if (lhs.lastName < rhs.lastName) {
+        return -1;
+      } else if (lhs.lastName > rhs.lastName) {
+        return 1;
+      } else {
+        if (lhs.firstName < rhs.firstName) {
+          return 1;
+        } else if (lhs.firstName > rhs.firstName) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    } else if (lhs.chamber === "senate") {
+console.log("senate over house");
+      return -1;
+    } else {
+console.log("house under senate");
+      return 1;
+    }
+  };
+
   lang.mixin(Member, {
-    PROPERTY_MAP: PROPERTY_MAP
+    PROPERTY_MAP: PROPERTY_MAP,
+    SORT_FUNCTION: sortFunction
   });
 
   return Member;
