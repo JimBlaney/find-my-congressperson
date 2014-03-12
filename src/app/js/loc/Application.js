@@ -13,6 +13,7 @@ define("loc/Application", [
   "loc/views/MembersView",
   "esri/map",
   "esri/graphic",
+  "esri/geometry/Extent",
   "loc/dal/sunlight"
 ], function(
   config, 
@@ -29,6 +30,7 @@ define("loc/Application", [
   MembersView,
   Map, 
   Graphic,
+  Extent,
   sunlight
 ) {
 
@@ -69,20 +71,29 @@ define("loc/Application", [
         view.startup();
         view.set("members", e.members);
 
+        domConstruct.empty(this.testNode);
         domConstruct.place(view.domNode, this.testNode);
 
         console.groupEnd("onmembers");
 
       }));
 
-      this._doStateSearch({ state: "MD" });
+      //this._doStateSearch({ state: "MD" });
 
     },
 
     _createMap: function() {
 
       this.map = new Map(this.id + "_map", {
-        basemap: "streets"
+        basemap: "gray",
+        extent: new Extent({ // TODO: update this value with the extent of the districts layer
+          xmin: -22737875.67804202,
+          ymin: -2348145.508920069,
+          xmax: -1604566.097761969,
+          ymax: 13306157.883879967,
+          spatialReference: { wkid: 102100 }
+        }),
+        slider: false
       });
 
     },

@@ -86,6 +86,58 @@ body {
   color: #333333;
 }
 
+
+.btn-default {
+  color: #f8f8f8;
+  background-color: #0078ae;
+  border-color: #0078ae;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  color: #f8f8f8;
+  background-color: #00618d;
+  border-color: #00618d;
+}
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  background-image: none;
+}
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.btn-default .badge {
+  color: #ffffff;
+  background-color: #333333;
+}
+
+nav.navbar:first-of-type {
+  margin-bottom: 0;
+}
+
+nav.navbar {
+  color: #f8f8f8;
+  border: none;
+}
+
 .esri-map-shadow {
   -webkit-box-shadow: 0px 0px 25px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow:    0px 0px 25px 0px rgba(50, 50, 50, 0.75);
@@ -119,8 +171,43 @@ ul.list-group li.list-group-item.active {
   
 }
 
+
+.loc-view-area {
+  background-color: #eee;
+  padding-bottom: 15px;
+}
+
+.loc-search-area-heading:first-of-type>h2 {
+  margin-top: 15px;
+}
+
 .loc-search-area-heading>h2 {
   /*display: inline;*/
+  text-transform: uppercase;
+  text-align: center;
+  color: #00618d;
+}
+
+.loc-search-area-heading>p {
+  /*display: inline;*/
+  text-align: center;
+  font-size: 1.2em;
+  color: #999;
+}
+
+select.form-control {
+  color: #999;
+}
+
+p.lead {
+  font-weight: normal !important;
+}
+
+.loc-search-area-content .form-control,
+.loc-search-area-content .form-control-static {
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
 }
 
 .loc-search-area-footer>div {
@@ -137,4 +224,8 @@ ul.list-group li.list-group-item.active {
 
 .loc-bordered-component {
   border: solid #00618d 1px;
+}
+
+.loc-second-navbar {
+
 }

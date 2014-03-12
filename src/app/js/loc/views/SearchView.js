@@ -81,8 +81,12 @@ define("loc/views/SearchView", [
       return d;
     },
 
-    _doStateSearch: function() {
-      // TODO
+    _doStateSearch: function(e) {
+
+      topic.publish("/loc/search/members/state", {
+        state: e.target.value
+      });
+
     }
 
   });
