@@ -2365,11 +2365,47 @@ input[type="button"].btn-block {
           transition: height .35s ease;
 }
 @font-face {
+  font-family: 'Glyphicons Social';
+
+  src: url('../fonts/glyphicons-social-regular.eot');
+  src: url('../fonts/glyphicons-social-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-social-regular.woff') format('woff'), url('../fonts/glyphicons-social-regular.ttf') format('truetype'), url('../fonts/glyphicons-social-regular.svg#glyphicons_socialregular') format('svg');
+}
+
+@font-face {
   font-family: 'Glyphicons Halflings';
 
   src: url('../fonts/glyphicons-halflings-regular.eot');
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+
+.glyphicon-social {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Social';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon-youtube:before {
+  content: "\e023";
+  color: red;
+}
+
+.glyphicon-facebook:before {
+  content: "\e031";
+  color: #3b5998;
+}
+
+.glyphicon-twitter:before {
+  content: "\e032";
+  color: #55acee;
+}
+
 .glyphicon {
   position: relative;
   top: 1px;
