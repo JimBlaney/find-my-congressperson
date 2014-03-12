@@ -10,6 +10,7 @@ define("loc/model/Member", [
     "birthday": "birthday",
     "chamber": "chamber",
     "district": "district",
+    "facebook_id": "facebookId",
     "first_name": "firstName",
     "gender": "gender",
     "in_office": "inOffice",
@@ -24,7 +25,9 @@ define("loc/model/Member", [
     "state_rank": "stateRank",
     "term_end": "termEnd",
     "term_start": "termStart",
-    "title": "title"
+    "title": "title",
+    "twitter_id": "twitterId",
+    "youtube_id": "youtubeId"
   };
 
   var Member = declare([ _ModelBase ], {
@@ -86,14 +89,43 @@ define("loc/model/Member", [
     /* String */
     termEnd: null,
 
+    facebookId: null,
+
+    twitterId: null,
+
+    youtubeId: null,
+
     _getDisplayNameAttr: function() {
+
+      return lang.replace("{title}. {firstName} \"{nickname}\" {middleName} {lastName}, {nameSuffix}", this).replace(", null", "").replace(/null/g, "").replace("\"\" ", "").trim();
 
     },
 
     /* String */
     _getAvatarAttr: function() {
 
-      return ""; // TODO
+      return require.toUrl(lang.replace("loc/views/images/avatars/80/{memberId}.jpg", this)); 
+
+    },
+
+    _getTermAttr: function() {
+
+      var startYear = this.termStart.substring(0, 4);
+      var endYear = this.termEnd.substring(0, 4);
+      return startYear + " - " + endYear;
+
+    },
+
+    _getFullTitleAttr: function() {
+
+      return (this.chamber === "senate" ? "Senator" : "Representative");
+
+    },
+
+    _getPartyNameAttr: function() {
+
+      return (this.party === "D" ? "Democrat" : (this.party === "R" ? "Republican" : "Independent"));
+
     }
 
   });

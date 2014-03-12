@@ -37,7 +37,9 @@ define("loc/dal/sunlight", [
     },
 
     _populateModel: function(T, deferred, data) {
-
+console.group("_populateModel");
+console.log(arguments);
+console.groupEnd("_populateModel");
       if (!!data.results.length) {
 
         var tArr = array.map(data.results, function(d) {
@@ -125,7 +127,7 @@ define("loc/dal/sunlight", [
 
       var d = new Deferred();
 
-      this._makeApiCall("legislators/locate", {
+      this._makeApiCall("legislators", {
       
         state: state
       

@@ -10,6 +10,7 @@ define("loc/Application", [
   "dijit/_WidgetsInTemplateMixin",
   "dojo/text!loc/templates/Application.html",
   "loc/views/SearchView",
+  "loc/views/MembersView",
   "esri/map",
   "esri/graphic",
   "loc/dal/sunlight"
@@ -25,6 +26,7 @@ define("loc/Application", [
   _WidgetsInTemplateMixin, 
   template, 
   SearchView, 
+  MembersView,
   Map, 
   Graphic,
   sunlight
@@ -55,6 +57,25 @@ define("loc/Application", [
       this._createMap();
 
       this._setupViewArea();
+
+      // DEBUG
+      topic.subscribe("/loc/results/members", lang.hitch(this, function(e) {
+
+        console.group("onmembers");
+
+        console.log(e.members);
+
+        var view = new MembersView();
+        view.startup();
+        view.set("members", e.members);
+
+        domConstruct.place(view.domNode, this.testNode);
+
+        console.groupEnd("onmembers");
+
+      }));
+
+      this._doStateSearch({ state: "MD" });
 
     },
 
