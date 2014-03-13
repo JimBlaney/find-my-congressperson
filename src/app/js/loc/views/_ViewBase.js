@@ -35,6 +35,18 @@ define("loc/views/_ViewBase", [
       for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i];
         
+        // if (domAttr.has(node, "data-view-model-facebook")) {
+        //   console.log("doing the facebook thing");
+        //   domConstruct.create("div", {
+        //     "class": "fb-follow",
+        //     "data-href": "https://www.facebook.com/" + model.get("facebookId"),
+        //     "data-colorscheme": "light",
+        //     "data-layout": "button_count",
+        //     "data-show-faces": false
+        //   }, node);
+        // }
+
+
         if (domAttr.has(node, MODEL_PROPERTY_ATTR)) {
           var property = domAttr.get(node, MODEL_PROPERTY_ATTR);
           var tag = "span";

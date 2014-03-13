@@ -97,7 +97,7 @@ define("loc/model/Member", [
 
     _getDisplayNameAttr: function() {
 
-      return lang.replace("{title}. {firstName} \"{nickname}\" {middleName} {lastName}, {nameSuffix}", this).replace(", null", "").replace(/null/g, "").replace("\"\" ", "").trim();
+      return lang.replace("{title}. {firstName} \"{nickname}\" {middleName} {lastName}, {nameSuffix}", this).replace(", null", "").replace(/null/g, "").replace("\"\" ", "").replace("  ", " ", "g").trim();
 
     },
 

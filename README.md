@@ -6,5 +6,5 @@
 
 ## TODO
 
-1. `favicon.ico`
-1. `apple-touch-icon`
+
+https://github.com/tcrosen/twitter-bootstrap-typeahead

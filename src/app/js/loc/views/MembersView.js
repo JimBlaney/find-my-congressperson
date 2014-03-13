@@ -4,6 +4,7 @@ define("loc/views/MembersView", [
   "dojo/_base/array",
   "dojo/dom",
   "dojo/dom-construct",
+  "dojo/dom-style",
   "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
@@ -15,6 +16,7 @@ define("loc/views/MembersView", [
   array,
   dom,
   domConstruct,
+  domStyle,
   _WidgetBase,
   _TemplatedMixin,
   _WidgetsInTemplateMixin,
@@ -38,7 +40,7 @@ define("loc/views/MembersView", [
       this.members = [].concat(members);
 
       var senators = array.filter(this.members, function(member) { return member.get("chamber") === "senate"; });
-
+      domStyle.set(this.senH2, { display: !!senators.length ? "block" : "none" });
       domConstruct.empty(this.senNode);
       for (var i = 0; i < senators.length; i++) {
 
@@ -52,6 +54,7 @@ define("loc/views/MembersView", [
       }
 
       var representatives = array.filter(members, function(member) { return member.get("chamber") === "house"; });
+      domStyle.set(this.repH2, { display: !!representatives.length ? "block" : "none" });
       domConstruct.empty(this.repNode);
       for (var i = 0; i < representatives.length; i++) {
 

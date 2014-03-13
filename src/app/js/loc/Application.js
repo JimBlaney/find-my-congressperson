@@ -56,6 +56,7 @@ define("loc/Application", [
       topic.subscribe("/loc/search/members/zip", lang.hitch(this, this._doZIPSearch));
       topic.subscribe("/loc/search/members/state", lang.hitch(this, this._doStateSearch));
       topic.subscribe("/loc/search/members/name", lang.hitch(this, this._doNameSearch));
+      topic.subscribe("/loc/search/members/id", lang.hitch(this, this._doMemberSearch));
 
       topic.subscribe("/loc/search/committees/id", lang.hitch(this, this._doCommitteeSearch));
 
@@ -211,6 +212,34 @@ define("loc/Application", [
         topic.publish("/loc/app/error", {
           error: error,
           during: "State Search"
+        });
+
+      });
+
+    },
+
+    _doMemberSearch: function(e) {
+
+      domConstruct.empty(this.resultsNode);
+
+      var memberId = e.memberId || null;
+      if (memberId === null) {
+        console.warn("could not search on null MemberId");
+        return;
+      }
+
+      sunlight.getMemberById(memberId).then(function(members) {
+
+        topic.publish("/loc/results/members", {
+          members: members
+        });
+
+      }, function(error) {
+
+        console.error(error);
+        topic.publish("/loc/app/error", {
+          error: error,
+          during: "Member Id Search"
         });
 
       });
