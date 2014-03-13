@@ -28,7 +28,49 @@ define("loc/views/SearchView", [
 
     startup: function() {
       this.inherited(arguments);
-      $('.selectpicker').selectpicker();
+
+      // startup the bootstrap-selects
+      $(".selectpicker").selectpicker();
+      // manually attach to the bootstrap-select controls' events -- dojoAttachEvent won't work
+      $(this.zipInput).keypress(lang.hitch(this, function (e) {
+        if (e.which == 13) {
+          $('form#login').submit();
+          return false;    //<---- Add this line
+        }
+      }));
+
+
+
+      $(this.stateSelect).on("change", lang.hitch(this, this._doStateSearch));
+      $(this.committeeSelect).on("change", lang.hitch(this, this._doCommitteeSearch));
+    },
+
+    _doZIPSearch: function(e) {
+
+      var value = $(this.zipInput).val() || null;
+      if (value === null || value === "-") {
+        return;
+      }
+
+      topic.publish("/loc/search/members/zip", {
+        zip: value
+      });
+
+    },
+
+    _doStateSearch: function(e) {
+
+      var value = $(this.stateSelect).selectpicker("val") || null;
+      if (value === null || value === "-") {
+        return;
+      }
+
+      topic.publish("/loc/search/members/state", {
+        state: value
+      });
+
+      $(this.stateSelect).selectpicker("val", "-");
+
     },
 
     _doGeolocationSearch: function() {
@@ -81,19 +123,31 @@ define("loc/views/SearchView", [
       return d;
     },
 
-    _doStateSearch: function(e) {
+    _doNameSearch: function(e) {
 
-      topic.publish("/loc/search/members/state", {
-        state: e.target.value
+      var value = e.name || null;
+      if (value === null || name.length === 0) {
+        return;
+      }
+
+      topic.publish("/loc/search/members/name", {
+        name: value
       });
 
     },
 
     _doCommitteeSearch: function(e) {
 
+      var value = $(this.committeeSelect).selectpicker("val") || null;
+      if (value === null || value === "-") {
+        return;
+      }
+
       topic.publish("/loc/search/committees/id", {
-        committeeId: e.target.value
+        committeeId: value
       });
+
+      $(this.committeeSelect).selectpicker("val", "-");
 
     }
 

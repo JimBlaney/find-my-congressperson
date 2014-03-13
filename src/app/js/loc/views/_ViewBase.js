@@ -32,8 +32,6 @@ define("loc/views/_ViewBase", [
 
       var nodes = query("*", this.domNode);
 
-      console.log(query("[data-view-model-property]"));
-
       for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i];
         
@@ -71,7 +69,9 @@ define("loc/views/_ViewBase", [
           }
 
           if (domAttr.has(node, MODEL_ELEM_CLS_ATTR)) {
-            props["class"] = domAttr.get(node, MODEL_ELEM_CLS_ATTR);
+            props["class"] = lang.replace("{value}", {
+              value: model.get(domAttr.get(node, MODEL_ELEM_CLS_ATTR))
+            });
           }
 
           domConstruct.create(tag, props, node);

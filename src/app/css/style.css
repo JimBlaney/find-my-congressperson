@@ -172,34 +172,76 @@ ul.list-group li.list-group-item.active {
 
 }
 
-.loc-member-view {
-  
+.loc-members-view>ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
+.loc-members-view:first-of-type>h2 {
+  margin-top: 0;
+}
 
+.loc-members-view>h2 {
+  text-transform: uppercase;
+  text-align: center;
+  color: #00618d;
+}
 
-/*.loc-member-avatar>img {
-  position: absolute;
-  display: block;
-  width: 80px;
-  height: 80px;
-  clip: rect(9px, 0px, 89px, 80px);
-  border-radius: 40px;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
-}*/
+.loc-member-view:first-of-type {
+  margin-top: 0;
+}
+
+.loc-member-view {
+  margin-top: 15px;
+}
+
+.loc-member-avatar {
+  margin: 0 15px 5px 0;
+}
+
+.loc-member-avatar>img {
+  /*border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;*/
+  border-width: 3px;
+  border-style: solid;
+
+}
+
+.loc-member-avatar>img.D {
+  border-color: rgb(95, 129, 178);
+}
+
+.loc-member-avatar>img.I {
+  border-color: white;
+}
+
+.loc-member-avatar>img.R {
+  border-color: rgb(216, 117, 125);
+}
 
 .loc-view-area {
+  padding: 0;
+}
+
+.loc-view-area>div {
   background-color: #eee;
+  margin-bottom: 15px;
+}
+
+.loc-view-area>div>div {
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-bottom: 20px;
 }
 
 .loc-search-area-heading:first-of-type>h2 {
-  margin-top: 15px;
+  margin-top: 0;
 }
 
 .loc-search-area-heading>h2 {
-  /*display: inline;*/
   text-transform: uppercase;
   text-align: center;
   color: #00618d;
@@ -241,7 +283,7 @@ p.lead {
 }
 
 .loc-map {
-  background-color: #0078ae;
+  background-color: #eee;
 }
 
 .loc-bordered-component {
@@ -265,3 +307,9 @@ sup { /* not much. sup with you? */
   font-style: italic;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

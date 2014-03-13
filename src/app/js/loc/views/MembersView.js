@@ -1,6 +1,7 @@
 define("loc/views/MembersView", [
   "dojo/_base/declare",
   "dojo/_base/lang",
+  "dojo/_base/array",
   "dojo/dom",
   "dojo/dom-construct",
   "dijit/_WidgetBase",
@@ -11,6 +12,7 @@ define("loc/views/MembersView", [
 ], function(
   declare,
   lang,
+  array,
   dom,
   domConstruct,
   _WidgetBase,
@@ -35,19 +37,32 @@ define("loc/views/MembersView", [
 
       this.members = [].concat(members);
 
-      domConstruct.empty(this.containerNode);
+      var senators = array.filter(this.members, function(member) { return member.get("chamber") === "senate"; });
 
-      for (var i = 0; i < members.length; i++) {
+      domConstruct.empty(this.senNode);
+      for (var i = 0; i < senators.length; i++) {
 
         var memberView = new MemberView({
-          member: this.members[i]
+          member: senators[i]
         });
         memberView.startup();
 
-        domConstruct.place(memberView.domNode, this.containerNode);
+        domConstruct.place(memberView.domNode, this.senNode);
 
       }
 
+      var representatives = array.filter(members, function(member) { return member.get("chamber") === "house"; });
+      domConstruct.empty(this.repNode);
+      for (var i = 0; i < representatives.length; i++) {
+
+        var memberView = new MemberView({
+          member: representatives[i]
+        });
+        memberView.startup();
+
+        domConstruct.place(memberView.domNode, this.repNode);
+
+      }
     }
 
   });

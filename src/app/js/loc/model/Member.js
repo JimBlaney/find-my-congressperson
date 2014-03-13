@@ -104,7 +104,7 @@ define("loc/model/Member", [
     /* String */
     _getAvatarAttr: function() {
 
-      return require.toUrl(lang.replace("loc/views/images/avatars/80/{memberId}.jpg", this)); 
+      return require.toUrl(lang.replace("loc/views/images/avatars/64/{memberId}.jpg", this)); 
 
     },
 
@@ -132,13 +132,30 @@ define("loc/model/Member", [
 
       return lang.replace("http://www.facebook.com/{facebookId}", this);
 
+    },
+
+    _getFacebookHandleAttr: function() {
+
+      return this.get("facebookUrl");
+
+    },    
+
+    _getTwitterUrlAttr: function() {
+
+
+
+    },
+
+    _getTwitterHandleAttr: function() {
+
+      return lang.replace("@{twitterId}", this);
+
     }
 
   });
 
   var sortFunction = function(lhs, rhs) {
     if (lhs.chamber === rhs.chamber) {
-console.log("chamber match");
       if (lhs.lastName < rhs.lastName) {
         return -1;
       } else if (lhs.lastName > rhs.lastName) {
@@ -153,10 +170,8 @@ console.log("chamber match");
         }
       }
     } else if (lhs.chamber === "senate") {
-console.log("senate over house");
       return -1;
     } else {
-console.log("house under senate");
       return 1;
     }
   };

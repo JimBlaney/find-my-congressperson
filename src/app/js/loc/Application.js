@@ -14,6 +14,7 @@ define("loc/Application", [
   "esri/map",
   "esri/graphic",
   "esri/geometry/Extent",
+  "esri/geometry/webMercatorUtils",
   "loc/dal/sunlight"
 ], function(
   config, 
@@ -31,6 +32,7 @@ define("loc/Application", [
   Map, 
   Graphic,
   Extent,
+  webMercatorUtils,
   sunlight
 ) {
 
@@ -64,18 +66,12 @@ define("loc/Application", [
       // DEBUG ONLY
       topic.subscribe("/loc/results/members", lang.hitch(this, function(e) {
 
-        console.group("onmembers");
-
-        console.log(e.members);
-
         var view = new MembersView();
         view.startup();
         view.set("members", e.members);
 
         domConstruct.empty(this.resultsNode);
         domConstruct.place(view.domNode, this.resultsNode);
-
-        console.groupEnd("onmembers");
 
       }));
 
@@ -95,6 +91,20 @@ define("loc/Application", [
         slider: false,
         showAttribution: false
       });
+
+      on(this.map, "click", lang.hitch(this, function(e) {
+
+        var geom = e.mapPoint;
+
+        if (geom.spatialReference.isWebMercator()) {
+          geom = webMercatorUtils.webMercatorToGeographic(geom);
+        }
+
+        topic.publish("/loc/search/members/geometry", {
+          geometry: geom
+        })
+
+      }));
 
     },
 
@@ -120,6 +130,8 @@ define("loc/Application", [
     },
 
     _doGeometrySearch: function(e) {
+
+      domConstruct.empty(this.resultsNode);
 
       var geom = e.geometry || null;
       if (geom === null) {
@@ -151,6 +163,8 @@ define("loc/Application", [
 
     _doZIPSearch: function(e) {
 
+      domConstruct.empty(this.resultsNode);
+
       var zip = e.zip || null;
       if (zip === null) {
         console.warn("could not search on null ZIP");
@@ -177,6 +191,8 @@ define("loc/Application", [
 
     _doStateSearch: function(e) {
 
+      domConstruct.empty(this.resultsNode);
+
       var state = e.state || null;
       if (state === null) {
         console.warn("could not search on null State");
@@ -198,6 +214,14 @@ define("loc/Application", [
         });
 
       });
+
+    },
+
+    _doCommitteeSearch: function(e) {
+
+      console.log(arguments);
+
+      domConstruct.empty(this.resultsNode);
 
     }
 

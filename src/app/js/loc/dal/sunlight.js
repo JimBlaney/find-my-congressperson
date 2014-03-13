@@ -59,7 +59,6 @@ define("loc/dal/sunlight", [
         });
 
         if (!!T.SORT_FUNCTION) {
-          console.log("sorting");
           tArr.sort(T.SORT_FUNCTION);
         }
 
