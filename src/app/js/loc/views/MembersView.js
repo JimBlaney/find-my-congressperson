@@ -66,6 +66,8 @@ define("loc/views/MembersView", [
         domConstruct.place(memberView.domNode, this.repNode);
 
       }
+
+      domStyle.set(this.hrNode, { display: !!senators.length && !!representatives.length ? "block" : "none" });
     }
 
   });

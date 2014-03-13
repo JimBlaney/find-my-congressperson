@@ -18,6 +18,7 @@ define("loc/views/_ViewBase", [
   var MODEL_ELEM_STY_ATTR = "data-view-element-style";
   var MODEL_ELEM_CLS_ATTR = "data-view-element-class";
   var MODEL_ELEM_FMT_ATTR = "data-view-element-value-format";
+  var MODEL_ELEM_HRF_ATTR = "data-view-element-href";
 
   return declare(null, {
 
@@ -35,18 +36,6 @@ define("loc/views/_ViewBase", [
       for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i];
         
-        // if (domAttr.has(node, "data-view-model-facebook")) {
-        //   console.log("doing the facebook thing");
-        //   domConstruct.create("div", {
-        //     "class": "fb-follow",
-        //     "data-href": "https://www.facebook.com/" + model.get("facebookId"),
-        //     "data-colorscheme": "light",
-        //     "data-layout": "button_count",
-        //     "data-show-faces": false
-        //   }, node);
-        // }
-
-
         if (domAttr.has(node, MODEL_PROPERTY_ATTR)) {
           var property = domAttr.get(node, MODEL_PROPERTY_ATTR);
           var tag = "span";
@@ -56,13 +45,21 @@ define("loc/views/_ViewBase", [
             tag = domAttr.get(node, MODEL_ELEM_TAG_ATTR);
           }
 
+          var props = {};
+
           if (tag === "img") {
             attrs = ["src"];
           } else if (tag === "a") {
-            attrs.push("href");
+            props["target"] = "_blank";
+            
+            if (domAttr.has(node, MODEL_ELEM_HRF_ATTR)) {
+              props["href"] = lang.replace("{value}", {
+                value: model.get(domAttr.get(node, MODEL_ELEM_HRF_ATTR))
+              });
+            } else {
+              attrs.push("href");
+            }
           }
-
-          var props = {};
 
           var format = "{value}";
           if (domAttr.has(node, MODEL_ELEM_FMT_ATTR)) {

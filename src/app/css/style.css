@@ -196,6 +196,10 @@ ul.list-group li.list-group-item.active {
   margin-top: 15px;
 }
 
+.loc-member-view:last-of-type {
+  margin-bottom: 15px;
+}
+
 .loc-member-avatar {
   margin: 0 15px 5px 0;
 }

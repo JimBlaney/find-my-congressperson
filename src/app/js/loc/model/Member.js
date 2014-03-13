@@ -9,6 +9,7 @@ define("loc/model/Member", [
     "bioguide_id": "memberId",
     "birthday": "birthday",
     "chamber": "chamber",
+    "contact_form": "contactForm",
     "district": "district",
     "facebook_id": "facebookId",
     "first_name": "firstName",
@@ -18,7 +19,9 @@ define("loc/model/Member", [
     "middle_name": "middleName",
     "name_suffix": "nameSuffix",
     "nickname": "nickname",
+    "office": "office",
     "party": "party",
+    "phone": "phone",
     "senate_class": "senateClass",
     "state": "state",
     "state_name": "stateName",
@@ -27,6 +30,7 @@ define("loc/model/Member", [
     "term_start": "termStart",
     "title": "title",
     "twitter_id": "twitterId",
+    "website": "website",
     "youtube_id": "youtubeId"
   };
 
@@ -40,6 +44,9 @@ define("loc/model/Member", [
 
     /* Number (1 | 2 | 3) (will be -1 if chamber === "house") */
     senateClass: -1,
+
+    /* String ("junior" | "senior") (will only be populated if chamber === "senate") */
+    stateRank: null,
 
     /* String */
     title: null,
@@ -68,9 +75,6 @@ define("loc/model/Member", [
     /* String (will only be populated if chamber === "house") */
     district: null,
 
-    /* String ("junior" | "senior") (will only be populated if chamber === "senate") */
-    stateRank: null,
-
     /* String ("D" | "I" | "R") */
     party: null,
 
@@ -94,6 +98,14 @@ define("loc/model/Member", [
     twitterId: null,
 
     youtubeId: null,
+
+    office: null,
+
+    website: null,
+
+    contactForm: null,
+
+    phone: null,
 
     _getDisplayNameAttr: function() {
 
@@ -130,7 +142,7 @@ define("loc/model/Member", [
 
     _getFacebookUrlAttr: function() {
 
-      return lang.replace("http://www.facebook.com/{facebookId}", this);
+      return lang.replace("http://facebook.com/{facebookId}", this);
 
     },
 
@@ -142,7 +154,7 @@ define("loc/model/Member", [
 
     _getTwitterUrlAttr: function() {
 
-
+      return lang.replace("http://twitter.com/{twitterId}", this);
 
     },
 
@@ -150,12 +162,59 @@ define("loc/model/Member", [
 
       return lang.replace("@{twitterId}", this);
 
+    },
+
+    _getYoutubeUrlAttr: function() {
+
+      return lang.replace("http://youtube.com/{youtubeId}", this);
+
+    },
+
+    _getYoutubeHandleAttr: function() {
+
+      return lang.replace("{youtubeId}", this).replace("channel/", "Channel: ");
+
+    },
+
+    _getTelNoAttr: function() {
+
+      return this.get("phone").replace(/(...).(...).(....)/, "($1) $2-$3");
+
+    },
+
+    _getContactLabelAttr: function() {
+
+      return "Contact";
+
+    },
+
+    _getRankDistrictAttr: function() {
+
+      var format = null;
+
+      if (this.get("chamber") === "senate") {
+        format = "{stateRank}, Class {senateClass}";
+      } else {
+        format = "{state} District {district}";
+      }
+
+      var val = lang.replace(format, this);
+      return val.substring(0, 1).toUpperCase() + val.substring(1);
+
     }
 
   });
 
   var sortFunction = function(lhs, rhs) {
     if (lhs.chamber === rhs.chamber) {
+      if (lhs.chamber === "senate") {
+        if (lhs.stateRank === rhs.stateRank) {}
+        else if (lhs.stateRank === "senior") {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
       if (lhs.lastName < rhs.lastName) {
         return -1;
       } else if (lhs.lastName > rhs.lastName) {
