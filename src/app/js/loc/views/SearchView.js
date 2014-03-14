@@ -584,50 +584,50 @@ define("loc/views/SearchView", [
       var anim = null;
       var animHandle = null;
 
-      topic.subscribe("/loc/search/hide", lang.hitch(this, function() {
-        if (anim !== null) {
-          anim.stop();
-          animHandle.remove();
-          anim = null;
-          animHandle = null;
-        }
+      // topic.subscribe("/loc/search/hide", lang.hitch(this, function() {
+      //   if (anim !== null) {
+      //     anim.stop();
+      //     animHandle.remove();
+      //     anim = null;
+      //     animHandle = null;
+      //   }
 
-        // this.searchPlaceholderNode
-        // this.searchAreaNode
+      //   // this.searchPlaceholderNode
+      //   // this.searchAreaNode
 
-        anim = fx2.combine([
-          // fx2.wipeOut({ node: this.searchAreaNode, duration: 300 }),
-          // fx2.wipeIn({ node: this.searchPlaceholderNode, duration: 300 })
-        ]);
-        // on(anim, "end", function() {
-        //   if (animHandle !== null) {
-        //     animHandle.remove();
-        //   }
-        //   animHandle = null;
-        // });
-        anim.play();
+      //   anim = fx2.combine([
+      //     // fx2.wipeOut({ node: this.searchAreaNode, duration: 300 }),
+      //     // fx2.wipeIn({ node: this.searchPlaceholderNode, duration: 300 })
+      //   ]);
+      //   // on(anim, "end", function() {
+      //   //   if (animHandle !== null) {
+      //   //     animHandle.remove();
+      //   //   }
+      //   //   animHandle = null;
+      //   // });
+      //   anim.play();
 
-      }));
+      // }));
 
-      topic.subscribe("/loc/search/show", lang.hitch(this, function() {
-        if (anim !== null) {
-          anim.stop();
-          animHandle.remove();
-          anim = null;
-          animHandle = null;
-        }
+      // topic.subscribe("/loc/search/show", lang.hitch(this, function() {
+      //   if (anim !== null) {
+      //     anim.stop();
+      //     animHandle.remove();
+      //     anim = null;
+      //     animHandle = null;
+      //   }
 
-        anim = fx2.combine([
+      //   anim = fx2.combine([
 
-        ]);
-        // on(anim, "end", function() {
-        //   if (animHandle !== null) {
-        //     animHandle.remove();
-        //   }
-        //   animHandle = null;
-        // });
-        anim.play();
-      }));
+      //   ]);
+      //   // on(anim, "end", function() {
+      //   //   if (animHandle !== null) {
+      //   //     animHandle.remove();
+      //   //   }
+      //   //   animHandle = null;
+      //   // });
+      //   anim.play();
+      // }));
 
     },
 
