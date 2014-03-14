@@ -6,9 +6,9 @@
       <div class="loc-member-term" data-view-model-property="term"></div>
       <div class="loc-member-party" data-view-model-property="partyName" data-view-element-class="party" ></div>
     </div>
-    <div>
+    <div class="loc-member-info pull-left">
       <div class="loc-member-name" data-view-model-property="displayName" data-view-element-style="font-weight: bold; font-size: 18pt;"></div>
-      <div class="loc-member-rank-district" data-view-model-property="rankDistrict">
+      <div class="loc-member-rank-district" data-view-model-property="rankDistrict"></div>
       <div class="loc-member-contact">
         <div>
           <span class="glyphicon glyphicon-envelope"></span><span data-view-model-property="contactLabel" data-view-element-tag="a" data-view-element-href="contactForm"></span>
@@ -32,9 +32,10 @@
         </div>
       </div>
     </div>
-    <div class="pull-right">
-      <div class="loc-member-committees"></div>
-    </div>
+    <button class="btn btn-loc-default pull-right text-center loc-member-committee-area" data-dojo-attach-event="click: _doMemberCommitteeSearch">
+      <div class="loc-member-committee" data-view-model-property="committeeCount"></div>
+      <div>Committees</div>
+    </button>
     <div class="clearfix"></div>
   </div>
 </li>

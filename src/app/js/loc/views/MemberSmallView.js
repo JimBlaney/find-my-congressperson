@@ -1,13 +1,12 @@
-define("loc/views/MemberView", [
+define("loc/views/MemberSmallView", [
   "dojo/_base/declare",
   "dojo/dom-construct",
-  "dojo/topic",
   "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
-  "dojo/text!loc/views/templates/MemberView.html",
+  "dojo/text!loc/views/templates/MemberSmallView.html",
   "loc/views/_ViewBase"
-], function(declare, domConstruct, topic, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, template, _ViewBase) {
+], function(declare, domConstruct, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, template, _ViewBase) {
   
   return declare([ _WidgetBase, _TemplatedMixin,_WidgetsInTemplateMixin, _ViewBase ], {
 
@@ -19,14 +18,6 @@ define("loc/views/MemberView", [
       this.inherited(arguments);
 
       this._formatTemplate(this.member);
-    },
-
-    _doMemberCommitteeSearch: function(e) {
-
-      topic.publish("/loc/search/committees/memberId", {
-        memberId: this.member.get("memberId")
-      });
-
     }
 
   });

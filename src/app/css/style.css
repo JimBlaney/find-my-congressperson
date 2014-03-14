@@ -197,7 +197,7 @@ ul.list-group li.list-group-item.active {
 }
 
 .loc-member-view:last-of-type {
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 .loc-member-avatar {
@@ -316,4 +316,20 @@ input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.loc-search-placeholder {
+  height: 0;
+  background-color: #0078ae;
+  color: #f8f8f8;
+  margin: -15px -15px 0px -15px;
+}
+
+.loc-search-placeholder>div:first-of-type {
+  font-weight: bold;
+  margin-top: 7px;
+}
+
+.loc-search-placeholder>div:last-of-type {
+  margin-bottom: 7px;
 }

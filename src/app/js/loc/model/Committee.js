@@ -8,6 +8,7 @@ define("loc/model/Committee", [
     "chamber": "chamber",
     "committee_id": "committeeId",
     "member_ids": "memberIds",
+    "members": "members",
     "name": "name",
     "office": "office",
     "parent_committee_id": "parentCommitteeId",
@@ -39,7 +40,9 @@ define("loc/model/Committee", [
     /* String */
     parentCommitteeId: null,
 
-    memberIds: null
+    memberIds: null,
+
+    members: null
 
   });
 

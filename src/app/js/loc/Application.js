@@ -2,6 +2,7 @@ define("loc/Application", [
   "dojo/_base/config",
   "dojo/_base/declare",
   "dojo/_base/lang",
+  "dojo/_base/array",
   "dojo/dom-construct",
   "dojo/topic",
   "dojo/on",
@@ -20,6 +21,7 @@ define("loc/Application", [
   config, 
   declare, 
   lang, 
+  array,
   domConstruct, 
   topic, 
   on, 
@@ -49,32 +51,13 @@ define("loc/Application", [
     startup: function() {
       this.inherited(arguments);
 
-      this.highlightSymbol = null; // TODO
-      topic.subscribe("/loc/map/highlight", lang.hitch(this, this._highlightGeometries));
-
-      topic.subscribe("/loc/search/members/geometry", lang.hitch(this, this._doGeometrySearch));
-      topic.subscribe("/loc/search/members/zip", lang.hitch(this, this._doZIPSearch));
-      topic.subscribe("/loc/search/members/state", lang.hitch(this, this._doStateSearch));
-      topic.subscribe("/loc/search/members/name", lang.hitch(this, this._doNameSearch));
-      topic.subscribe("/loc/search/members/id", lang.hitch(this, this._doMemberSearch));
-
-      topic.subscribe("/loc/search/committees/id", lang.hitch(this, this._doCommitteeSearch));
-
       this._createMap();
 
       this._setupViewArea();
 
-      // DEBUG ONLY
-      topic.subscribe("/loc/results/members", lang.hitch(this, function(e) {
+      this._subscribeSearch();
 
-        var view = new MembersView();
-        view.startup();
-        view.set("members", e.members);
-
-        domConstruct.empty(this.resultsNode);
-        domConstruct.place(view.domNode, this.resultsNode);
-
-      }));
+      this._subscribeResults();
 
     },
 
@@ -93,6 +76,21 @@ define("loc/Application", [
         showAttribution: false
       });
 
+      // set up map highlight functionality
+      this.highlightSymbol = null; // TODO
+      topic.subscribe("/loc/map/highlight", lang.hitch(this, function(e) {
+
+        var geometries = [].concat(e.geometries || []);
+
+        var graphics = this.map.graphics;
+        graphics.clear();
+
+        for (var i = 0; i < geometries.length; i++) {
+          graphics.add(new Graphic(geometries[i], this.highlightSymbol, {}, null));
+        }
+      }));
+
+      // set up click -> search
       on(this.map, "click", lang.hitch(this, function(e) {
 
         var geom = e.mapPoint;
@@ -118,16 +116,72 @@ define("loc/Application", [
 
     },
 
-    _highlightGeometries: function(geom) {
+    _subscribeSearch: function() {
 
-        var geometries = [].concat(geom);
+      topic.subscribe("/loc/search/members/geometry", lang.hitch(this, this._doGeometrySearch));
+      topic.subscribe("/loc/search/members/zip", lang.hitch(this, this._doZIPSearch));
+      topic.subscribe("/loc/search/members/state", lang.hitch(this, this._doStateSearch));
+      topic.subscribe("/loc/search/members/id", lang.hitch(this, this._doMemberSearch));
 
-        var graphics = this.map.graphics;
-        graphics.clear();
+      topic.subscribe("/loc/search/committees/id", lang.hitch(this, this._doCommitteeSearch));
+      topic.subscribe("/loc/search/committees/memberId", lang.hitch(this, this._doCommitteeMemberSearch));
 
-        for (var i = 0; i < geometries.length; i++) {
-          graphics.add(new Graphic(geometries[i], this.highlightSymbol, {}, null));
+    },
+
+    _subscribeResults: function() {
+
+      topic.subscribe("/loc/results/members", lang.hitch(this, this._onMembersResults));
+      topic.subscribe("/loc/results/committees", lang.hitch(this, this._onCommitteesResults));
+
+    },
+
+    _onMembersResults: function(e) {
+
+      var members = e.members || [];
+
+      var memberIds = array.map(members, function(member) {
+        return member.memberId;
+      })
+
+      sunlight.getCommitteesForMembers(memberIds).then(lang.hitch(this, function(errh, committees) {
+
+        for (var i = 0; i < members.length; i++) {
+
+          var memberId = members[i].memberId;
+
+          var memberCommittees = array.filter(committees || [], function(committee) {
+            return array.indexOf(committee.get("memberIds") || [], memberId) > -1;
+          })
+
+          members[i].set("committeeCount", memberCommittees.length);
+
         }
+
+        var view = new MembersView();
+        view.startup();
+        view.set("members", members);
+
+        domConstruct.empty(this.resultsNode);
+        domConstruct.place(view.domNode, this.resultsNode);  
+      
+      }, function(error) {
+
+        console.error(error);
+        topic.publish("/loc/app/error", {
+          error: error,
+          during: "Point Search"
+        });
+
+      }));
+
+    },
+
+    _onCommitteesResults: function(e) {
+      
+      console.group("oncommittees");
+      console.log(e);
+      console.groupEnd("oncommittees");
+
     },
 
     _doGeometrySearch: function(e) {
@@ -248,9 +302,35 @@ define("loc/Application", [
 
     _doCommitteeSearch: function(e) {
 
-      console.log(arguments);
-
       domConstruct.empty(this.resultsNode);
+
+      var committeeId = e.committeeId || null;
+      if (committeeId === null) {
+        console.warn("could not search on null CommitteeId");
+        return;
+      }
+
+      sunlight.getCommitteeById(committeeId).then(function(committees) {
+
+        topic.publish("/loc/results/committees", {
+          committees: committees
+        })
+
+      }, function(error) {
+
+        console.error(error);
+        topic.publish("/loc/app/error", {
+          error: error,
+          during: "Committee Id Search"
+        });
+
+      });
+
+    },
+
+    _doCommitteeMemberSearch: function(e) {
+
+      console.log("_doCommitteeMemberSearch");
 
     }
 

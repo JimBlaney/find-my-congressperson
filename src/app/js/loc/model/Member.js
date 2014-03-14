@@ -107,6 +107,8 @@ define("loc/model/Member", [
 
     phone: null,
 
+    committeeCount: -1,
+
     _getDisplayNameAttr: function() {
 
       return lang.replace("{title}. {firstName} \"{nickname}\" {middleName} {lastName}, {nameSuffix}", this).replace(", null", "").replace(/null/g, "").replace("\"\" ", "").replace("  ", " ", "g").trim();
@@ -178,7 +180,7 @@ define("loc/model/Member", [
 
     _getTelNoAttr: function() {
 
-      return this.get("phone").replace(/(...).(...).(....)/, "($1) $2-$3");
+      return (this.get("phone") || "123-456-7890").replace(/(...).(...).(....)/, "($1) $2-$3");
 
     },
 

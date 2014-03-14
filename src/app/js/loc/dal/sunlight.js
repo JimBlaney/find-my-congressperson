@@ -153,13 +153,29 @@ define("loc/dal/sunlight", [
 
     },
 
+    getCommitteeById: function(committeeId) {
+
+      var d = new Deferred();
+
+      this._makeApiCall("committees", {
+
+        committee_id: committeeId,
+        fields: "committee_id,chamber,name,member_ids,members,subcommittee,parent_committee_id,url,office,phone"
+
+      }).then(lang.hitch(this, this._populateModel, Committee, d));
+
+      return d;
+
+    },
+
     getCommitteesForMembers: function(members) {
 
       var d = new Deferred();
 
       this._makeApiCall("committees", {
 
-        member_ids: [].concat(members).join(",")
+        member_ids__in: [].concat(members).join("|"),
+        fields: "committee_id,name,member_ids"
       
       }).then(lang.hitch(this, this._populateModel, Committee, d));
 

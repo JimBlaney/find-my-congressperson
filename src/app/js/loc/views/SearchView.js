@@ -8,7 +8,9 @@ define("loc/views/SearchView", [
   "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
-  "dojo/text!loc/views/templates/SearchView.html"
+  "dojo/text!loc/views/templates/SearchView.html",
+  "dojo/_base/fx",
+  "dojo/fx"
 ], function(
   declare, 
   lang,
@@ -19,10 +21,13 @@ define("loc/views/SearchView", [
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin, 
-  template
+  template,
+  fx1,
+  fx2
 ) {
 
   var MEMBERS_FIXTURES = [
+    { id: 'J000296', name: 'Rep. David W. Jolly' },
     { id: 'A000360', name: 'Sen. Lamar Alexander'},
     { id: 'A000368', name: 'Sen. Kelly Ayotte'},
     { id: 'B001230', name: 'Sen. Tammy Baldwin'},
@@ -569,6 +574,65 @@ define("loc/views/SearchView", [
     startup: function() {
       this.inherited(arguments);
 
+      this._setupControls();
+
+      this._subscribeTopics();
+    },
+
+    _subscribeTopics: function() {
+
+      var anim = null;
+      var animHandle = null;
+
+      topic.subscribe("/loc/search/hide", lang.hitch(this, function() {
+        if (anim !== null) {
+          anim.stop();
+          animHandle.remove();
+          anim = null;
+          animHandle = null;
+        }
+
+        // this.searchPlaceholderNode
+        // this.searchAreaNode
+
+        anim = fx2.combine([
+          fx2.wipeOut({ node: this.searchAreaNode, duration: 300 }),
+          fx2.wipeIn({ node: this.searchPlaceholderNode, duration: 300 })
+        ]);
+        // on(anim, "end", function() {
+        //   if (animHandle !== null) {
+        //     animHandle.remove();
+        //   }
+        //   animHandle = null;
+        // });
+        anim.play();
+
+      }));
+
+      topic.subscribe("/loc/search/show", lang.hitch(this, function() {
+        if (anim !== null) {
+          anim.stop();
+          animHandle.remove();
+          anim = null;
+          animHandle = null;
+        }
+
+        anim = fx2.combine([
+
+        ]);
+        on(anim, "end", function() {
+          if (animHandle !== null) {
+            animHandle.remove();
+          }
+          animHandle = null;
+        });
+        anim.play();
+      }));
+
+    },
+
+    _setupControls: function() {
+
       // zip
       $(this.zipInput).keypress(lang.hitch(this, function (e) {
         if (e.which == 13) {
@@ -605,7 +669,7 @@ define("loc/views/SearchView", [
     },
 
     _doZIPSearch: function(e) {
-
+topic.publish("/loc/search/hide", {});
       var value = $(this.zipInput).val() || null;
       if (value === null || value === "-") {
         return;
