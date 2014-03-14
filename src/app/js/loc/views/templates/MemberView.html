@@ -1,26 +1,26 @@
 <li class="loc-member-view">
   <div>
-    <div class="pull-left">
+    <div class="pull-left loc-member-portrait-info">
       <div class="loc-member-avatar" data-view-model-property="avatar" data-view-element-class="party" data-view-element-tag="img"></div>
       <div class="loc-member-title" data-view-model-property="fullTitle"></div>
       <div class="loc-member-term" data-view-model-property="term"></div>
       <div class="loc-member-party" data-view-model-property="partyName" data-view-element-class="party" ></div>
     </div>
-    <div class="loc-member-info pull-left">
-      <div class="loc-member-name" data-view-model-property="displayName" data-view-element-style="font-weight: bold; font-size: 18pt;"></div>
+    <div class="pull-left">
+      <div class="loc-member-name" data-view-model-property="displayName" ></div>
       <div class="loc-member-rank-district" data-view-model-property="rankDistrict"></div>
       <div class="loc-member-contact">
         <div>
           <span class="glyphicon glyphicon-envelope"></span><span data-view-model-property="contactLabel" data-view-element-tag="a" data-view-element-href="contactForm"></span>
         </div>
-        <div>
-          <span class="glyphicon glyphicon-earphone"></span><span data-view-model-property="telNo"</span>
-        </div>
+          <div>
+              <span class="glyphicon glyphicon-earphone"></span><span data-view-model-property="telNo"></span>
+          </div>
+          <div class="loc-member-web">
+              <span class="loc-member-social-web-icon glyphicon glyphicon-home"></span><span data-view-model-property="website" data-view-element-tag="a" data-view-element-href="website"></span>
+          </div>
       </div>
       <div class="loc-member-social-web">
-        <div class="loc-member-web">
-          <span class="loc-member-social-web-icon glyphicon glyphicon-home"></span><span data-view-model-property="website" data-view-element-tag="a" data-view-element-href="website"></span>
-        </div>
         <div class="loc-member-social-facebook">
           <i class="loc-member-social-web-icon fa fa-facebook"></i><span data-view-model-property="facebookHandle" data-view-element-tag="a" data-view-element-href="facebookUrl"></span>
         </div>
@@ -32,10 +32,17 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-loc-default pull-right text-center loc-member-committee-area" data-dojo-attach-event="click: _doMemberCommitteeSearch">
-      <div class="loc-member-committee" data-view-model-property="committeeCount"></div>
-      <div>Committees</div>
-    </button>
+    <div class="pull-right">
+        <div class="loc-member-committees">
+            <!-- Static content just so I had something to style -->
+            <div class="committee-count-title">
+                <p><a href="#">Committees</a></p>
+            </div>
+            <div class="committee-count-num" data-view-model-property="committeeCount" data-view-element-tag="p">
+                
+            </div>
+        </div>
+    </div>
     <div class="clearfix"></div>
   </div>
 </li>

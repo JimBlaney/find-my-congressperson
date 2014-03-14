@@ -1,341 +1,336 @@
 <div class="loc-search-area-parent">
-  <div class="loc-search-placeholder text-center" data-dojo-attach-point="searchPlaceholderNode">
-    <div>New Search</div>
-    <div><i class="fa fa-chevron-down"></i></div>
-  </div>
-  <div data-dojo-attach-point="searchAreaNode">
-    <div class="loc-search-area loc-location-search">
-      <div class="loc-search-area-heading loc-name-location-heading">
-        <h2>By Location</h2>
-        <p>
-          Find your legislator by location. Enter your ZIP code, select a State, or click on the map to begin the search.
-        </p>
-      </div>
+  <div class="loc-search-area loc-location-search">
+    
+    <div class="loc-search-area-heading loc-name-location-heading">
+      <h2>By Location</h2>
+      <p>
+        Find your legislator by location. Enter your ZIP code, select a State, or click on the map to begin the search.
+      </p>
+    </div>
 
-      <div class="loc-search-area-content loc-name-location-content form-inline text-center">
-        <div class="form-group" style="width: 27%; text-align: left;">
-          <div class="input-group">
-            <input class="form-control" type="number" placeholder="ZIP" data-dojo-attach-point="zipInput" />
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button" data-dojo-attach-event="click: _doZIPSearch">&nbsp;Go&nbsp;</button>
-            </span>
-          </div>
-        </div>
-        <div class="form-group" style="width: 7%;">
-          <p class="form-control-static text-muted">or</p>
-        </div>
-        <div class="form-group" style="width: 27%;">
-          <select id="${id}_state" class="form-control selectpicker text-left" data-dojo-attach-point="stateSelect">
-            <option value="-">State/Terr.</option>
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AS">American Samoa</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
-            <option value="CO">Colorado</option>
-            <option value="CT">Connecticut</option>
-            <option value="DE">Delaware</option>
-            <option value="DC">District of Columbia</option>
-            <option value="FL">Florida</option>
-            <option value="GA">Georgia</option>
-            <option value="GU">Guam</option>
-            <option value="HI">Hawaii</option>
-            <option value="ID">Idaho</option>
-            <option value="IL">Illinois</option>
-            <option value="IN">Indiana</option>
-            <option value="IA">Iowa</option>
-            <option value="KS">Kansas</option>
-            <option value="KY">Kentucky</option>
-            <option value="LA">Louisiana</option>
-            <option value="ME">Maine</option>
-            <option value="MD">Maryland</option>
-            <option value="MA">Massachusetts</option>
-            <option value="MI">Michigan</option>
-            <option value="MN">Minnesota</option>
-            <option value="MS">Mississippi</option>
-            <option value="MO">Missouri</option>
-            <option value="MT">Montana</option>
-            <option value="NE">Nebraska</option>
-            <option value="NV">Nevada</option>
-            <option value="NH">New Hampshire</option>
-            <option value="NJ">New Jersey</option>
-            <option value="NM">New Mexico</option>
-            <option value="NY">New York</option>
-            <option value="NC">North Carolina</option>
-            <option value="ND">North Dakota</option>
-            <option value="MP">Northern Mariana Islands</option>
-            <option value="OH">Ohio</option>
-            <option value="OK">Oklahoma</option>
-            <option value="OR">Oregon</option>
-            <option value="PA">Pennsylvania</option>
-            <option value="PR">Puerto Rico</option>
-            <option value="RI">Rhode Island</option>
-            <option value="SC">South Carolina</option>
-            <option value="SD">South Dakota</option>
-            <option value="TN">Tennessee</option>
-            <option value="TX">Texas</option>
-            <option value="VI">U.S. Virgin Islands</option>
-            <option value="UT">Utah</option>
-            <option value="VT">Vermont</option>
-            <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
-            <option value="WV">West Virginia</option>
-            <option value="WI">Wisconsin</option>
-            <option value="WY">Wyoming</option>
-          </select>
-        </div>
-        <div class="form-group" style="width: 7%;">
-          <p class="form-control-static text-muted">or</p>
-        </div>
-        <div class="form-group" style="width: 27%; text-align: right;">
-          <button class="btn btn-loc-default form-control" data-dojo-attach-event="click: _doGeolocationSearch">
-            <i class="fa fa-crosshairs fa-lg"></i>
-            &nbsp;My Location&nbsp;
-          </button>
+    <div class="loc-search-area-content loc-name-location-content form-inline text-center">
+      <div class="form-group" style="width: 27%; text-align: left;">
+        <div class="input-group">
+          <input class="form-control" type="number" placeholder="Zip" data-dojo-attach-point="zipInput" />
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" data-dojo-attach-event="click: _doZIPSearch">&nbsp;Go&nbsp;</button>
+          </span>
         </div>
       </div>
-    </div>
-    <div style="margin-top: 25px; margin-bottom: 20px; height: 1px; background-color: black; text-align: center; background-color: #ccc;">
-      <span style="background-color: #eee; position: relative; top: -0.65em; padding-left: 15px; padding-right: 15px; color: #999">
-        OR
-      </span>
-    </div>
-    <div class="loc-search-area loc-name-search">
-      <div class="loc-search-area-heading loc-name-search-heading">
-        <h2>By Name</h2>
-        <p>
-          If you know the name of the legislator or committee you are looking for, enter the name to begin the search.
-        </p>
+      <div class="form-group" style="width: 7%;">
+        <p class="form-control-static text-muted">or</p>
       </div>
-      <div class="loc-search-area-content loc-name-search-content form-inline text-center">
-        <div class="form-group" style="width: 45%; text-align: left;">
-          <input class="form-control" placeholder="Name" data-dojo-attach-point="nameInput" />
-        </div>
-        <div class="form-group" style="width: 7%;">
-          <p class="form-control-static text-muted">or</p>
-        </div>
-        <div class="form-group" style="width: 45%; text-align: right;">
-          <select class="form-control selectpicker text-left" data-dojo-attach-point="committeeSelect">
-            <option value="-">Committee</option>
-            <option data-content="<span class='loc-option-committee'>Commission on Security and Cooperation in Europe</span>" value="JCSE"><span class="loc-option-committee">Commission on Security and Cooperation in Europe</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Agriculture</span>" value="HSAG"><span class="loc-option-committee">House Committee on Agriculture</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Conservation, Energy, and Forestry</span>" value="HSAG15"><span class="loc-option-subcommittee">Conservation, Energy, and Forestry</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Department Operations, Oversight, and Nutrition</span>" value="HSAG22"><span class="loc-option-subcommittee">Department Operations, Oversight, and Nutrition</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>General Farm Commodities and Risk Management</span>" value="HSAG16"><span class="loc-option-subcommittee">General Farm Commodities and Risk Management</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Horticulture, Research, Biotechnology, and Foreign Agriculture</span>" value="HSAG14"><span class="loc-option-subcommittee">Horticulture, Research, Biotechnology, and Foreign Agriculture</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Livestock, Rural Development, and Credit</span>" value="HSAG29"><span class="loc-option-subcommittee">Livestock, Rural Development, and Credit</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Appropriations</span>" value="HSAP"><span class="loc-option-committee">House Committee on Appropriations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Agriculture, Rural Development, Food and Drug Administration, and Related Agencies</span>" value="HSAP01"><span class="loc-option-subcommittee">Agriculture, Rural Development, Food and Drug Administration, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Commerce, Justice, Science, and Related Agencies</span>" value="HSAP19"><span class="loc-option-subcommittee">Commerce, Justice, Science, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Defense</span>" value="HSAP02"><span class="loc-option-subcommittee">Defense</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Energy and Water Development, and Related Agencies</span>" value="HSAP10"><span class="loc-option-subcommittee">Energy and Water Development, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Financial Services and General Government</span>" value="HSAP23"><span class="loc-option-subcommittee">Financial Services and General Government</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Homeland Security</span>" value="HSAP15"><span class="loc-option-subcommittee">Homeland Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Interior, Environment, and Related Agencies</span>" value="HSAP06"><span class="loc-option-subcommittee">Interior, Environment, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Labor, Health and Human Services, Education, and Related Agencies</span>" value="HSAP07"><span class="loc-option-subcommittee">Labor, Health and Human Services, Education, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Legislative Branch</span>" value="HSAP24"><span class="loc-option-subcommittee">Legislative Branch</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Military Construction, Veterans Affairs, and Related Agencies</span>" value="HSAP18"><span class="loc-option-subcommittee">Military Construction, Veterans Affairs, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>State, Foreign Operations, and Related Programs</span>" value="HSAP04"><span class="loc-option-subcommittee">State, Foreign Operations, and Related Programs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Transportation, and Housing and Urban Development, and Related Agencies</span>" value="HSAP20"><span class="loc-option-subcommittee">Transportation, and Housing and Urban Development, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Armed Services</span>" value="HSAS"><span class="loc-option-committee">House Committee on Armed Services</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Intelligence, Emerging Threats and Capabilities</span>" value="HSAS26"><span class="loc-option-subcommittee">Intelligence, Emerging Threats and Capabilities</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Military Personnel</span>" value="HSAS02"><span class="loc-option-subcommittee">Military Personnel</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HSAS06"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Readiness</span>" value="HSAS03"><span class="loc-option-subcommittee">Readiness</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Seapower and Projection Forces</span>" value="HSAS28"><span class="loc-option-subcommittee">Seapower and Projection Forces</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Strategic Forces</span>" value="HSAS29"><span class="loc-option-subcommittee">Strategic Forces</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Tactical Air and Land Forces</span>" value="HSAS25"><span class="loc-option-subcommittee">Tactical Air and Land Forces</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Education and the Workforce</span>" value="HSED"><span class="loc-option-committee">House Committee on Education and the Workforce</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Early Childhood, Elementary, and Secondary Education</span>" value="HSED14"><span class="loc-option-subcommittee">Early Childhood, Elementary, and Secondary Education</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Health, Employment, Labor, and Pensions</span>" value="HSED02"><span class="loc-option-subcommittee">Health, Employment, Labor, and Pensions</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Higher Education and Workforce Training</span>" value="HSED13"><span class="loc-option-subcommittee">Higher Education and Workforce Training</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Workforce Protections</span>" value="HSED10"><span class="loc-option-subcommittee">Workforce Protections</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Energy and Commerce</span>" value="HSIF"><span class="loc-option-committee">House Committee on Energy and Commerce</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Commerce, Manufacturing, and Trade</span>" value="HSIF17"><span class="loc-option-subcommittee">Commerce, Manufacturing, and Trade</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Communications and Technology</span>" value="HSIF16"><span class="loc-option-subcommittee">Communications and Technology</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Energy and Power</span>" value="HSIF03"><span class="loc-option-subcommittee">Energy and Power</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Environment and the Economy</span>" value="HSIF18"><span class="loc-option-subcommittee">Environment and the Economy</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Health</span>" value="HSIF14"><span class="loc-option-subcommittee">Health</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HSIF02"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Ethics</span>" value="HSSO"><span class="loc-option-committee">House Committee on Ethics</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Financial Services</span>" value="HSBA"><span class="loc-option-committee">House Committee on Financial Services</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Capital Markets and Government Sponsored Enterprises</span>" value="HSBA16"><span class="loc-option-subcommittee">Capital Markets and Government Sponsored Enterprises</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Financial Institutions and Consumer Credit</span>" value="HSBA15"><span class="loc-option-subcommittee">Financial Institutions and Consumer Credit</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Housing and Insurance</span>" value="HSBA04"><span class="loc-option-subcommittee">Housing and Insurance</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Monetary Policy and Trade</span>" value="HSBA20"><span class="loc-option-subcommittee">Monetary Policy and Trade</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HSBA09"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Foreign Affairs</span>" value="HSFA"><span class="loc-option-committee">House Committee on Foreign Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Africa, Global Health, Global Human Rights, and International Organizations</span>" value="HSFA16"><span class="loc-option-subcommittee">Africa, Global Health, Global Human Rights, and International Organizations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Asia and the Pacific</span>" value="HSFA05"><span class="loc-option-subcommittee">Asia and the Pacific</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Europe, Eurasia, and Emerging Threats</span>" value="HSFA14"><span class="loc-option-subcommittee">Europe, Eurasia, and Emerging Threats</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Terrorism, Nonproliferation, and Trade</span>" value="HSFA18"><span class="loc-option-subcommittee">Terrorism, Nonproliferation, and Trade</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>The Middle East and North Africa</span>" value="HSFA13"><span class="loc-option-subcommittee">The Middle East and North Africa</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>The Western Hemisphere</span>" value="HSFA07"><span class="loc-option-subcommittee">The Western Hemisphere</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Homeland Security</span>" value="HSHM"><span class="loc-option-committee">House Committee on Homeland Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Border and Maritime Security</span>" value="HSHM11"><span class="loc-option-subcommittee">Border and Maritime Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Counterterrorism and Intelligence</span>" value="HSHM05"><span class="loc-option-subcommittee">Counterterrorism and Intelligence</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Cybersecurity, Infrastructure Protection, and Security Technologies</span>" value="HSHM08"><span class="loc-option-subcommittee">Cybersecurity, Infrastructure Protection, and Security Technologies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Emergency Preparedness, Response and Communications</span>" value="HSHM12"><span class="loc-option-subcommittee">Emergency Preparedness, Response and Communications</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight and Management Efficiency</span>" value="HSHM09"><span class="loc-option-subcommittee">Oversight and Management Efficiency</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Transportation Security</span>" value="HSHM07"><span class="loc-option-subcommittee">Transportation Security</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on House Administration</span>" value="HSHA"><span class="loc-option-committee">House Committee on House Administration</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Natural Resources</span>" value="HSII"><span class="loc-option-committee">House Committee on Natural Resources</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Energy and Mineral Resources</span>" value="HSII06"><span class="loc-option-subcommittee">Energy and Mineral Resources</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Fisheries, Wildlife, Oceans and Insular Affairs</span>" value="HSII22"><span class="loc-option-subcommittee">Fisheries, Wildlife, Oceans and Insular Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Indian and Alaska Native Affairs</span>" value="HSII24"><span class="loc-option-subcommittee">Indian and Alaska Native Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Public Lands and Environmental Regulation</span>" value="HSII10"><span class="loc-option-subcommittee">Public Lands and Environmental Regulation</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Water and Power</span>" value="HSII13"><span class="loc-option-subcommittee">Water and Power</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Oversight and Government Reform</span>" value="HSGO"><span class="loc-option-committee">House Committee on Oversight and Government Reform</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Economic Growth, Job Creation, and Regulatory Affairs</span>" value="HSGO28"><span class="loc-option-subcommittee">Economic Growth, Job Creation, and Regulatory Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Energy Policy, Health Care, and Entitlements</span>" value="HSGO27"><span class="loc-option-subcommittee">Energy Policy, Health Care, and Entitlements</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Federal Workforce, U.S. Postal Service, and the Census</span>" value="HSGO25"><span class="loc-option-subcommittee">Federal Workforce, U.S. Postal Service, and the Census</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Government Operations</span>" value="HSGO24"><span class="loc-option-subcommittee">Government Operations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>National Security</span>" value="HSGO06"><span class="loc-option-subcommittee">National Security</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Rules</span>" value="HSRU"><span class="loc-option-committee">House Committee on Rules</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Legislative and Budget Process</span>" value="HSRU02"><span class="loc-option-subcommittee">Legislative and Budget Process</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Rules and Organization of the House</span>" value="HSRU04"><span class="loc-option-subcommittee">Rules and Organization of the House</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Science, Space, and Technology</span>" value="HSSY"><span class="loc-option-committee">House Committee on Science, Space, and Technology</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Energy</span>" value="HSSY20"><span class="loc-option-subcommittee">Energy</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Environment</span>" value="HSSY18"><span class="loc-option-subcommittee">Environment</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight</span>" value="HSSY21"><span class="loc-option-subcommittee">Oversight</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Research and Technology</span>" value="HSSY15"><span class="loc-option-subcommittee">Research and Technology</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Space</span>" value="HSSY16"><span class="loc-option-subcommittee">Space</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Small Business</span>" value="HSSM"><span class="loc-option-committee">House Committee on Small Business</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Agriculture, Energy and Trade</span>" value="HSSM25"><span class="loc-option-subcommittee">Agriculture, Energy and Trade</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Contracting and Workforce</span>" value="HSSM23"><span class="loc-option-subcommittee">Contracting and Workforce</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Economic Growth, Tax and Capital Access</span>" value="HSSM27"><span class="loc-option-subcommittee">Economic Growth, Tax and Capital Access</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Health and Technology</span>" value="HSSM26"><span class="loc-option-subcommittee">Health and Technology</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Investigations, Oversight and Regulations</span>" value="HSSM24"><span class="loc-option-subcommittee">Investigations, Oversight and Regulations</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Transportation and Infrastructure</span>" value="HSPW"><span class="loc-option-committee">House Committee on Transportation and Infrastructure</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Aviation</span>" value="HSPW05"><span class="loc-option-subcommittee">Aviation</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Coast Guard and Maritime Transportation</span>" value="HSPW07"><span class="loc-option-subcommittee">Coast Guard and Maritime Transportation</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Economic Development, Public Buildings, and Emergency Management</span>" value="HSPW13"><span class="loc-option-subcommittee">Economic Development, Public Buildings, and Emergency Management</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Highways and Transit</span>" value="HSPW12"><span class="loc-option-subcommittee">Highways and Transit</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Railroads, Pipelines, and Hazardous Materials</span>" value="HSPW14"><span class="loc-option-subcommittee">Railroads, Pipelines, and Hazardous Materials</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Water Resources and Environment</span>" value="HSPW02"><span class="loc-option-subcommittee">Water Resources and Environment</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Veterans' Affairs</span>" value="HSVR"><span class="loc-option-committee">House Committee on Veterans' Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Disability Assistance and Memorial Affairs</span>" value="HSVR09"><span class="loc-option-subcommittee">Disability Assistance and Memorial Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Economic Opportunity</span>" value="HSVR10"><span class="loc-option-subcommittee">Economic Opportunity</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Health</span>" value="HSVR03"><span class="loc-option-subcommittee">Health</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HSVR08"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on Ways and Means</span>" value="HSWM"><span class="loc-option-committee">House Committee on Ways and Means</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Health</span>" value="HSWM02"><span class="loc-option-subcommittee">Health</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Human Resources</span>" value="HSWM03"><span class="loc-option-subcommittee">Human Resources</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight</span>" value="HSWM06"><span class="loc-option-subcommittee">Oversight</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Select Revenue Measures</span>" value="HSWM05"><span class="loc-option-subcommittee">Select Revenue Measures</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Social Security</span>" value="HSWM01"><span class="loc-option-subcommittee">Social Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Trade</span>" value="HSWM04"><span class="loc-option-subcommittee">Trade</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on the Budget</span>" value="HSBU"><span class="loc-option-committee">House Committee on the Budget</span></option>
-            <option data-content="<span class='loc-option-committee'>House Committee on the Judiciary</span>" value="HSJU"><span class="loc-option-committee">House Committee on the Judiciary</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Courts, Intellectual Property, and the Internet</span>" value="HSJU03"><span class="loc-option-subcommittee">Courts, Intellectual Property, and the Internet</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Crime, Terrorism, Homeland Security, and Investigations</span>" value="HSJU08"><span class="loc-option-subcommittee">Crime, Terrorism, Homeland Security, and Investigations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Immigration and Border Security</span>" value="HSJU01"><span class="loc-option-subcommittee">Immigration and Border Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Regulatory Reform, Commercial, and Antitrust Law</span>" value="HSJU05"><span class="loc-option-subcommittee">Regulatory Reform, Commercial, and Antitrust Law</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>The Constitution and Civil Justice</span>" value="HSJU10"><span class="loc-option-subcommittee">The Constitution and Civil Justice</span></option>
-            <option data-content="<span class='loc-option-committee'>House Permanent Select Committee on Intelligence</span>" value="HLIG"><span class="loc-option-committee">House Permanent Select Committee on Intelligence</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HLIG09"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Technical and Tactical Intelligence</span>" value="HLIG05"><span class="loc-option-subcommittee">Technical and Tactical Intelligence</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Terrorism, Human Intelligence, Analysis, and Counterintelligence</span>" value="HLIG08"><span class="loc-option-subcommittee">Terrorism, Human Intelligence, Analysis, and Counterintelligence</span></option>
-            <option data-content="<span class='loc-option-committee'>Joint Committee on Printing</span>" value="JSPR"><span class="loc-option-committee">Joint Committee on Printing</span></option>
-            <option data-content="<span class='loc-option-committee'>Joint Committee on Taxation</span>" value="JSTX"><span class="loc-option-committee">Joint Committee on Taxation</span></option>
-            <option data-content="<span class='loc-option-committee'>Joint Committee on the Library</span>" value="JSLC"><span class="loc-option-committee">Joint Committee on the Library</span></option>
-            <option data-content="<span class='loc-option-committee'>Joint Economic Committee</span>" value="JSEC"><span class="loc-option-committee">Joint Economic Committee</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Agriculture, Nutrition, and Forestry</span>" value="SSAF"><span class="loc-option-committee">Senate Committee on Agriculture, Nutrition, and Forestry</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Commodities, Markets, Trade and Risk Management</span>" value="SSAF13"><span class="loc-option-subcommittee">Commodities, Markets, Trade and Risk Management</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Conservation, Forestry and Natural Resources</span>" value="SSAF14"><span class="loc-option-subcommittee">Conservation, Forestry and Natural Resources</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Jobs, Rural Economic Growth and Energy Innovation</span>" value="SSAF15"><span class="loc-option-subcommittee">Jobs, Rural Economic Growth and Energy Innovation</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Livestock, Dairy, Poultry, Marketing and Agriculture Security</span>" value="SSAF17"><span class="loc-option-subcommittee">Livestock, Dairy, Poultry, Marketing and Agriculture Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Nutrition, Specialty Crops, Food and Agricultural Research</span>" value="SSAF16"><span class="loc-option-subcommittee">Nutrition, Specialty Crops, Food and Agricultural Research</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Appropriations</span>" value="SSAP"><span class="loc-option-committee">Senate Committee on Appropriations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Agriculture, Rural Development, Food and Drug Administration, and Related Agencies</span>" value="SSAP01"><span class="loc-option-subcommittee">Agriculture, Rural Development, Food and Drug Administration, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Commerce, Justice, Science, and Related Agencies</span>" value="SSAP16"><span class="loc-option-subcommittee">Commerce, Justice, Science, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Department of Defense</span>" value="SSAP02"><span class="loc-option-subcommittee">Department of Defense</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Department of Homeland Security</span>" value="SSAP14"><span class="loc-option-subcommittee">Department of Homeland Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Department of the Interior, Environment, and Related Agencies</span>" value="SSAP17"><span class="loc-option-subcommittee">Department of the Interior, Environment, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Departments of Labor, Health and Human Services, and Education, and Related Agencies</span>" value="SSAP18"><span class="loc-option-subcommittee">Departments of Labor, Health and Human Services, and Education, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Energy and Water Development</span>" value="SSAP22"><span class="loc-option-subcommittee">Energy and Water Development</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Financial Services and General Government</span>" value="SSAP23"><span class="loc-option-subcommittee">Financial Services and General Government</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Legislative Branch</span>" value="SSAP08"><span class="loc-option-subcommittee">Legislative Branch</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Military Construction and Veterans Affairs, and Related Agencies</span>" value="SSAP19"><span class="loc-option-subcommittee">Military Construction and Veterans Affairs, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>State, Foreign Operations, and Related Programs</span>" value="SSAP20"><span class="loc-option-subcommittee">State, Foreign Operations, and Related Programs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Transportation and Housing and Urban Development, and Related Agencies</span>" value="SSAP24"><span class="loc-option-subcommittee">Transportation and Housing and Urban Development, and Related Agencies</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Armed Services</span>" value="SSAS"><span class="loc-option-committee">Senate Committee on Armed Services</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Airland</span>" value="SSAS14"><span class="loc-option-subcommittee">Airland</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Emerging Threats and Capabilities</span>" value="SSAS20"><span class="loc-option-subcommittee">Emerging Threats and Capabilities</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Personnel</span>" value="SSAS17"><span class="loc-option-subcommittee">Personnel</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Readiness and Management Support</span>" value="SSAS15"><span class="loc-option-subcommittee">Readiness and Management Support</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>SeaPower</span>" value="SSAS13"><span class="loc-option-subcommittee">SeaPower</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Strategic Forces</span>" value="SSAS16"><span class="loc-option-subcommittee">Strategic Forces</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Banking, Housing, and Urban Affairs</span>" value="SSBK"><span class="loc-option-committee">Senate Committee on Banking, Housing, and Urban Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Economic Policy</span>" value="SSBK12"><span class="loc-option-subcommittee">Economic Policy</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Financial Institutions and Consumer Protection</span>" value="SSBK08"><span class="loc-option-subcommittee">Financial Institutions and Consumer Protection</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Housing, Transportation, and Community Development</span>" value="SSBK09"><span class="loc-option-subcommittee">Housing, Transportation, and Community Development</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>National Security and International Trade and Finance</span>" value="SSBK05"><span class="loc-option-subcommittee">National Security and International Trade and Finance</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Securities, Insurance, and Investment</span>" value="SSBK04"><span class="loc-option-subcommittee">Securities, Insurance, and Investment</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Commerce, Science, and Transportation</span>" value="SSCM"><span class="loc-option-committee">Senate Committee on Commerce, Science, and Transportation</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Aviation Operations, Safety, and Security</span>" value="SSCM01"><span class="loc-option-subcommittee">Aviation Operations, Safety, and Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Communications, Technology, and the Internet</span>" value="SSCM26"><span class="loc-option-subcommittee">Communications, Technology, and the Internet</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Competitiveness, Innovation, and Export Promotion</span>" value="SSCM27"><span class="loc-option-subcommittee">Competitiveness, Innovation, and Export Promotion</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Consumer Protection, Product Safety, and Insurance</span>" value="SSCM20"><span class="loc-option-subcommittee">Consumer Protection, Product Safety, and Insurance</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oceans, Atmosphere, Fisheries, and Coast Guard</span>" value="SSCM22"><span class="loc-option-subcommittee">Oceans, Atmosphere, Fisheries, and Coast Guard</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Science and Space</span>" value="SSCM24"><span class="loc-option-subcommittee">Science and Space</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Surface Transportation and Merchant Marine Infrastructure, Safety, and Security</span>" value="SSCM25"><span class="loc-option-subcommittee">Surface Transportation and Merchant Marine Infrastructure, Safety, and Security</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Energy and Natural Resources</span>" value="SSEG"><span class="loc-option-committee">Senate Committee on Energy and Natural Resources</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Energy</span>" value="SSEG01"><span class="loc-option-subcommittee">Energy</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>National Parks</span>" value="SSEG04"><span class="loc-option-subcommittee">National Parks</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Public Lands, Forests, and Mining</span>" value="SSEG03"><span class="loc-option-subcommittee">Public Lands, Forests, and Mining</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Water and Power</span>" value="SSEG07"><span class="loc-option-subcommittee">Water and Power</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Environment and Public Works</span>" value="SSEV"><span class="loc-option-committee">Senate Committee on Environment and Public Works</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Clean Air and Nuclear Safety</span>" value="SSEV10"><span class="loc-option-subcommittee">Clean Air and Nuclear Safety</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Green Jobs and the New Economy</span>" value="SSEV16"><span class="loc-option-subcommittee">Green Jobs and the New Economy</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight</span>" value="SSEV18"><span class="loc-option-subcommittee">Oversight</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Superfund, Toxics and Environmental Health</span>" value="SSEV09"><span class="loc-option-subcommittee">Superfund, Toxics and Environmental Health</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Transportation and Infrastructure</span>" value="SSEV08"><span class="loc-option-subcommittee">Transportation and Infrastructure</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Water and Wildlife</span>" value="SSEV15"><span class="loc-option-subcommittee">Water and Wildlife</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Finance</span>" value="SSFI"><span class="loc-option-committee">Senate Committee on Finance</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Energy, Natural Resources, and Infrastructure</span>" value="SSFI12"><span class="loc-option-subcommittee">Energy, Natural Resources, and Infrastructure</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Fiscal Responsibility and Economic Growth</span>" value="SSFI14"><span class="loc-option-subcommittee">Fiscal Responsibility and Economic Growth</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Health Care</span>" value="SSFI10"><span class="loc-option-subcommittee">Health Care</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>International Trade, Customs, and Global Competitiveness</span>" value="SSFI13"><span class="loc-option-subcommittee">International Trade, Customs, and Global Competitiveness</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Social Security, Pensions, and Family Policy</span>" value="SSFI02"><span class="loc-option-subcommittee">Social Security, Pensions, and Family Policy</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Taxation and IRS Oversight</span>" value="SSFI11"><span class="loc-option-subcommittee">Taxation and IRS Oversight</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Foreign Relations</span>" value="SSFR"><span class="loc-option-committee">Senate Committee on Foreign Relations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>African Affairs</span>" value="SSFR09"><span class="loc-option-subcommittee">African Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>East Asian and Pacific Affairs</span>" value="SSFR02"><span class="loc-option-subcommittee">East Asian and Pacific Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>European Affairs</span>" value="SSFR01"><span class="loc-option-subcommittee">European Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>International Development and Foreign Assistance, Economic Affairs, International Environmental Protection, and Peace Corps</span>" value="SSFR12"><span class="loc-option-subcommittee">International Development and Foreign Assistance, Economic Affairs, International Environmental Protection, and Peace Corps</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>International Operations and Organizations, Human Rights, Democracy, and Global Women's Issues</span>" value="SSFR13"><span class="loc-option-subcommittee">International Operations and Organizations, Human Rights, Democracy, and Global Women's Issues</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Near Eastern and South and Central Asian Affairs</span>" value="SSFR07"><span class="loc-option-subcommittee">Near Eastern and South and Central Asian Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Western Hemisphere and Global Narcotics Affairs</span>" value="SSFR06"><span class="loc-option-subcommittee">Western Hemisphere and Global Narcotics Affairs</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Health, Education, Labor, and Pensions</span>" value="SSHR"><span class="loc-option-committee">Senate Committee on Health, Education, Labor, and Pensions</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Children and Families</span>" value="SSHR09"><span class="loc-option-subcommittee">Children and Families</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Employment and Workplace Safety</span>" value="SSHR11"><span class="loc-option-subcommittee">Employment and Workplace Safety</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Primary Health and Aging</span>" value="SSHR12"><span class="loc-option-subcommittee">Primary Health and Aging</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Homeland Security and Governmental Affairs</span>" value="SSGA"><span class="loc-option-committee">Senate Committee on Homeland Security and Governmental Affairs</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Emergency Management, Intergovernmental Relations, and the District of Columbia</span>" value="SSGA17"><span class="loc-option-subcommittee">Emergency Management, Intergovernmental Relations, and the District of Columbia</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Financial and Contracting Oversight</span>" value="SSGA15"><span class="loc-option-subcommittee">Financial and Contracting Oversight</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Permanent Subcommittee on Investigations</span>" value="SSGA01"><span class="loc-option-subcommittee">Permanent Subcommittee on Investigations</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>the Efficiency and Effectiveness of Federal Programs and the Federal Workforce</span>" value="SSGA16"><span class="loc-option-subcommittee">the Efficiency and Effectiveness of Federal Programs and the Federal Workforce</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Indian Affairs</span>" value="SLIA"><span class="loc-option-committee">Senate Committee on Indian Affairs</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Rules and Administration</span>" value="SSRA"><span class="loc-option-committee">Senate Committee on Rules and Administration</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Small Business and Entrepreneurship</span>" value="SSSB"><span class="loc-option-committee">Senate Committee on Small Business and Entrepreneurship</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on Veterans' Affairs</span>" value="SSVA"><span class="loc-option-committee">Senate Committee on Veterans' Affairs</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on the Budget</span>" value="SSBU"><span class="loc-option-committee">Senate Committee on the Budget</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Committee on the Judiciary</span>" value="SSJU"><span class="loc-option-committee">Senate Committee on the Judiciary</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Antitrust, Competition Policy and Consumer Rights</span>" value="SSJU01"><span class="loc-option-subcommittee">Antitrust, Competition Policy and Consumer Rights</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Bankruptcy and the Courts</span>" value="SSJU24"><span class="loc-option-subcommittee">Bankruptcy and the Courts</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Crime and Terrorism</span>" value="SSJU22"><span class="loc-option-subcommittee">Crime and Terrorism</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Immigration, Refugees and Border Security</span>" value="SSJU04"><span class="loc-option-subcommittee">Immigration, Refugees and Border Security</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Oversight, Federal Rights and Agency Action</span>" value="SSJU25"><span class="loc-option-subcommittee">Oversight, Federal Rights and Agency Action</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>Privacy, Technology and the Law</span>" value="SSJU23"><span class="loc-option-subcommittee">Privacy, Technology and the Law</span></option>
-            <option data-content="<span class='loc-option-subcommittee'>the Constitution, Civil Rights and Human Rights</span>" value="SSJU21"><span class="loc-option-subcommittee">the Constitution, Civil Rights and Human Rights</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Select Committee on Ethics</span>" value="SLET"><span class="loc-option-committee">Senate Select Committee on Ethics</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Select Committee on Intelligence</span>" value="SLIN"><span class="loc-option-committee">Senate Select Committee on Intelligence</span></option>
-            <option data-content="<span class='loc-option-committee'>Senate Special Committee on Aging</span>" value="SPAG"><span class="loc-option-committee">Senate Special Committee on Aging</span></option>
-            <option data-content="<span class='loc-option-committee'>United States Senate Caucus on International Narcotics Control</span>" value="SCNC"><span class="loc-option-committee">United States Senate Caucus on International Narcotics Control</span></option>
-          </select>
-        </div>
+      <div class="form-group" style="width: 27%;">
+        <select id="${id}_state" class="form-control selectpicker text-left" data-dojo-attach-point="stateSelect">
+          <option value="-">State/Terr.</option>
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska</option>
+          <option value="AS">American Samoa</option>
+          <option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option>
+          <option value="CA">California</option>
+          <option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option>
+          <option value="DE">Delaware</option>
+          <option value="DC">District of Columbia</option>
+          <option value="FL">Florida</option>
+          <option value="GA">Georgia</option>
+          <option value="GU">Guam</option>
+          <option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option>
+          <option value="IL">Illinois</option>
+          <option value="IN">Indiana</option>
+          <option value="IA">Iowa</option>
+          <option value="KS">Kansas</option>
+          <option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option>
+          <option value="ME">Maine</option>
+          <option value="MD">Maryland</option>
+          <option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option>
+          <option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option>
+          <option value="MT">Montana</option>
+          <option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option>
+          <option value="NH">New Hampshire</option>
+          <option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option>
+          <option value="NY">New York</option>
+          <option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option>
+          <option value="MP">Northern Mariana Islands</option>
+          <option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="PR">Puerto Rico</option>
+          <option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota</option>
+          <option value="TN">Tennessee</option>
+          <option value="TX">Texas</option>
+          <option value="VI">U.S. Virgin Islands</option>
+          <option value="UT">Utah</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
+      </div>
+      <div class="form-group" style="width: 7%;">
+        <p class="form-control-static text-muted">or</p>
+      </div>
+      <div class="form-group" style="width: 27%; text-align: right;">
+        <button class="btn btn-loc-default form-control" data-dojo-attach-event="click: _doGeolocationSearch">
+          <i class="fa fa-crosshairs fa-lg"></i>
+          &nbsp;My Location&nbsp;
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="search-separator">
+    <span class="separator-text">
+      OR
+    </span>
+  </div>
+  <div class="loc-search-area loc-name-search">
+    <div class="loc-search-area-heading loc-name-search-heading">
+      <h2>By Name</h2>
+      <p>
+        If you know the name of the legislator or committee you are looking for, enter the name to begin the search.
+      </p>
+    </div>
+    <div class="loc-search-area-content loc-name-search-content form-inline text-center">
+      <div class="form-group" style="width: 45%; text-align: left;">
+        <input class="form-control" placeholder="Name" data-dojo-attach-point="nameInput" />
+      </div>
+      <div class="form-group" style="width: 7%;">
+        <p class="form-control-static text-muted">or</p>
+      </div>
+      <div class="form-group" style="width: 45%; text-align: right;">
+        <select class="form-control selectpicker text-left" data-dojo-attach-point="committeeSelect">
+          <option value="-">Committee</option>
+          <option data-content="<span class='loc-option-committee'>Commission on Security and Cooperation in Europe</span>" value="JCSE"><span class="loc-option-committee">Commission on Security and Cooperation in Europe</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Agriculture</span>" value="HSAG"><span class="loc-option-committee">House Committee on Agriculture</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Conservation, Energy, and Forestry</span>" value="HSAG15"><span class="loc-option-subcommittee">Conservation, Energy, and Forestry</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Department Operations, Oversight, and Nutrition</span>" value="HSAG22"><span class="loc-option-subcommittee">Department Operations, Oversight, and Nutrition</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>General Farm Commodities and Risk Management</span>" value="HSAG16"><span class="loc-option-subcommittee">General Farm Commodities and Risk Management</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Horticulture, Research, Biotechnology, and Foreign Agriculture</span>" value="HSAG14"><span class="loc-option-subcommittee">Horticulture, Research, Biotechnology, and Foreign Agriculture</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Livestock, Rural Development, and Credit</span>" value="HSAG29"><span class="loc-option-subcommittee">Livestock, Rural Development, and Credit</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Appropriations</span>" value="HSAP"><span class="loc-option-committee">House Committee on Appropriations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Agriculture, Rural Development, Food and Drug Administration, and Related Agencies</span>" value="HSAP01"><span class="loc-option-subcommittee">Agriculture, Rural Development, Food and Drug Administration, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Commerce, Justice, Science, and Related Agencies</span>" value="HSAP19"><span class="loc-option-subcommittee">Commerce, Justice, Science, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Defense</span>" value="HSAP02"><span class="loc-option-subcommittee">Defense</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Energy and Water Development, and Related Agencies</span>" value="HSAP10"><span class="loc-option-subcommittee">Energy and Water Development, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Financial Services and General Government</span>" value="HSAP23"><span class="loc-option-subcommittee">Financial Services and General Government</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Homeland Security</span>" value="HSAP15"><span class="loc-option-subcommittee">Homeland Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Interior, Environment, and Related Agencies</span>" value="HSAP06"><span class="loc-option-subcommittee">Interior, Environment, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Labor, Health and Human Services, Education, and Related Agencies</span>" value="HSAP07"><span class="loc-option-subcommittee">Labor, Health and Human Services, Education, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Legislative Branch</span>" value="HSAP24"><span class="loc-option-subcommittee">Legislative Branch</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Military Construction, Veterans Affairs, and Related Agencies</span>" value="HSAP18"><span class="loc-option-subcommittee">Military Construction, Veterans Affairs, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>State, Foreign Operations, and Related Programs</span>" value="HSAP04"><span class="loc-option-subcommittee">State, Foreign Operations, and Related Programs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Transportation, and Housing and Urban Development, and Related Agencies</span>" value="HSAP20"><span class="loc-option-subcommittee">Transportation, and Housing and Urban Development, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Armed Services</span>" value="HSAS"><span class="loc-option-committee">House Committee on Armed Services</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Intelligence, Emerging Threats and Capabilities</span>" value="HSAS26"><span class="loc-option-subcommittee">Intelligence, Emerging Threats and Capabilities</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Military Personnel</span>" value="HSAS02"><span class="loc-option-subcommittee">Military Personnel</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HSAS06"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Readiness</span>" value="HSAS03"><span class="loc-option-subcommittee">Readiness</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Seapower and Projection Forces</span>" value="HSAS28"><span class="loc-option-subcommittee">Seapower and Projection Forces</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Strategic Forces</span>" value="HSAS29"><span class="loc-option-subcommittee">Strategic Forces</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Tactical Air and Land Forces</span>" value="HSAS25"><span class="loc-option-subcommittee">Tactical Air and Land Forces</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Education and the Workforce</span>" value="HSED"><span class="loc-option-committee">House Committee on Education and the Workforce</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Early Childhood, Elementary, and Secondary Education</span>" value="HSED14"><span class="loc-option-subcommittee">Early Childhood, Elementary, and Secondary Education</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Health, Employment, Labor, and Pensions</span>" value="HSED02"><span class="loc-option-subcommittee">Health, Employment, Labor, and Pensions</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Higher Education and Workforce Training</span>" value="HSED13"><span class="loc-option-subcommittee">Higher Education and Workforce Training</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Workforce Protections</span>" value="HSED10"><span class="loc-option-subcommittee">Workforce Protections</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Energy and Commerce</span>" value="HSIF"><span class="loc-option-committee">House Committee on Energy and Commerce</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Commerce, Manufacturing, and Trade</span>" value="HSIF17"><span class="loc-option-subcommittee">Commerce, Manufacturing, and Trade</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Communications and Technology</span>" value="HSIF16"><span class="loc-option-subcommittee">Communications and Technology</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Energy and Power</span>" value="HSIF03"><span class="loc-option-subcommittee">Energy and Power</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Environment and the Economy</span>" value="HSIF18"><span class="loc-option-subcommittee">Environment and the Economy</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Health</span>" value="HSIF14"><span class="loc-option-subcommittee">Health</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HSIF02"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Ethics</span>" value="HSSO"><span class="loc-option-committee">House Committee on Ethics</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Financial Services</span>" value="HSBA"><span class="loc-option-committee">House Committee on Financial Services</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Capital Markets and Government Sponsored Enterprises</span>" value="HSBA16"><span class="loc-option-subcommittee">Capital Markets and Government Sponsored Enterprises</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Financial Institutions and Consumer Credit</span>" value="HSBA15"><span class="loc-option-subcommittee">Financial Institutions and Consumer Credit</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Housing and Insurance</span>" value="HSBA04"><span class="loc-option-subcommittee">Housing and Insurance</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Monetary Policy and Trade</span>" value="HSBA20"><span class="loc-option-subcommittee">Monetary Policy and Trade</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HSBA09"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Foreign Affairs</span>" value="HSFA"><span class="loc-option-committee">House Committee on Foreign Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Africa, Global Health, Global Human Rights, and International Organizations</span>" value="HSFA16"><span class="loc-option-subcommittee">Africa, Global Health, Global Human Rights, and International Organizations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Asia and the Pacific</span>" value="HSFA05"><span class="loc-option-subcommittee">Asia and the Pacific</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Europe, Eurasia, and Emerging Threats</span>" value="HSFA14"><span class="loc-option-subcommittee">Europe, Eurasia, and Emerging Threats</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Terrorism, Nonproliferation, and Trade</span>" value="HSFA18"><span class="loc-option-subcommittee">Terrorism, Nonproliferation, and Trade</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>The Middle East and North Africa</span>" value="HSFA13"><span class="loc-option-subcommittee">The Middle East and North Africa</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>The Western Hemisphere</span>" value="HSFA07"><span class="loc-option-subcommittee">The Western Hemisphere</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Homeland Security</span>" value="HSHM"><span class="loc-option-committee">House Committee on Homeland Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Border and Maritime Security</span>" value="HSHM11"><span class="loc-option-subcommittee">Border and Maritime Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Counterterrorism and Intelligence</span>" value="HSHM05"><span class="loc-option-subcommittee">Counterterrorism and Intelligence</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Cybersecurity, Infrastructure Protection, and Security Technologies</span>" value="HSHM08"><span class="loc-option-subcommittee">Cybersecurity, Infrastructure Protection, and Security Technologies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Emergency Preparedness, Response and Communications</span>" value="HSHM12"><span class="loc-option-subcommittee">Emergency Preparedness, Response and Communications</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight and Management Efficiency</span>" value="HSHM09"><span class="loc-option-subcommittee">Oversight and Management Efficiency</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Transportation Security</span>" value="HSHM07"><span class="loc-option-subcommittee">Transportation Security</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on House Administration</span>" value="HSHA"><span class="loc-option-committee">House Committee on House Administration</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Natural Resources</span>" value="HSII"><span class="loc-option-committee">House Committee on Natural Resources</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Energy and Mineral Resources</span>" value="HSII06"><span class="loc-option-subcommittee">Energy and Mineral Resources</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Fisheries, Wildlife, Oceans and Insular Affairs</span>" value="HSII22"><span class="loc-option-subcommittee">Fisheries, Wildlife, Oceans and Insular Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Indian and Alaska Native Affairs</span>" value="HSII24"><span class="loc-option-subcommittee">Indian and Alaska Native Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Public Lands and Environmental Regulation</span>" value="HSII10"><span class="loc-option-subcommittee">Public Lands and Environmental Regulation</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Water and Power</span>" value="HSII13"><span class="loc-option-subcommittee">Water and Power</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Oversight and Government Reform</span>" value="HSGO"><span class="loc-option-committee">House Committee on Oversight and Government Reform</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Economic Growth, Job Creation, and Regulatory Affairs</span>" value="HSGO28"><span class="loc-option-subcommittee">Economic Growth, Job Creation, and Regulatory Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Energy Policy, Health Care, and Entitlements</span>" value="HSGO27"><span class="loc-option-subcommittee">Energy Policy, Health Care, and Entitlements</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Federal Workforce, U.S. Postal Service, and the Census</span>" value="HSGO25"><span class="loc-option-subcommittee">Federal Workforce, U.S. Postal Service, and the Census</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Government Operations</span>" value="HSGO24"><span class="loc-option-subcommittee">Government Operations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>National Security</span>" value="HSGO06"><span class="loc-option-subcommittee">National Security</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Rules</span>" value="HSRU"><span class="loc-option-committee">House Committee on Rules</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Legislative and Budget Process</span>" value="HSRU02"><span class="loc-option-subcommittee">Legislative and Budget Process</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Rules and Organization of the House</span>" value="HSRU04"><span class="loc-option-subcommittee">Rules and Organization of the House</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Science, Space, and Technology</span>" value="HSSY"><span class="loc-option-committee">House Committee on Science, Space, and Technology</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Energy</span>" value="HSSY20"><span class="loc-option-subcommittee">Energy</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Environment</span>" value="HSSY18"><span class="loc-option-subcommittee">Environment</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight</span>" value="HSSY21"><span class="loc-option-subcommittee">Oversight</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Research and Technology</span>" value="HSSY15"><span class="loc-option-subcommittee">Research and Technology</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Space</span>" value="HSSY16"><span class="loc-option-subcommittee">Space</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Small Business</span>" value="HSSM"><span class="loc-option-committee">House Committee on Small Business</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Agriculture, Energy and Trade</span>" value="HSSM25"><span class="loc-option-subcommittee">Agriculture, Energy and Trade</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Contracting and Workforce</span>" value="HSSM23"><span class="loc-option-subcommittee">Contracting and Workforce</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Economic Growth, Tax and Capital Access</span>" value="HSSM27"><span class="loc-option-subcommittee">Economic Growth, Tax and Capital Access</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Health and Technology</span>" value="HSSM26"><span class="loc-option-subcommittee">Health and Technology</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Investigations, Oversight and Regulations</span>" value="HSSM24"><span class="loc-option-subcommittee">Investigations, Oversight and Regulations</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Transportation and Infrastructure</span>" value="HSPW"><span class="loc-option-committee">House Committee on Transportation and Infrastructure</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Aviation</span>" value="HSPW05"><span class="loc-option-subcommittee">Aviation</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Coast Guard and Maritime Transportation</span>" value="HSPW07"><span class="loc-option-subcommittee">Coast Guard and Maritime Transportation</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Economic Development, Public Buildings, and Emergency Management</span>" value="HSPW13"><span class="loc-option-subcommittee">Economic Development, Public Buildings, and Emergency Management</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Highways and Transit</span>" value="HSPW12"><span class="loc-option-subcommittee">Highways and Transit</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Railroads, Pipelines, and Hazardous Materials</span>" value="HSPW14"><span class="loc-option-subcommittee">Railroads, Pipelines, and Hazardous Materials</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Water Resources and Environment</span>" value="HSPW02"><span class="loc-option-subcommittee">Water Resources and Environment</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Veterans' Affairs</span>" value="HSVR"><span class="loc-option-committee">House Committee on Veterans' Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Disability Assistance and Memorial Affairs</span>" value="HSVR09"><span class="loc-option-subcommittee">Disability Assistance and Memorial Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Economic Opportunity</span>" value="HSVR10"><span class="loc-option-subcommittee">Economic Opportunity</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Health</span>" value="HSVR03"><span class="loc-option-subcommittee">Health</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HSVR08"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on Ways and Means</span>" value="HSWM"><span class="loc-option-committee">House Committee on Ways and Means</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Health</span>" value="HSWM02"><span class="loc-option-subcommittee">Health</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Human Resources</span>" value="HSWM03"><span class="loc-option-subcommittee">Human Resources</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight</span>" value="HSWM06"><span class="loc-option-subcommittee">Oversight</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Select Revenue Measures</span>" value="HSWM05"><span class="loc-option-subcommittee">Select Revenue Measures</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Social Security</span>" value="HSWM01"><span class="loc-option-subcommittee">Social Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Trade</span>" value="HSWM04"><span class="loc-option-subcommittee">Trade</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on the Budget</span>" value="HSBU"><span class="loc-option-committee">House Committee on the Budget</span></option>
+          <option data-content="<span class='loc-option-committee'>House Committee on the Judiciary</span>" value="HSJU"><span class="loc-option-committee">House Committee on the Judiciary</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Courts, Intellectual Property, and the Internet</span>" value="HSJU03"><span class="loc-option-subcommittee">Courts, Intellectual Property, and the Internet</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Crime, Terrorism, Homeland Security, and Investigations</span>" value="HSJU08"><span class="loc-option-subcommittee">Crime, Terrorism, Homeland Security, and Investigations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Immigration and Border Security</span>" value="HSJU01"><span class="loc-option-subcommittee">Immigration and Border Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Regulatory Reform, Commercial, and Antitrust Law</span>" value="HSJU05"><span class="loc-option-subcommittee">Regulatory Reform, Commercial, and Antitrust Law</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>The Constitution and Civil Justice</span>" value="HSJU10"><span class="loc-option-subcommittee">The Constitution and Civil Justice</span></option>
+          <option data-content="<span class='loc-option-committee'>House Permanent Select Committee on Intelligence</span>" value="HLIG"><span class="loc-option-committee">House Permanent Select Committee on Intelligence</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight and Investigations</span>" value="HLIG09"><span class="loc-option-subcommittee">Oversight and Investigations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Technical and Tactical Intelligence</span>" value="HLIG05"><span class="loc-option-subcommittee">Technical and Tactical Intelligence</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Terrorism, Human Intelligence, Analysis, and Counterintelligence</span>" value="HLIG08"><span class="loc-option-subcommittee">Terrorism, Human Intelligence, Analysis, and Counterintelligence</span></option>
+          <option data-content="<span class='loc-option-committee'>Joint Committee on Printing</span>" value="JSPR"><span class="loc-option-committee">Joint Committee on Printing</span></option>
+          <option data-content="<span class='loc-option-committee'>Joint Committee on Taxation</span>" value="JSTX"><span class="loc-option-committee">Joint Committee on Taxation</span></option>
+          <option data-content="<span class='loc-option-committee'>Joint Committee on the Library</span>" value="JSLC"><span class="loc-option-committee">Joint Committee on the Library</span></option>
+          <option data-content="<span class='loc-option-committee'>Joint Economic Committee</span>" value="JSEC"><span class="loc-option-committee">Joint Economic Committee</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Agriculture, Nutrition, and Forestry</span>" value="SSAF"><span class="loc-option-committee">Senate Committee on Agriculture, Nutrition, and Forestry</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Commodities, Markets, Trade and Risk Management</span>" value="SSAF13"><span class="loc-option-subcommittee">Commodities, Markets, Trade and Risk Management</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Conservation, Forestry and Natural Resources</span>" value="SSAF14"><span class="loc-option-subcommittee">Conservation, Forestry and Natural Resources</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Jobs, Rural Economic Growth and Energy Innovation</span>" value="SSAF15"><span class="loc-option-subcommittee">Jobs, Rural Economic Growth and Energy Innovation</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Livestock, Dairy, Poultry, Marketing and Agriculture Security</span>" value="SSAF17"><span class="loc-option-subcommittee">Livestock, Dairy, Poultry, Marketing and Agriculture Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Nutrition, Specialty Crops, Food and Agricultural Research</span>" value="SSAF16"><span class="loc-option-subcommittee">Nutrition, Specialty Crops, Food and Agricultural Research</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Appropriations</span>" value="SSAP"><span class="loc-option-committee">Senate Committee on Appropriations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Agriculture, Rural Development, Food and Drug Administration, and Related Agencies</span>" value="SSAP01"><span class="loc-option-subcommittee">Agriculture, Rural Development, Food and Drug Administration, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Commerce, Justice, Science, and Related Agencies</span>" value="SSAP16"><span class="loc-option-subcommittee">Commerce, Justice, Science, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Department of Defense</span>" value="SSAP02"><span class="loc-option-subcommittee">Department of Defense</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Department of Homeland Security</span>" value="SSAP14"><span class="loc-option-subcommittee">Department of Homeland Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Department of the Interior, Environment, and Related Agencies</span>" value="SSAP17"><span class="loc-option-subcommittee">Department of the Interior, Environment, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Departments of Labor, Health and Human Services, and Education, and Related Agencies</span>" value="SSAP18"><span class="loc-option-subcommittee">Departments of Labor, Health and Human Services, and Education, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Energy and Water Development</span>" value="SSAP22"><span class="loc-option-subcommittee">Energy and Water Development</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Financial Services and General Government</span>" value="SSAP23"><span class="loc-option-subcommittee">Financial Services and General Government</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Legislative Branch</span>" value="SSAP08"><span class="loc-option-subcommittee">Legislative Branch</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Military Construction and Veterans Affairs, and Related Agencies</span>" value="SSAP19"><span class="loc-option-subcommittee">Military Construction and Veterans Affairs, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>State, Foreign Operations, and Related Programs</span>" value="SSAP20"><span class="loc-option-subcommittee">State, Foreign Operations, and Related Programs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Transportation and Housing and Urban Development, and Related Agencies</span>" value="SSAP24"><span class="loc-option-subcommittee">Transportation and Housing and Urban Development, and Related Agencies</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Armed Services</span>" value="SSAS"><span class="loc-option-committee">Senate Committee on Armed Services</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Airland</span>" value="SSAS14"><span class="loc-option-subcommittee">Airland</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Emerging Threats and Capabilities</span>" value="SSAS20"><span class="loc-option-subcommittee">Emerging Threats and Capabilities</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Personnel</span>" value="SSAS17"><span class="loc-option-subcommittee">Personnel</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Readiness and Management Support</span>" value="SSAS15"><span class="loc-option-subcommittee">Readiness and Management Support</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>SeaPower</span>" value="SSAS13"><span class="loc-option-subcommittee">SeaPower</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Strategic Forces</span>" value="SSAS16"><span class="loc-option-subcommittee">Strategic Forces</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Banking, Housing, and Urban Affairs</span>" value="SSBK"><span class="loc-option-committee">Senate Committee on Banking, Housing, and Urban Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Economic Policy</span>" value="SSBK12"><span class="loc-option-subcommittee">Economic Policy</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Financial Institutions and Consumer Protection</span>" value="SSBK08"><span class="loc-option-subcommittee">Financial Institutions and Consumer Protection</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Housing, Transportation, and Community Development</span>" value="SSBK09"><span class="loc-option-subcommittee">Housing, Transportation, and Community Development</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>National Security and International Trade and Finance</span>" value="SSBK05"><span class="loc-option-subcommittee">National Security and International Trade and Finance</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Securities, Insurance, and Investment</span>" value="SSBK04"><span class="loc-option-subcommittee">Securities, Insurance, and Investment</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Commerce, Science, and Transportation</span>" value="SSCM"><span class="loc-option-committee">Senate Committee on Commerce, Science, and Transportation</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Aviation Operations, Safety, and Security</span>" value="SSCM01"><span class="loc-option-subcommittee">Aviation Operations, Safety, and Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Communications, Technology, and the Internet</span>" value="SSCM26"><span class="loc-option-subcommittee">Communications, Technology, and the Internet</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Competitiveness, Innovation, and Export Promotion</span>" value="SSCM27"><span class="loc-option-subcommittee">Competitiveness, Innovation, and Export Promotion</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Consumer Protection, Product Safety, and Insurance</span>" value="SSCM20"><span class="loc-option-subcommittee">Consumer Protection, Product Safety, and Insurance</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oceans, Atmosphere, Fisheries, and Coast Guard</span>" value="SSCM22"><span class="loc-option-subcommittee">Oceans, Atmosphere, Fisheries, and Coast Guard</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Science and Space</span>" value="SSCM24"><span class="loc-option-subcommittee">Science and Space</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Surface Transportation and Merchant Marine Infrastructure, Safety, and Security</span>" value="SSCM25"><span class="loc-option-subcommittee">Surface Transportation and Merchant Marine Infrastructure, Safety, and Security</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Energy and Natural Resources</span>" value="SSEG"><span class="loc-option-committee">Senate Committee on Energy and Natural Resources</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Energy</span>" value="SSEG01"><span class="loc-option-subcommittee">Energy</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>National Parks</span>" value="SSEG04"><span class="loc-option-subcommittee">National Parks</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Public Lands, Forests, and Mining</span>" value="SSEG03"><span class="loc-option-subcommittee">Public Lands, Forests, and Mining</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Water and Power</span>" value="SSEG07"><span class="loc-option-subcommittee">Water and Power</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Environment and Public Works</span>" value="SSEV"><span class="loc-option-committee">Senate Committee on Environment and Public Works</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Clean Air and Nuclear Safety</span>" value="SSEV10"><span class="loc-option-subcommittee">Clean Air and Nuclear Safety</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Green Jobs and the New Economy</span>" value="SSEV16"><span class="loc-option-subcommittee">Green Jobs and the New Economy</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight</span>" value="SSEV18"><span class="loc-option-subcommittee">Oversight</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Superfund, Toxics and Environmental Health</span>" value="SSEV09"><span class="loc-option-subcommittee">Superfund, Toxics and Environmental Health</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Transportation and Infrastructure</span>" value="SSEV08"><span class="loc-option-subcommittee">Transportation and Infrastructure</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Water and Wildlife</span>" value="SSEV15"><span class="loc-option-subcommittee">Water and Wildlife</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Finance</span>" value="SSFI"><span class="loc-option-committee">Senate Committee on Finance</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Energy, Natural Resources, and Infrastructure</span>" value="SSFI12"><span class="loc-option-subcommittee">Energy, Natural Resources, and Infrastructure</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Fiscal Responsibility and Economic Growth</span>" value="SSFI14"><span class="loc-option-subcommittee">Fiscal Responsibility and Economic Growth</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Health Care</span>" value="SSFI10"><span class="loc-option-subcommittee">Health Care</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>International Trade, Customs, and Global Competitiveness</span>" value="SSFI13"><span class="loc-option-subcommittee">International Trade, Customs, and Global Competitiveness</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Social Security, Pensions, and Family Policy</span>" value="SSFI02"><span class="loc-option-subcommittee">Social Security, Pensions, and Family Policy</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Taxation and IRS Oversight</span>" value="SSFI11"><span class="loc-option-subcommittee">Taxation and IRS Oversight</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Foreign Relations</span>" value="SSFR"><span class="loc-option-committee">Senate Committee on Foreign Relations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>African Affairs</span>" value="SSFR09"><span class="loc-option-subcommittee">African Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>East Asian and Pacific Affairs</span>" value="SSFR02"><span class="loc-option-subcommittee">East Asian and Pacific Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>European Affairs</span>" value="SSFR01"><span class="loc-option-subcommittee">European Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>International Development and Foreign Assistance, Economic Affairs, International Environmental Protection, and Peace Corps</span>" value="SSFR12"><span class="loc-option-subcommittee">International Development and Foreign Assistance, Economic Affairs, International Environmental Protection, and Peace Corps</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>International Operations and Organizations, Human Rights, Democracy, and Global Women's Issues</span>" value="SSFR13"><span class="loc-option-subcommittee">International Operations and Organizations, Human Rights, Democracy, and Global Women's Issues</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Near Eastern and South and Central Asian Affairs</span>" value="SSFR07"><span class="loc-option-subcommittee">Near Eastern and South and Central Asian Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Western Hemisphere and Global Narcotics Affairs</span>" value="SSFR06"><span class="loc-option-subcommittee">Western Hemisphere and Global Narcotics Affairs</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Health, Education, Labor, and Pensions</span>" value="SSHR"><span class="loc-option-committee">Senate Committee on Health, Education, Labor, and Pensions</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Children and Families</span>" value="SSHR09"><span class="loc-option-subcommittee">Children and Families</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Employment and Workplace Safety</span>" value="SSHR11"><span class="loc-option-subcommittee">Employment and Workplace Safety</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Primary Health and Aging</span>" value="SSHR12"><span class="loc-option-subcommittee">Primary Health and Aging</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Homeland Security and Governmental Affairs</span>" value="SSGA"><span class="loc-option-committee">Senate Committee on Homeland Security and Governmental Affairs</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Emergency Management, Intergovernmental Relations, and the District of Columbia</span>" value="SSGA17"><span class="loc-option-subcommittee">Emergency Management, Intergovernmental Relations, and the District of Columbia</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Financial and Contracting Oversight</span>" value="SSGA15"><span class="loc-option-subcommittee">Financial and Contracting Oversight</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Permanent Subcommittee on Investigations</span>" value="SSGA01"><span class="loc-option-subcommittee">Permanent Subcommittee on Investigations</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>the Efficiency and Effectiveness of Federal Programs and the Federal Workforce</span>" value="SSGA16"><span class="loc-option-subcommittee">the Efficiency and Effectiveness of Federal Programs and the Federal Workforce</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Indian Affairs</span>" value="SLIA"><span class="loc-option-committee">Senate Committee on Indian Affairs</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Rules and Administration</span>" value="SSRA"><span class="loc-option-committee">Senate Committee on Rules and Administration</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Small Business and Entrepreneurship</span>" value="SSSB"><span class="loc-option-committee">Senate Committee on Small Business and Entrepreneurship</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on Veterans' Affairs</span>" value="SSVA"><span class="loc-option-committee">Senate Committee on Veterans' Affairs</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on the Budget</span>" value="SSBU"><span class="loc-option-committee">Senate Committee on the Budget</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Committee on the Judiciary</span>" value="SSJU"><span class="loc-option-committee">Senate Committee on the Judiciary</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Antitrust, Competition Policy and Consumer Rights</span>" value="SSJU01"><span class="loc-option-subcommittee">Antitrust, Competition Policy and Consumer Rights</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Bankruptcy and the Courts</span>" value="SSJU24"><span class="loc-option-subcommittee">Bankruptcy and the Courts</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Crime and Terrorism</span>" value="SSJU22"><span class="loc-option-subcommittee">Crime and Terrorism</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Immigration, Refugees and Border Security</span>" value="SSJU04"><span class="loc-option-subcommittee">Immigration, Refugees and Border Security</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Oversight, Federal Rights and Agency Action</span>" value="SSJU25"><span class="loc-option-subcommittee">Oversight, Federal Rights and Agency Action</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>Privacy, Technology and the Law</span>" value="SSJU23"><span class="loc-option-subcommittee">Privacy, Technology and the Law</span></option>
+          <option data-content="<span class='loc-option-subcommittee'>the Constitution, Civil Rights and Human Rights</span>" value="SSJU21"><span class="loc-option-subcommittee">the Constitution, Civil Rights and Human Rights</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Select Committee on Ethics</span>" value="SLET"><span class="loc-option-committee">Senate Select Committee on Ethics</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Select Committee on Intelligence</span>" value="SLIN"><span class="loc-option-committee">Senate Select Committee on Intelligence</span></option>
+          <option data-content="<span class='loc-option-committee'>Senate Special Committee on Aging</span>" value="SPAG"><span class="loc-option-committee">Senate Special Committee on Aging</span></option>
+          <option data-content="<span class='loc-option-committee'>United States Senate Caucus on International Narcotics Control</span>" value="SCNC"><span class="loc-option-committee">United States Senate Caucus on International Narcotics Control</span></option>
+        </select>
       </div>
     </div>
   </div>

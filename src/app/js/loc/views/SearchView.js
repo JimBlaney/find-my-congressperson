@@ -620,12 +620,12 @@ define("loc/views/SearchView", [
         anim = fx2.combine([
 
         ]);
-        on(anim, "end", function() {
-          if (animHandle !== null) {
-            animHandle.remove();
-          }
-          animHandle = null;
-        });
+        // on(anim, "end", function() {
+        //   if (animHandle !== null) {
+        //     animHandle.remove();
+        //   }
+        //   animHandle = null;
+        // });
         anim.play();
       }));
 
