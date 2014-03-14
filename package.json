@@ -1,22 +1,23 @@
 {
   "name": "find-my-congressperson",
   "version": "0.0.1",
-  "description": "1. `favicon.ico`\r 1. `apple-touch-icon`",
+  "description": "",
   "main": "server.js",
   "dependencies": {
-    "express": "~3.5.0"
+    "express": "~3.5.0",
+    "request": "~2.34.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Trisha Wells, Chris Burgos, Jim Blaney",
-  "license": "NA",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JimBlaney/find-my-congressperson"
+    "url": "https://github.com/JimBlaney/find-my-congressperson.git"
   },
+  "author": "Jim Blaney,Cody Lawson,Michael Gaigg,Patrisha Wells,Chris Burgos",
+  "license": "N/A",
   "bugs": {
     "url": "https://github.com/JimBlaney/find-my-congressperson/issues"
   },

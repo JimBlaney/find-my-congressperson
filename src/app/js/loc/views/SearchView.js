@@ -596,8 +596,8 @@ define("loc/views/SearchView", [
         // this.searchAreaNode
 
         anim = fx2.combine([
-          fx2.wipeOut({ node: this.searchAreaNode, duration: 300 }),
-          fx2.wipeIn({ node: this.searchPlaceholderNode, duration: 300 })
+          // fx2.wipeOut({ node: this.searchAreaNode, duration: 300 }),
+          // fx2.wipeIn({ node: this.searchPlaceholderNode, duration: 300 })
         ]);
         // on(anim, "end", function() {
         //   if (animHandle !== null) {
