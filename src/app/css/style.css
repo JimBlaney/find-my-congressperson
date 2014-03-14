@@ -634,12 +634,19 @@ ul.selectpicker>li:first-of-type>a>span {
     border-left: none;
 }
 
+
 .loc-search-area-parent.collapsed>.loc-search-placeholder:first-of-type>div:first-of-type {
     font-size: 1.2em;
 }
 
+.loc-search-placeholder i {
+    font-size: 1.5em;
+    line-height: .5em;
+}
+
 .loc-search-area-parent.collapsed {
-    padding-bottom: 15px;   
+    padding-bottom: 5px;
+    padding-top: 10px;   
 }
 
 .loc-search-area-parent>.loc-search-placeholder {
