@@ -197,7 +197,11 @@ define("loc/model/Member", [
       if (this.get("chamber") === "senate") {
         format = "{stateRank}, Class {senateClass}";
       } else {
-        format = "{state} District {district}";
+        if (this.get("district") === 0) {
+          format = "{stateName} at-Large";
+        } else {
+          format = "{stateName} District {district}";
+        }
       }
 
       var val = lang.replace(format, this);
