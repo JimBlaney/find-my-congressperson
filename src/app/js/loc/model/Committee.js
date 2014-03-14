@@ -42,7 +42,32 @@ define("loc/model/Committee", [
 
     memberIds: null,
 
-    members: null
+    members: null,
+
+    _setMembersAttr: function(val) {
+
+      var members = [].concat(val.legislators || val || []);
+
+      for (var i = 0; i < members.length; i++) {
+
+        var member = members[i];
+
+        // TODO: hydrate model class if needed
+
+        members[i] = member;
+
+      }
+
+      this.members = members;
+
+    },
+
+    _getChamberDisplayAttr: function() {
+
+      var val = lang.replace("{chamber} Committee", this).replace("ate", "atorial");
+      return val.substring(0, 1).toUpperCase() + val.substring(1);
+      
+    }
 
   });
 

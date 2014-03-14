@@ -1,7 +1,9 @@
 define("loc/views/SearchView", [
   "dojo/_base/declare",
   "dojo/_base/lang",
+  "dojo/dom-class",
   "dojo/topic",
+  "dojo/on",
   "dojo/Deferred",
   "esri/geometry/Point",
   "esri/SpatialReference",
@@ -15,7 +17,9 @@ define("loc/views/SearchView", [
 ], function(
   declare, 
   lang,
+  domClass,
   topic,
+  on,
   Deferred,
   Point,
   SpatialReference,
@@ -44,6 +48,17 @@ define("loc/views/SearchView", [
 
       var anim = null;
       var animHandle = null;
+
+      topic.subscribe("/loc/search/collapse", lang.hitch(this, function() {
+          domClass.add(this.domNode, "collapsed");
+      }));
+      topic.subscribe("/loc/search/expand", lang.hitch(this, function() {
+          domClass.remove(this.domNode, "collapsed");
+      }));
+
+      on(this.searchPlaceholderNode, "click", function() {
+        topic.publish("/loc/search/expand", {});
+      });
 
       // topic.subscribe("/loc/search/hide", lang.hitch(this, function() {
       //   if (anim !== null) {
@@ -130,7 +145,9 @@ define("loc/views/SearchView", [
     },
 
     _doZIPSearch: function(e) {
-topic.publish("/loc/search/hide", {});
+
+      topic.publish("/loc/search/collapse", {});
+
       var value = $(this.zipInput).val() || null;
       if (value === null || value === "-") {
         return;
@@ -143,6 +160,8 @@ topic.publish("/loc/search/hide", {});
     },
 
     _doStateSearch: function(e) {
+
+      topic.publish("/loc/search/collapse", {});
 
       var value = $(this.stateSelect).selectpicker("val") || null;
       if (value === null || value === "-") {
@@ -158,6 +177,8 @@ topic.publish("/loc/search/hide", {});
     },
 
     _doGeolocationSearch: function() {
+
+      topic.publish("/loc/search/collapse", {});
 
       this._getGeolocation().then(function(location) {
 
@@ -209,6 +230,8 @@ topic.publish("/loc/search/hide", {});
 
     _doNameSearch: function(e) {
 
+      topic.publish("/loc/search/collapse", {});
+
       var value = $(this.nameInput).val() || null;
       if (value === null || name.length === 0) {
         return;
@@ -221,6 +244,8 @@ topic.publish("/loc/search/hide", {});
     },
 
     _doCommitteeSearch: function(e) {
+
+      topic.publish("/loc/search/collapse", {});
 
       var value = $(this.committeeSelect).selectpicker("val") || null;
       if (value === null || value === "-") {
