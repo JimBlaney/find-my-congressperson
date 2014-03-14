@@ -149,8 +149,8 @@ define("loc/model/Member", [
     },
 
     _getFacebookHandleAttr: function() {
-
-      return this.get("facebookUrl");
+        return "Follow";
+     // return this.get("facebookUrl");
 
     },    
 
@@ -161,8 +161,8 @@ define("loc/model/Member", [
     },
 
     _getTwitterHandleAttr: function() {
-
-      return lang.replace("@{twitterId}", this);
+        return "Tweet";
+      //return lang.replace("@{twitterId}", this);
 
     },
 
@@ -173,8 +173,8 @@ define("loc/model/Member", [
     },
 
     _getYoutubeHandleAttr: function() {
-
-      return lang.replace("{youtubeId}", this).replace("channel/", "Channel: ");
+        return "Youtube";
+      //return lang.replace("{youtubeId}", this).replace("channel/", "Channel: ");
 
     },
 
