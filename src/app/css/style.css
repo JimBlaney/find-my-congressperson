@@ -516,3 +516,8 @@ input::-webkit-inner-spin-button {
     border: 1px solid #ccc;
     border-left: none;
 }
+
+ul.selectpicker>li:first-of-type>a>span {
+    font-style: italic;
+    color: #ccc !important;
+}

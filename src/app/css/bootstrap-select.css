@@ -167,12 +167,12 @@
     padding-left: 0.5em;
 }
 
-.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small,
+/*.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small,
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:focus small,
 .bootstrap-select.btn-group .dropdown-menu li.active:not(.disabled) > a small {
     color: #64b1d8;
     color: rgba(255,255,255,0.4);
-}
+}*/
 
 .bootstrap-select.btn-group .dropdown-menu li > dt small {
     font-weight: normal;
