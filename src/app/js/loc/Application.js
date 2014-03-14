@@ -12,6 +12,7 @@ define("loc/Application", [
   "dojo/text!loc/templates/Application.html",
   "loc/views/SearchView",
   "loc/views/MembersView",
+  "loc/views/CommitteesView",
   "esri/map",
   "esri/graphic",
   "esri/geometry/Extent",
@@ -24,13 +25,14 @@ define("loc/Application", [
   array,
   domConstruct, 
   topic, 
-  on, 
+  on,
   _WidgetBase,
   _TemplatedMixin,
   _WidgetsInTemplateMixin, 
   template, 
   SearchView, 
   MembersView,
+  CommitteesView,
   Map, 
   Graphic,
   Extent,
@@ -47,6 +49,8 @@ define("loc/Application", [
     highlightSymbol: null,
 
     searchView: null,
+
+    resultsView: null,
 
     startup: function() {
       this.inherited(arguments);
@@ -126,6 +130,15 @@ define("loc/Application", [
       topic.subscribe("/loc/search/committees/id", lang.hitch(this, this._doCommitteeSearch));
       topic.subscribe("/loc/search/committees/memberId", lang.hitch(this, this._doCommitteeMemberSearch));
 
+      topic.subscribe("/loc/search/expand", lang.hitch(this, function() {
+        if (this.resultsView !== null) {
+          if (!!this.resultsView.destroyRecursive) {
+            this.resultsView.destroyRecursive();
+          }
+          domConstruct.empty(this.resultsNode);
+        }
+      }));
+
     },
 
     _subscribeResults: function() {
@@ -141,7 +154,7 @@ define("loc/Application", [
 
       var memberIds = array.map(members, function(member) {
         return member.memberId;
-      })
+      });
 
       sunlight.getCommitteesForMembers(memberIds).then(lang.hitch(this, function(errh, committees) {
 
@@ -157,12 +170,12 @@ define("loc/Application", [
 
         }
 
-        var view = new MembersView();
-        view.startup();
-        view.set("members", members);
+        this.resultsView = new MembersView();
+        this.resultsView.startup();
+        this.resultsView.set("members", members);
 
         domConstruct.empty(this.resultsNode);
-        domConstruct.place(view.domNode, this.resultsNode);  
+        domConstruct.place(this.resultsView.domNode, this.resultsNode);  
       
       }, function(error) {
 
@@ -178,9 +191,18 @@ define("loc/Application", [
 
     _onCommitteesResults: function(e) {
       
-      console.group("oncommittees");
-      console.log(e);
-      console.groupEnd("oncommittees");
+      var committees = e.committees || [];
+
+      var committeeIds = array.map(committees, function(committee) {
+        return committee.committeeId;
+      });
+
+      this.resultsView = new CommitteesView();
+      this.resultsView.startup();
+      this.resultsView.set("committees", committees);
+
+      domConstruct.empty(this.resultsNode);
+      domConstruct.place(this.resultsView.domNode, this.resultsNode);  
 
     },
 
