@@ -397,6 +397,17 @@ ul.selectpicker>li:first-of-type>a>span {
     border-color: #eaeaea #e0e0e0 #d6d6d6;
 }
 
+/* Members View */
+.loc-view-area .loc-members-view {
+    height: 750px;
+    overflow: auto;
+    padding: 0 15px;
+}
+
+.loc-members-view > ul:last-child {
+    margin-bottom: 0;
+}
+
 /* Profile View */
 .loc-members-view > h2 {
     background: #428bca;
@@ -449,6 +460,10 @@ ul.selectpicker>li:first-of-type>a>span {
 
     .loc-member-view:first-of-type {
         margin-top: 0;
+    }
+
+    .loc-member-view:last-child {
+        margin-bottom: 0;
     }
 
     .loc-member-view:nth-child(2n) {
