@@ -40,6 +40,8 @@ define("loc/model/Committee", [
     /* String */
     parentCommitteeId: null,
 
+    parentCommitteeName: null,
+
     memberIds: null,
 
     members: null,
@@ -67,6 +69,20 @@ define("loc/model/Committee", [
       var val = lang.replace("{chamber} Committee", this).replace("ate", "atorial");
       return val.substring(0, 1).toUpperCase() + val.substring(1);
       
+    },
+
+    _getDisplayNameAttr: function() {
+
+      var name = "";
+
+      var parentCommitteeName = this.get("parentCommitteeName");
+      if (parentCommitteeName !== null && !!parentCommitteeName.length) {
+        name += parentCommitteeName + " &gt; ";
+      }
+
+      name += this.get("name");
+      return name;
+
     }
 
   });

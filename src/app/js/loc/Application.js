@@ -4,6 +4,7 @@ define("loc/Application", [
   "dojo/_base/lang",
   "dojo/_base/array",
   "dojo/dom-construct",
+  "dojo/dom-style",
   "dojo/topic",
   "dojo/on",
   "dijit/_WidgetBase",
@@ -15,7 +16,9 @@ define("loc/Application", [
   "loc/views/CommitteesView",
   "esri/map",
   "esri/graphic",
+  "esri/symbols/PictureMarkerSymbol",
   "esri/geometry/Extent",
+  "esri/geometry/Point",
   "esri/geometry/webMercatorUtils",
   "loc/dal/sunlight"
 ], function(
@@ -24,6 +27,7 @@ define("loc/Application", [
   lang, 
   array,
   domConstruct, 
+  domStyle,
   topic, 
   on,
   _WidgetBase,
@@ -35,7 +39,9 @@ define("loc/Application", [
   CommitteesView,
   Map, 
   Graphic,
+  PictureMarkerSymbol,
   Extent,
+  Point,
   webMercatorUtils,
   sunlight
 ) {
@@ -51,6 +57,8 @@ define("loc/Application", [
     searchView: null,
 
     resultsView: null,
+
+    previousResultsView: null,
 
     startup: function() {
       this.inherited(arguments);
@@ -105,7 +113,7 @@ define("loc/Application", [
 
         topic.publish("/loc/search/members/geometry", {
           geometry: geom
-        })
+        });
 
       }));
 
@@ -130,13 +138,23 @@ define("loc/Application", [
       topic.subscribe("/loc/search/committees/id", lang.hitch(this, this._doCommitteeSearch));
       topic.subscribe("/loc/search/committees/memberId", lang.hitch(this, this._doCommitteeMemberSearch));
 
+      topic.subscribe("/loc/search/collapse", lang.hitch(this, function() {
+
+        domStyle.set(this.searchStatusNode, { display: "block" });
+
+      })); 
+
       topic.subscribe("/loc/search/expand", lang.hitch(this, function() {
+        this.map.graphics.clear();
+
         if (this.resultsView !== null) {
           if (!!this.resultsView.destroyRecursive) {
             this.resultsView.destroyRecursive();
           }
-          domConstruct.empty(this.resultsNode);
         }
+
+        domConstruct.empty(this.resultsNode);
+        domConstruct.empty(this.resultsNavNode);
       }));
 
     },
@@ -150,11 +168,23 @@ define("loc/Application", [
 
     _onMembersResults: function(e) {
 
+      domStyle.set(this.searchStatusNode, { display: "none" });
+
       var members = e.members || [];
 
       var memberIds = array.map(members, function(member) {
         return member.memberId;
       });
+
+      if (members.length === 0) {
+
+        console.warn("there were no members results");
+        domConstruct.create("div", {
+          innerHTML: "There were no results",
+          "class": "loc-results-no-results"
+        }, this.resultsNode);
+        return;
+      }
 
       sunlight.getCommitteesForMembers(memberIds).then(lang.hitch(this, function(errh, committees) {
 
@@ -190,6 +220,8 @@ define("loc/Application", [
     },
 
     _onCommitteesResults: function(e) {
+
+      domStyle.set(this.searchStatusNode, { display: "none" });
       
       var committees = e.committees || [];
 
@@ -208,6 +240,7 @@ define("loc/Application", [
 
     _doGeometrySearch: function(e) {
 
+      topic.publish("/loc/search/collapse", {});
       domConstruct.empty(this.resultsNode);
 
       var geom = e.geometry || null;
@@ -219,6 +252,25 @@ define("loc/Application", [
       if (!!geom.getCentroid) {
         geom = geom.getCentroid();
       }
+
+      var symbol = new PictureMarkerSymbol({
+        url: require.toUrl("loc/views/images/map-pin-blue-blank.png"),
+        width: 10,
+        height: 19,
+        yoffset: 10
+      });
+
+      var mapGeom = new Point({
+        latitude: geom.getLatitude(),
+        longitude: geom.getLongitude()
+      })
+
+      if (this.map.spatialReference.isWebMercator()) {
+        mapGeom = webMercatorUtils.geographicToWebMercator(mapGeom);
+      }
+
+      this.map.graphics.clear();
+      this.map.graphics.add(new Graphic(mapGeom, symbol, {}, null));
 
       sunlight.getMembersAtLocation(geom).then(function(members) {
 
@@ -352,7 +404,55 @@ define("loc/Application", [
 
     _doCommitteeMemberSearch: function(e) {
 
-      console.log("_doCommitteeMemberSearch");
+      var memberId = e.memberId || null;
+      if (memberId === null || memberId.length === 0) {
+        console.warn("could not search on null MemberId");
+        return;
+      }
+
+      sunlight.getCommitteesForMembers(memberId).then(lang.hitch(this, function(committees) {
+
+        domStyle.set(this.resultsView.domNode, { display: "none" });
+        this.previousResultsView = this.resultsView;
+
+        this.resultsView = new CommitteesView();
+        this.resultsView.startup();
+        this.resultsView.set("committees", committees);
+
+        var navNode = domConstruct.create("a", {
+          href: "#",
+          innerHTML: "&laquo; Members",
+          "class": "loc-results-nav"
+        }, this.resultsNavNode);
+        on(navNode, "click", lang.hitch(this, function(evt) {
+
+          this._doResultsNavPrevious();
+
+          evt.preventDefault();
+          return false;
+
+        }));
+
+        domConstruct.create("div", {
+          innerHTML: "&laquo; Committees for " + e.model.get("displayName"),
+          "class": "loc-results-nav-title"
+        }, this.resultsNavNode);
+
+        domConstruct.place(this.resultsView.domNode, this.resultsNode);
+
+      }));
+
+    },
+
+    _doResultsNavPrevious: function() {
+
+      this.resultsView.destroyRecursive();
+      this.resultsView = this.previousResultsView;
+      this.previousResultsView = null;
+
+      domConstruct.empty(this.resultsNavNode);
+
+      domStyle.set(this.resultsView.domNode, { display: "block" });
 
     }
 

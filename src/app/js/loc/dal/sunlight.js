@@ -44,6 +44,12 @@ define("loc/dal/sunlight", [
 
         var tArr = array.map(data.results, function(d) {
 
+          if (!!d.parent_committee) {
+            console.log("parent_committee");
+            console.log(d);
+            d = lang.mixin(d.parent_committee, d);
+          }
+
           var t = new T();
 
           for (var p in d) {
@@ -147,6 +153,8 @@ define("loc/dal/sunlight", [
 
       this._makeApiCall("committees", {
         
+        fields: "committee_id,chamber,name,member_ids,members,subcommittee,parent_committee_id,parent_committee,url,office,phone"
+
       }).then(lang.hitch(this, this._populateModel, Committee, d));
 
       return d;
@@ -160,7 +168,7 @@ define("loc/dal/sunlight", [
       this._makeApiCall("committees", {
 
         committee_id: committeeId,
-        fields: "committee_id,chamber,name,member_ids,members,subcommittee,parent_committee_id,url,office,phone"
+        fields: "committee_id,chamber,name,member_ids,members,subcommittee,parent_committee_id,parent_committee,url,office,phone"
 
       }).then(lang.hitch(this, this._populateModel, Committee, d));
 
@@ -175,7 +183,7 @@ define("loc/dal/sunlight", [
       this._makeApiCall("committees", {
 
         member_ids__in: [].concat(members).join("|"),
-        fields: "committee_id,name,member_ids"
+        fields: "committee_id,chamber,name,member_ids,members,subcommittee,parent_committee_id,parent_committee,url,office,phone"
       
       }).then(lang.hitch(this, this._populateModel, Committee, d));
 

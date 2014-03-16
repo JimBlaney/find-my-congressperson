@@ -126,6 +126,7 @@ define("loc/views/SearchView", [
       $(this.nameInput).typeahead({
         source: fixtures.MEMBERS,
         itemSelected: lang.hitch(this, function(fn, id, name) {
+          topic.publish("/loc/search/collapse", {});
           topic.publish("/loc/search/members/id", {
             memberId: id
           });
