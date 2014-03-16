@@ -30,6 +30,8 @@ define("loc/views/CommitteesView", [
 
     committees: null,
 
+    showMembers: false,
+
     startup: function() {
       this.inherited(arguments);
 
@@ -42,7 +44,8 @@ define("loc/views/CommitteesView", [
       for (var i = 0; i < this.committees.length; i++) {
 
         var committeeView = new CommitteeView({
-          committee: this.committees[i]
+          committee: this.committees[i],
+          showMembers: this.showMembers
         });
         committeeView.startup();
 

@@ -136,7 +136,7 @@ define("loc/Application", [
       topic.subscribe("/loc/search/members/id", lang.hitch(this, this._doMemberSearch));
 
       topic.subscribe("/loc/search/committees/id", lang.hitch(this, this._doCommitteeSearch));
-      topic.subscribe("/loc/search/committees/memberId", lang.hitch(this, this._doCommitteeMemberSearch));
+      topic.subscribe("/loc/search/committees/memberId", lang.hitch(this, this._doMemberCommitteeSearch));
 
       topic.subscribe("/loc/search/collapse", lang.hitch(this, function() {
 
@@ -231,6 +231,7 @@ define("loc/Application", [
 
       this.resultsView = new CommitteesView();
       this.resultsView.startup();
+      this.resultsView.set("showMembers", !!e.showMembers);
       this.resultsView.set("committees", committees);
 
       domConstruct.empty(this.resultsNode);
@@ -387,7 +388,8 @@ define("loc/Application", [
       sunlight.getCommitteeById(committeeId).then(function(committees) {
 
         topic.publish("/loc/results/committees", {
-          committees: committees
+          committees: committees,
+          showMembers: true
         })
 
       }, function(error) {
@@ -402,7 +404,7 @@ define("loc/Application", [
 
     },
 
-    _doCommitteeMemberSearch: function(e) {
+    _doMemberCommitteeSearch: function(e) {
 
       var memberId = e.memberId || null;
       if (memberId === null || memberId.length === 0) {
@@ -411,7 +413,7 @@ define("loc/Application", [
       }
 
       sunlight.getCommitteesForMembers(memberId).then(lang.hitch(this, function(committees) {
-console.log(committees);
+
         domStyle.set(this.resultsView.domNode, { display: "none" });
         this.previousResultsView = this.resultsView;
 

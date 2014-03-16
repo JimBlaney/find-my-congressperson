@@ -60,51 +60,6 @@ define("loc/views/SearchView", [
         topic.publish("/loc/search/expand", {});
       });
 
-      // topic.subscribe("/loc/search/hide", lang.hitch(this, function() {
-      //   if (anim !== null) {
-      //     anim.stop();
-      //     animHandle.remove();
-      //     anim = null;
-      //     animHandle = null;
-      //   }
-
-      //   // this.searchPlaceholderNode
-      //   // this.searchAreaNode
-
-      //   anim = fx2.combine([
-      //     // fx2.wipeOut({ node: this.searchAreaNode, duration: 300 }),
-      //     // fx2.wipeIn({ node: this.searchPlaceholderNode, duration: 300 })
-      //   ]);
-      //   // on(anim, "end", function() {
-      //   //   if (animHandle !== null) {
-      //   //     animHandle.remove();
-      //   //   }
-      //   //   animHandle = null;
-      //   // });
-      //   anim.play();
-
-      // }));
-
-      // topic.subscribe("/loc/search/show", lang.hitch(this, function() {
-      //   if (anim !== null) {
-      //     anim.stop();
-      //     animHandle.remove();
-      //     anim = null;
-      //     animHandle = null;
-      //   }
-
-      //   anim = fx2.combine([
-
-      //   ]);
-      //   // on(anim, "end", function() {
-      //   //   if (animHandle !== null) {
-      //   //     animHandle.remove();
-      //   //   }
-      //   //   animHandle = null;
-      //   // });
-      //   anim.play();
-      // }));
-
     },
 
     _setupControls: function() {
@@ -179,7 +134,11 @@ define("loc/views/SearchView", [
 
     _doGeolocationSearch: function() {
 
-      this._getGeolocation().then(function(location) {
+      domClass.add(this.geolocationIconNode, "fa-spin");
+
+      this._getGeolocation().then(lang.hitch(this, function(location) {
+
+        domClass.remove(this.geolocationIconNode, "fa-spin");
 
         topic.publish("/loc/search/collapse", {});
 
@@ -193,7 +152,9 @@ define("loc/views/SearchView", [
           geometry: point
         });
 
-      }, function(error) {
+      }), lang.hitch(this, function(error) {
+
+        domClass.remove(this.geolocationIconNode, "fa-spin");
 
         console.group("Geolocation Error");
         switch (error.code) {
@@ -212,7 +173,7 @@ define("loc/views/SearchView", [
         }
         console.groupEnd("Geolocation Error");
 
-      });
+      }));
 
     },
 
@@ -252,7 +213,7 @@ define("loc/views/SearchView", [
       }
 
       topic.publish("/loc/search/collapse", {});
-      
+
       topic.publish("/loc/search/committees/id", {
         committeeId: value
       });
