@@ -146,13 +146,13 @@ define("loc/views/SearchView", [
     },
 
     _doZIPSearch: function(e) {
-
-      topic.publish("/loc/search/collapse", {});
-
+      
       var value = $(this.zipInput).val() || null;
-      if (value === null || value === "-") {
+      if (value === null || value === "") {
         return;
       }
+
+      topic.publish("/loc/search/collapse", {});
 
       topic.publish("/loc/search/members/zip", {
         zip: value
@@ -162,12 +162,12 @@ define("loc/views/SearchView", [
 
     _doStateSearch: function(e) {
 
-      topic.publish("/loc/search/collapse", {});
-
       var value = $(this.stateSelect).selectpicker("val") || null;
       if (value === null || value === "-") {
         return;
       }
+
+      topic.publish("/loc/search/collapse", {});
 
       topic.publish("/loc/search/members/state", {
         state: value
@@ -179,9 +179,9 @@ define("loc/views/SearchView", [
 
     _doGeolocationSearch: function() {
 
-      topic.publish("/loc/search/collapse", {});
-
       this._getGeolocation().then(function(location) {
+
+        topic.publish("/loc/search/collapse", {});
 
         var point = new Point(location.coords.longitude, location.coords.latitude, new SpatialReference(4326));
 
@@ -230,13 +230,13 @@ define("loc/views/SearchView", [
     },
 
     _doNameSearch: function(e) {
-
-      topic.publish("/loc/search/collapse", {});
-
+  
       var value = $(this.nameInput).val() || null;
       if (value === null || name.length === 0) {
         return;
       }
+
+      topic.publish("/loc/search/collapse", {});
 
       topic.publish("/loc/search/members/name", {
         name: value
@@ -246,13 +246,13 @@ define("loc/views/SearchView", [
 
     _doCommitteeSearch: function(e) {
 
-      topic.publish("/loc/search/collapse", {});
-
       var value = $(this.committeeSelect).selectpicker("val") || null;
       if (value === null || value === "-") {
         return;
       }
 
+      topic.publish("/loc/search/collapse", {});
+      
       topic.publish("/loc/search/committees/id", {
         committeeId: value
       });

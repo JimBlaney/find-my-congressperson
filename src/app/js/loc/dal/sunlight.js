@@ -45,8 +45,10 @@ define("loc/dal/sunlight", [
         var tArr = array.map(data.results, function(d) {
 
           if (!!d.parent_committee) {
-            console.log("parent_committee");
-            console.log(d);
+            d.parent_committee_name = d.parent_committee.name;
+
+            // d will inherit parent's phone, url, etc, and then be overridden by its
+            // proper value, if one exists
             d = lang.mixin(d.parent_committee, d);
           }
 
@@ -176,16 +178,21 @@ define("loc/dal/sunlight", [
 
     },
 
-    getCommitteesForMembers: function(members) {
+    getCommitteesForMembers: function(members, brief) {
 
       var d = new Deferred();
 
-      this._makeApiCall("committees", {
+      var args = {
+        member_ids__in: [].concat(members).join("|")
+      };
 
-        member_ids__in: [].concat(members).join("|"),
-        fields: "committee_id,chamber,name,member_ids,members,subcommittee,parent_committee_id,parent_committee,url,office,phone"
-      
-      }).then(lang.hitch(this, this._populateModel, Committee, d));
+      if (!brief) {
+        args.fields = "committee_id,chamber,name,member_ids,members,subcommittee,parent_committee_id,parent_committee,url,office,phone";
+      } else {
+        args.fields = "member_ids"
+      }
+
+      this._makeApiCall("committees", args).then(lang.hitch(this, this._populateModel, Committee, d));
 
       return d;
 

@@ -12,6 +12,7 @@ define("loc/model/Committee", [
     "name": "name",
     "office": "office",
     "parent_committee_id": "parentCommitteeId",
+    "parent_committee_name": "parentCommitteeName",
     "phone": "phone",
     "subcommittee": "isSubcommittee",
     "url": "url"
@@ -64,6 +65,12 @@ define("loc/model/Committee", [
 
     },
 
+    _getMemberCountAttr: function() {
+
+      return [].concat(this.memberIds || []).length;
+
+    },
+
     _getChamberDisplayAttr: function() {
 
       var val = lang.replace("{chamber} Committee", this).replace("ate", "atorial");
@@ -87,8 +94,22 @@ define("loc/model/Committee", [
 
   });
 
+  var sortFunction = function(lhs, rhs) {
+    var lhsName = lhs.get("displayName");
+    var rhsName = rhs.get("displayName");
+    if (lhsName < rhsName) {
+      return -1;
+    } else if (lhsName > rhsName) {
+      return 1;
+    } else {
+      return 0;
+    }
+
+  }
+
   lang.mixin(Committee, {
-    PROPERTY_MAP: PROPERTY_MAP
+    PROPERTY_MAP: PROPERTY_MAP,
+    SORT_FUNCTION: sortFunction
   })
 
   return Committee;

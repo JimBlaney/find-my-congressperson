@@ -398,10 +398,11 @@ ul.selectpicker>li:first-of-type>a>span {
 }
 
 /* Members View */
-.loc-view-area .loc-members-view {
-    height: 750px;
+.loc-view-area .loc-results-list {
+    height: 650px;
     overflow: auto;
     padding: 0 15px;
+    margin-bottom: 15px;
 }
 
 .loc-results-list > ul:last-child {
@@ -527,6 +528,12 @@ ul.selectpicker>li:first-of-type>a>span {
 
 .loc-member-party .R {
     background-color: rgb(216, 117, 125);
+}
+
+.loc-result-parent-item-name {
+    font-weight: 300;
+    font-size: 1.2em;
+    line-height: 1em;
 }
 
 .loc-result-item-name {
@@ -690,6 +697,10 @@ ul.selectpicker>li:first-of-type>a>span {
     color: #428bca;
     margin: 15px;
     display: none;
+}
+
+.loc-results-nav {
+    margin-bottom: 15px;
 }
 
 .loc-results-nav-title {

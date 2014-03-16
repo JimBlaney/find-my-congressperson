@@ -168,8 +168,6 @@ define("loc/Application", [
 
     _onMembersResults: function(e) {
 
-      domStyle.set(this.searchStatusNode, { display: "none" });
-
       var members = e.members || [];
 
       var memberIds = array.map(members, function(member) {
@@ -186,7 +184,9 @@ define("loc/Application", [
         return;
       }
 
-      sunlight.getCommitteesForMembers(memberIds).then(lang.hitch(this, function(errh, committees) {
+      sunlight.getCommitteesForMembers(memberIds, true).then(lang.hitch(this, function(errh, committees) {
+
+        domStyle.set(this.searchStatusNode, { display: "none" });
 
         for (var i = 0; i < members.length; i++) {
 
@@ -411,7 +411,7 @@ define("loc/Application", [
       }
 
       sunlight.getCommitteesForMembers(memberId).then(lang.hitch(this, function(committees) {
-
+console.log(committees);
         domStyle.set(this.resultsView.domNode, { display: "none" });
         this.previousResultsView = this.resultsView;
 

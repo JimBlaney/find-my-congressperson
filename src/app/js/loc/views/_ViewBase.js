@@ -70,7 +70,7 @@ define("loc/views/_ViewBase", [
             var attr = attrs[j];
             props[attr] = lang.replace(format, {
               value: model.get(property)
-            });
+            }).replace("null", "", "g");
           }
 
           if (domAttr.has(node, MODEL_ELEM_STY_ATTR)) {
