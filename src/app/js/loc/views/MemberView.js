@@ -24,9 +24,13 @@ define("loc/views/MemberView", [
     _doMemberCommitteeSearch: function(e) {
 
       topic.publish("/loc/search/committees/memberId", {
-        memberId: this.member.get("memberId")
+        memberId: this.member.get("memberId"),
+        model: this.member
       });
 
+      // kill the event
+      e.preventDefault();
+      return false;
     }
 
   });
