@@ -401,7 +401,7 @@ ul.selectpicker>li:first-of-type>a>span {
 
 /* Members View */
 .loc-view-area .loc-results-list {
-    height: 400px;
+    height: 700px;
     overflow: auto;
     padding: 0 15px;
     margin-bottom: 15px;
@@ -789,4 +789,25 @@ border-left: 1px solid #f0f0f0;
 
 .loc-member-small-view .loc-member-contact {
     line-height: 1.4em;
+}
+
+/* HEIGHT MEDIA QUERIES */
+
+@media (max-height: 950px) {
+    /* medium height */
+    .loc-view-area .loc-results-list {
+        height: 500px;
+    }
+}
+@media (max-height: 800px) {
+    /* small height */
+    .loc-view-area .loc-results-list {
+        height: 400px;
+    }
+}
+@media (max-height: 650px) {
+    /* small height */
+    .loc-view-area .loc-results-list {
+        height: 290px;
+    }
 }
