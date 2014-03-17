@@ -20,7 +20,8 @@ define("loc/Application", [
   "esri/geometry/Extent",
   "esri/geometry/Point",
   "esri/geometry/webMercatorUtils",
-  "loc/dal/sunlight"
+  "loc/dal/sunlight",
+  "loc/views/MapView"
 ], function(
   config, 
   declare, 
@@ -63,59 +64,11 @@ define("loc/Application", [
     startup: function() {
       this.inherited(arguments);
 
-      this._createMap();
-
       this._setupViewArea();
 
       this._subscribeSearch();
 
       this._subscribeResults();
-
-    },
-
-    _createMap: function() {
-
-      this.map = new Map(this.id + "_map", {
-        basemap: "gray",
-        extent: new Extent({ // TODO: update this value with the extent of the districts layer
-          xmin: -22737875.67804202,
-          ymin: -2348145.508920069,
-          xmax: -1604566.097761969,
-          ymax: 13306157.883879967,
-          spatialReference: { wkid: 102100 }
-        }),
-        slider: false,
-        showAttribution: false
-      });
-
-      // set up map highlight functionality
-      this.highlightSymbol = null; // TODO
-      topic.subscribe("/loc/map/highlight", lang.hitch(this, function(e) {
-
-        var geometries = [].concat(e.geometries || []);
-
-        var graphics = this.map.graphics;
-        graphics.clear();
-
-        for (var i = 0; i < geometries.length; i++) {
-          graphics.add(new Graphic(geometries[i], this.highlightSymbol, {}, null));
-        }
-      }));
-
-      // set up click -> search
-      on(this.map, "click", lang.hitch(this, function(e) {
-
-        var geom = e.mapPoint;
-
-        if (geom.spatialReference.isWebMercator()) {
-          geom = webMercatorUtils.webMercatorToGeographic(geom);
-        }
-
-        topic.publish("/loc/search/members/geometry", {
-          geometry: geom
-        });
-
-      }));
 
     },
 
@@ -145,7 +98,6 @@ define("loc/Application", [
       })); 
 
       topic.subscribe("/loc/search/expand", lang.hitch(this, function() {
-        this.map.graphics.clear();
 
         if (this.resultsView !== null) {
           if (!!this.resultsView.destroyRecursive) {
@@ -253,25 +205,6 @@ define("loc/Application", [
       if (!!geom.getCentroid) {
         geom = geom.getCentroid();
       }
-
-      var symbol = new PictureMarkerSymbol({
-        url: require.toUrl("loc/views/images/map-pin-blue-blank.png"),
-        width: 10,
-        height: 19,
-        yoffset: 10
-      });
-
-      var mapGeom = new Point({
-        latitude: geom.getLatitude(),
-        longitude: geom.getLongitude()
-      })
-
-      if (this.map.spatialReference.isWebMercator()) {
-        mapGeom = webMercatorUtils.geographicToWebMercator(mapGeom);
-      }
-
-      this.map.graphics.clear();
-      this.map.graphics.add(new Graphic(mapGeom, symbol, {}, null));
 
       sunlight.getMembersAtLocation(geom).then(function(members) {
 
