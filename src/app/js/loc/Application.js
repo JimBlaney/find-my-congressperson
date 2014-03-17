@@ -124,12 +124,12 @@ define("loc/Application", [
 
     },
 
-    _onMembersResults: function(e) {
+    _doHightlightMembers: function(members, method) {
 
-      var members = [].concat(e.members || []);
-
+      topic.publish("/loc/map/highlight/clear", {});
+console.log(method);
       var districts = this._getDistrictsForMembers(members);
-      if (!!districts.length && e.method !== "state") {
+      if (!!districts.length && (method !== "state" && method !== "state/territory")) {
         topic.publish("/loc/map/highlight/districts", {
           districts: districts
         });
@@ -141,6 +141,14 @@ define("loc/Application", [
           });
         }
       }
+
+    },
+
+    _onMembersResults: function(e) {
+
+      var members = [].concat(e.members || []);
+
+      this._doHightlightMembers(members, e.method);
 
       domConstruct.empty(this.resultsNavNode);
       domConstruct.create("div", {
@@ -203,6 +211,7 @@ define("loc/Application", [
       var members = [].concat(e.members || []);
 
       var geographies = this._getMemberGeographies(members);
+
       topic.publish("/loc/map/highlight/geographies", {
         geographies: geographies
       });
@@ -215,7 +224,7 @@ define("loc/Application", [
       
       var committees = [].concat(e.committees || []);
 
-      this._doHightlightCommitteeMembers(committees[0].members);
+      this._doHightlightCommitteeMembers(committees[0]);
       
       domConstruct.empty(this.resultsNavNode);
       domConstruct.create("div", {
@@ -526,6 +535,8 @@ define("loc/Application", [
       this.resultsView.destroyRecursive();
       this.resultsView = this.previousResultsView;
       this.previousResultsView = null;
+
+      this._doHightlightMembers(this.resultsView.members, this.resultsLabel.substring(0, this.resultsLabel.indexOf(":")).toLowerCase());
 
       domConstruct.empty(this.resultsNavNode);
       domConstruct.create("div", {

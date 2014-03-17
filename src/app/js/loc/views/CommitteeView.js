@@ -79,7 +79,6 @@ define("loc/views/CommitteeView", [
         members: this.committee.members
       });
 
-      console.log(arguments);
       e.preventDefault();
       return false;
     }

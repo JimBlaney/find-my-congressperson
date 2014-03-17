@@ -214,8 +214,9 @@ define("loc/views/MapView", [
 
     _subscribeHighlights: function() {
 
-      topic.subscribe("/loc/map/hichlight/clear", lang.hitch(this, function() {
-
+      topic.subscribe("/loc/map/highlight/clear", lang.hitch(this, function() {
+        this.statesLayer.clearSelection();
+        this.districtsLayer.clearSelection();
       }));
       topic.subscribe("/loc/map/highlight/states", lang.hitch(this, this._doSelectStates));
       topic.subscribe("/loc/map/highlight/districts", lang.hitch(this, this._doSelectDistricts));
@@ -312,7 +313,7 @@ define("loc/views/MapView", [
         q.outSpatialReference = this.map.spatialReference;
         q.where = states.join(" OR ");
 
-        this.statesLayer.selectFeatures(q).then(function(features) {
+        this.statesLayer.selectFeatures(q, FeatureLayer.SELECTION_NEW).then(function(features) {
 
           d.resolve(features);
 
@@ -439,7 +440,7 @@ define("loc/views/MapView", [
         q.outSpatialReference = this.map.spatialReference;
         q.where = districts.join(" OR ");
 
-        this.districtsLayer.selectFeatures(q).then(function(features) {
+        this.districtsLayer.selectFeatures(q, FeatureLayer.SELECTION_NEW).then(function(features) {
 
           d.resolve(features);
 
