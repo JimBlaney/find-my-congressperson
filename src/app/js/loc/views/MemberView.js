@@ -31,6 +31,12 @@ define("loc/views/MemberView", [
       // kill the event
       e.preventDefault();
       return false;
+    },
+
+    _showOnMap: function() {
+
+      
+      
     }
 
   });

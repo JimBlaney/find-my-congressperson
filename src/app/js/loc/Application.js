@@ -57,6 +57,8 @@ define("loc/Application", [
 
     searchView: null,
 
+    resultsLabel: "",
+
     resultsView: null,
 
     previousResultsView: null,
@@ -93,11 +95,13 @@ define("loc/Application", [
 
       topic.subscribe("/loc/search/collapse", lang.hitch(this, function() {
 
-        domStyle.set(this.searchStatusNode, { display: "block" });
+        domStyle.set(this.searchStatusNode, { display: "inline-block" });
 
       })); 
 
       topic.subscribe("/loc/search/expand", lang.hitch(this, function() {
+
+        this.resultsLabel = "";
 
         if (this.resultsView !== null) {
           if (!!this.resultsView.destroyRecursive) {
@@ -120,7 +124,25 @@ define("loc/Application", [
 
     _onMembersResults: function(e) {
 
-      var members = e.members || [];
+      var members = [].concat(e.members || []);
+
+      var districts = this._getDistrictsForMembers(members);
+      if (!!districts.length && e.method !== "state") {
+        topic.publish("/loc/map/highlight/districts", {
+          districts: districts
+        });
+      } else {
+        var states = this._getStatesForMembers(members);
+        topic.publish("/loc/map/highlight/states", {
+          states: states
+        });
+      }
+
+      domConstruct.empty(this.resultsNavNode);
+      domConstruct.create("div", {
+        innerHTML: this.resultsLabel,
+        "class": "loc-results-nav-title"
+      }, this.resultsNavNode);
 
       var memberIds = array.map(members, function(member) {
         return member.memberId;
@@ -133,6 +155,7 @@ define("loc/Application", [
           innerHTML: "There were no results",
           "class": "loc-results-no-results"
         }, this.resultsNode);
+        domStyle.set(this.searchStatusNode, { display: "none" });
         return;
       }
 
@@ -175,11 +198,18 @@ define("loc/Application", [
 
       domStyle.set(this.searchStatusNode, { display: "none" });
       
-      var committees = e.committees || [];
+      var committees = [].concat(e.committees || []);
 
-      var committeeIds = array.map(committees, function(committee) {
-        return committee.committeeId;
+      var geographies = this._getMemberGeographies(committees[0].members);
+      topic.publish("/loc/map/highlight/geographies", {
+        geographies: geographies
       });
+      
+      domConstruct.empty(this.resultsNavNode);
+      domConstruct.create("div", {
+        innerHTML: this.resultsLabel,
+        "class": "loc-results-nav-title"
+      }, this.resultsNavNode);
 
       this.resultsView = new CommitteesView();
       this.resultsView.startup();
@@ -206,10 +236,17 @@ define("loc/Application", [
         geom = geom.getCentroid();
       }
 
+      var roundCoord = function(coord) {
+        return Math.floor(coord * 1000000) / 1000000.0;
+      }
+
+      this.resultsLabel = "Location: " + roundCoord(geom.x) + ", " + roundCoord(geom.y);
+
       sunlight.getMembersAtLocation(geom).then(function(members) {
 
         topic.publish("/loc/results/members", {
-          members: members
+          members: members,
+          method: "geometry"
         });
 
       }, function(error) {
@@ -224,6 +261,80 @@ define("loc/Application", [
 
     },
 
+    _getStatesForMembers: function(members) {
+
+      var states = [];
+
+      array.forEach(members, function(member) {
+        var state = member.get("state");
+        if (array.indexOf(states, state) === -1) {
+          states.push(state);
+        }
+      });
+
+      return states;
+
+    },
+
+    _getDistrictsForMembers: function(members) {
+
+      var districts = [];
+
+      var filteredMembers = array.filter(members, function(member) {
+        return member.get("chamber") === "house";
+      });
+
+      array.forEach(filteredMembers, function(member) {
+        var district = {
+          state: member.get("state"),
+          district: member.get("district")
+        };
+        if (array.indexOf(districts, district) === -1) {
+          districts.push(district);
+        }
+      });
+
+      return districts;
+
+    },
+
+    _getMemberGeographies: function(members) {
+
+      var states = [];
+      var districts = [];
+
+      var senateMembers = array.filter(members, function(member) {
+        return member.get("chamber") === "senate";
+      });
+
+      array.forEach(senateMembers, function(member) {
+        var state = member.get("state");
+        if (array.indexOf(states, state) === -1) {
+          states.push(state);
+        }
+      });
+
+      var houseMembers = array.filter(members, function(member) {
+        return member.get("chamber") === "house";
+      });
+
+      array.forEach(houseMembers, function(member) {
+        var district = {
+          state: member.get("state"),
+          district: member.get("district")
+        };
+        if (array.indexOf(districts, district) === -1) {
+          districts.push(district);
+        }
+      });
+
+      return {
+        states: states,
+        districts: districts
+      };
+
+    },
+
     _doZIPSearch: function(e) {
 
       domConstruct.empty(this.resultsNode);
@@ -234,10 +345,13 @@ define("loc/Application", [
         return;
       }
 
+      this.resultsLabel = "ZIP: " + zip;
+
       sunlight.getMembersForZIP(zip).then(function(members) {
 
         topic.publish("/loc/results/members", {
-          members: members
+          members: members,
+          method: "zip"
         });
 
       }, function(error) {
@@ -262,10 +376,13 @@ define("loc/Application", [
         return;
       }
 
+      this.resultsLabel = "State/Territory: " + e.stateName || "";
+
       sunlight.getMembersForState(state).then(function(members) {
 
         topic.publish("/loc/results/members", {
-          members: members
+          members: members,
+          method: "state"
         });
 
       }, function(error) {
@@ -290,10 +407,13 @@ define("loc/Application", [
         return;
       }
 
+      this.resultsLabel = "Name: " + e.memberName;
+
       sunlight.getMemberById(memberId).then(function(members) {
 
         topic.publish("/loc/results/members", {
-          members: members
+          members: members,
+          method: "member"
         });
 
       }, function(error) {
@@ -318,11 +438,15 @@ define("loc/Application", [
         return;
       }
 
+      this.resultsLabel = "Committee: " + e.committeeName || "";
+      console.log(this.resultsLabel);
+
       sunlight.getCommitteeById(committeeId).then(function(committees) {
 
         topic.publish("/loc/results/committees", {
           committees: committees,
-          showMembers: true
+          showMembers: true,
+          method: "committee"
         })
 
       }, function(error) {
@@ -339,13 +463,30 @@ define("loc/Application", [
 
     _doMemberCommitteeSearch: function(e) {
 
+      domStyle.set(this.searchStatusNode, { display: "inline-block" });
+
       var memberId = e.memberId || null;
       if (memberId === null || memberId.length === 0) {
         console.warn("could not search on null MemberId");
         return;
       }
 
+      domConstruct.empty(this.resultsNavNode);
+
+      var navNode = domConstruct.create("a", {
+        href: "#",
+        innerHTML: this.resultsLabel,
+        "class": "loc-results-nav"
+      }, this.resultsNavNode);
+
+      domConstruct.create("div", {
+          innerHTML: "&raquo; Committees for " + e.model.get("displayName"),
+          "class": "loc-results-nav-title"
+      }, this.resultsNavNode);
+
       sunlight.getCommitteesForMembers(memberId).then(lang.hitch(this, function(committees) {
+
+        domStyle.set(this.searchStatusNode, { display: "none" });
 
         domStyle.set(this.resultsView.domNode, { display: "none" });
         this.previousResultsView = this.resultsView;
@@ -354,24 +495,13 @@ define("loc/Application", [
         this.resultsView.startup();
         this.resultsView.set("committees", committees);
 
-        var navNode = domConstruct.create("a", {
-          href: "#",
-          innerHTML: "&laquo; Members",
-          "class": "loc-results-nav"
-        }, this.resultsNavNode);
         on(navNode, "click", lang.hitch(this, function(evt) {
-
+          
           this._doResultsNavPrevious();
 
           evt.preventDefault();
           return false;
-
         }));
-
-        domConstruct.create("div", {
-          innerHTML: "&laquo; Committees for " + e.model.get("displayName"),
-          "class": "loc-results-nav-title"
-        }, this.resultsNavNode);
 
         domConstruct.place(this.resultsView.domNode, this.resultsNode);
 
@@ -386,6 +516,10 @@ define("loc/Application", [
       this.previousResultsView = null;
 
       domConstruct.empty(this.resultsNavNode);
+      domConstruct.create("div", {
+        innerHTML: this.resultsLabel,
+        "class": "loc-results-nav-title"
+      }, this.resultsNavNode);
 
       domStyle.set(this.resultsView.domNode, { display: "block" });
 

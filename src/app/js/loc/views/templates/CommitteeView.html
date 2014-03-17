@@ -1,25 +1,20 @@
 <li class="loc-committee-view loc-result-item-view">
   <div class="pull-left">
+
     <div class="loc-parent-committee-name loc-result-parent-item-name" data-view-model-property="parentCommitteeName"></div>
     <div class="loc-committee-name loc-result-item-name" data-view-model-property="name"></div>
 
-    <!-- div data-view-model-property="office"></div>
-
-    <div class="loc-committee-links">
-      <div class="loc-committee-link-web">
-        <span class="loc-committee-link-icon glyphicon glyphicon-home"></span>
-        <span class="" data-view-model-property="url" data-view-element-tag="a"></span>
-      </div>
-      <div class="loc-committee-link-phone">
-        <span class="loc-committee-link-icon glyphicon glyphicon-earphone"></span>
-        <span class="" data-view-model-property="phone" data-view-element-tag="a"></span>
-      </div>
-    </div -->
-
     <div class="loc-committee-member-info">
       <span data-view-model-property="memberCount" data-view-element-tag="span"></span><span> Members</span>
+      <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-1x"></i>
+        <i data-dojo-attach-point="memberDisplayActionNode" data-dojo-attach-event="click: _toggleMemberDisplay" class="fa fa-stack-1x fa-inverse"></i>
+      </span>
     </div>
-    <div data-dojo-attach-point="committeeMembersNode" class="loc-committee-view-members"></div>
+    
   </div>
+
   <div class="clearfix"></div>
+  
+  <div data-dojo-attach-point="committeeMembersNode" class="loc-committee-view-members"></div>
 </li>

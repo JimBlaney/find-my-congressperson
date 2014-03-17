@@ -7,8 +7,10 @@ dojoConfig.app = {
     url: "//congress.api.sunlightfoundation.com/",
     apiKey: "af18bc25a8d94b829d277a09a244efcc"
   },
+  selectionColor: [ 255, 255, 0 ],
+  basemap: "gray",
   layers: {
-    states: "//sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/3",
-    districts: "//maps1.arcgisonline.com/ArcGIS/rest/services/USA_Congressional_Districts/MapServer/1"
+    states: "http://loc-cong-demo.esri.com/arcgis/rest/services/Congress/Congress113/MapServer/0",
+    districts: "http://loc-cong-demo.esri.com/arcgis/rest/services/Congress/Congress113/MapServer/1"
   }
 }

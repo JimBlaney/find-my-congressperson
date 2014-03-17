@@ -166,8 +166,10 @@ input.form-control:-ms-input-placeholder {
     .btn-loc-default.active,
     .open .dropdown-toggle.btn-loc-default {
         color: #f8f8f8;
-        background-color: #00618d;
-        border-color: #00618d;
+        /*background-color: #00618d;
+        border-color: #00618d;*/
+        background-color: #428bca;
+        border-color: #428bca;
     }
 
     .btn-loc-default:active,
@@ -399,7 +401,7 @@ ul.selectpicker>li:first-of-type>a>span {
 
 /* Members View */
 .loc-view-area .loc-results-list {
-    height: 650px;
+    height: 400px;
     overflow: auto;
     padding: 0 15px;
     margin-bottom: 15px;
@@ -456,6 +458,7 @@ ul.selectpicker>li:first-of-type>a>span {
 .loc-result-item-view {
     margin: 0px -15px;
     padding: 15px;
+    width: auto;
 }
 
     .loc-result-item-view:first-of-type {
@@ -698,16 +701,20 @@ ul.selectpicker>li:first-of-type>a>span {
 
 .loc-search-status {
     color: #428bca;
-    margin: 15px;
+    /*margin: 15px;*/
     display: none;
+    text-align: right;
+    vertical-align: middle;
 }
 
 .loc-results-nav {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
+    padding-right: 5px !important;
+    display: inline-block;
 }
 
 .loc-results-nav-title {
-    padding: 0 5px !important;
+    padding: 0 5px 15px 0 !important;
     display: inline-block;
 }
 
@@ -715,4 +722,13 @@ ul.selectpicker>li:first-of-type>a>span {
     color: rgb(153, 153, 153);
     padding: 0 15px 0 15px !important;
     text-align: center;
+}
+
+
+.loc-committee-view-members.collapsed {
+    display: none;
+}
+
+.loc-member-small-view {
+    margin-left: 15px;
 }

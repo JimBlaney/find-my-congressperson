@@ -2,12 +2,25 @@ define("loc/views/CommitteeView", [
   "dojo/_base/declare",
   "dojo/dom-construct",
   "dojo/dom-class",
+  "dojo/topic",
   "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
   "dojo/text!loc/views/templates/CommitteeView.html",
-  "loc/views/_ViewBase"
-], function(declare, domConstruct, domClass, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, template, _ViewBase) {
+  "loc/views/_ViewBase",
+  "loc/views/MemberSmallView"
+], function(
+  declare, 
+  domConstruct, 
+  domClass, 
+  topic, 
+  _WidgetBase, 
+  _TemplatedMixin, 
+  _WidgetsInTemplateMixin, 
+  template, 
+  _ViewBase, 
+  MemberSmallView
+) {
   
   return declare([ _WidgetBase, _TemplatedMixin,_WidgetsInTemplateMixin, _ViewBase ], {
 
@@ -22,9 +35,48 @@ define("loc/views/CommitteeView", [
 
       if (!this.showMembers) {
         domClass.add(this.committeeMembersNode, "collapsed");
+        domClass.add(this.memberDisplayActionNode, "fa-angle-down");
+        domClass.remove(this.memberDisplayActionNode, "fa-angle-up");
+      } else {
+        domClass.remove(this.committeeMembersNode, "collapsed");
+        domClass.add(this.memberDisplayActionNode, "fa-angle-up");
+        domClass.remove(this.memberDisplayActionNode, "fa-angle-down");
       }
 
       this._formatTemplate(this.committee);
+
+      if (!!this.committee.members) {
+        for (var i = 0; i < this.committee.members.length; i++) {
+
+          var member = this.committee.members[i];
+
+          var view = new MemberSmallView({
+            member: member
+          });
+          view.startup();
+
+          domConstruct.place(view.domNode, this.committeeMembersNode);
+        }
+      }
+    },
+
+    _toggleMemberDisplay: function() {
+      this.showMembers = !this.showMembers;
+      if (!this.showMembers) {
+        domClass.add(this.committeeMembersNode, "collapsed");
+        domClass.add(this.memberDisplayActionNode, "fa-angle-down");
+        domClass.remove(this.memberDisplayActionNode, "fa-angle-up");
+      } else {
+        domClass.remove(this.committeeMembersNode, "collapsed");
+        domClass.add(this.memberDisplayActionNode, "fa-angle-up");
+        domClass.remove(this.memberDisplayActionNode, "fa-angle-down");
+      }
+    },
+
+    _showOnMap: function() {
+
+      
+
     }
 
   });

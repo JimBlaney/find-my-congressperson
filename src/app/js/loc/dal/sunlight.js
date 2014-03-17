@@ -42,14 +42,23 @@ define("loc/dal/sunlight", [
 
       if (!!data.results.length) {
 
-        var tArr = array.map(data.results, function(d) {
+        var tArr = array.map(data.results, lang.hitch(this, function(d) {
 
+          // hack for committees with attribute "parent_committee"
           if (!!d.parent_committee) {
             d.parent_committee_name = d.parent_committee.name;
 
             // d will inherit parent's phone, url, etc, and then be overridden by its
             // proper value, if one exists
             d = lang.mixin(d.parent_committee, d);
+          }
+
+          // hack for committees with attribute "members"
+          if (!!d.members) {
+            d.members = array.map(d.members, function(member) {
+              return member.legislator;
+            });
+            d.members = this._populateModel(Member, null, { results: d.members });
           }
 
           var t = new T();
@@ -64,17 +73,25 @@ define("loc/dal/sunlight", [
 
           return t;
 
-        });
+        }));
 
         if (!!T.SORT_FUNCTION) {
           tArr.sort(T.SORT_FUNCTION);
         }
 
-        deferred.resolve(tArr);
+        if (!!deferred) {
+          deferred.resolve(tArr);
+        } else {
+          return tArr;
+        }
 
       } else {
 
-        deferred.resolve([]);
+        if (!!deferred) {
+          deferred.resolve([]);
+        } else {
+          return [];
+        }
 
       }
 

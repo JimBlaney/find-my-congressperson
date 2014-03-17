@@ -83,7 +83,8 @@ define("loc/views/SearchView", [
         itemSelected: lang.hitch(this, function(fn, id, name) {
           topic.publish("/loc/search/collapse", {});
           topic.publish("/loc/search/members/id", {
-            memberId: id
+            memberId: id,
+            memberName: name
           });
           $(this.nameInput).val("");
         })
@@ -125,7 +126,8 @@ define("loc/views/SearchView", [
       topic.publish("/loc/search/collapse", {});
 
       topic.publish("/loc/search/members/state", {
-        state: value
+        state: value,
+        stateName: $(this.stateSelect).find('[value=' + value + ']').text()
       });
 
       $(this.stateSelect).selectpicker("val", "-");
@@ -215,7 +217,8 @@ define("loc/views/SearchView", [
       topic.publish("/loc/search/collapse", {});
 
       topic.publish("/loc/search/committees/id", {
-        committeeId: value
+        committeeId: value,
+        committeeName: $(this.committeeSelect).find('[value=' + value + ']').text()
       });
 
       $(this.committeeSelect).selectpicker("val", "-");
