@@ -73,10 +73,15 @@ define("loc/views/CommitteeView", [
       }
     },
 
-    _showOnMap: function() {
+    _showOnMap: function(e) {
 
-      
+      topic.publish("/loc/app/highlight/committeeMembers", {
+        members: this.committee.members
+      });
 
+      console.log(arguments);
+      e.preventDefault();
+      return false;
     }
 
   });

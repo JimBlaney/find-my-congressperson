@@ -122,6 +122,12 @@ define("loc/model/Member", [
 
     },
 
+    _getSmallAvatarAttr: function() {
+
+      return require.toUrl(lang.replace("loc/views/images/avatars/40/{memberId}.jpg", this)); 
+
+    },
+
     _getTermAttr: function() {
 
       var startYear = this.termStart.substring(0, 4);

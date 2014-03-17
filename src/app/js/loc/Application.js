@@ -113,6 +113,8 @@ define("loc/Application", [
         domConstruct.empty(this.resultsNavNode);
       }));
 
+      topic.subscribe("/loc/app/highlight/committeeMembers", lang.hitch(this, this._doHightlightCommitteeMembers));
+
     },
 
     _subscribeResults: function() {
@@ -133,9 +135,11 @@ define("loc/Application", [
         });
       } else {
         var states = this._getStatesForMembers(members);
-        topic.publish("/loc/map/highlight/states", {
-          states: states
-        });
+        if (!!states.length) {
+          topic.publish("/loc/map/highlight/states", {
+            states: states
+          });
+        }
       }
 
       domConstruct.empty(this.resultsNavNode);
@@ -194,16 +198,24 @@ define("loc/Application", [
 
     },
 
+    _doHightlightCommitteeMembers: function(e) {
+
+      var members = [].concat(e.members || []);
+
+      var geographies = this._getMemberGeographies(members);
+      topic.publish("/loc/map/highlight/geographies", {
+        geographies: geographies
+      });
+
+    },
+
     _onCommitteesResults: function(e) {
 
       domStyle.set(this.searchStatusNode, { display: "none" });
       
       var committees = [].concat(e.committees || []);
 
-      var geographies = this._getMemberGeographies(committees[0].members);
-      topic.publish("/loc/map/highlight/geographies", {
-        geographies: geographies
-      });
+      this._doHightlightCommitteeMembers(committees[0].members);
       
       domConstruct.empty(this.resultsNavNode);
       domConstruct.create("div", {

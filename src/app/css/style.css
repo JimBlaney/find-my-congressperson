@@ -459,6 +459,7 @@ ul.selectpicker>li:first-of-type>a>span {
     margin: 0px -15px;
     padding: 15px;
     width: auto;
+    background: white;
 }
 
     .loc-result-item-view:first-of-type {
@@ -724,6 +725,10 @@ ul.selectpicker>li:first-of-type>a>span {
     text-align: center;
 }
 
+.loc-committee-view-members {
+    background-color: #ccc;
+    margin-top: 5px;
+}
 
 .loc-committee-view-members.collapsed {
     display: none;
@@ -731,4 +736,27 @@ ul.selectpicker>li:first-of-type>a>span {
 
 .loc-member-small-view {
     margin-left: 15px;
+}
+
+.loc-committee-member-info {
+    float: left;
+}
+
+.loc-committee-map-info {
+    float: left;
+    margin-right: 15px;
+}
+
+.loc-small-result-item-name {
+    margin-bottom: 5px;
+}
+
+.loc-member-portrait-small {
+    width: 12%;
+    text-align: center;
+    padding-right: 5%;
+}
+
+.loc-member-info-content-small {
+    width: 80%;
 }

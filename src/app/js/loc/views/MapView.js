@@ -332,12 +332,28 @@ define("loc/views/MapView", [
 
       this._queryStates(e).then(lang.hitch(this, function(features) {
 
-        var extent = graphicsUtils.graphicsExtent(features);
-        this.map.setExtent(extent, true).then(lang.hitch(this, function() {
+        if (!!features.length) {
 
-          this._selectStates(e);
+          var extent = graphicsUtils.graphicsExtent(features);
+          this.map.setExtent(extent, true).then(lang.hitch(this, function() {
 
-        }));
+            this._selectStates(e);
+
+          }));
+
+        } else {
+
+          var districts = array.map(e.states, function(state) {
+            return {
+              state: state
+            };
+          });
+
+          this._doSelectDistricts({ 
+            districts: districts 
+          });
+
+        }
 
       }));
 
@@ -352,7 +368,16 @@ define("loc/views/MapView", [
       districts.sort();
 
       districts = array.map(districts, function(district) {
-        return "(STATE_ABBR = '" + district.state + "' AND CD113FIPS='" + string.pad(district.district, 2, "0") + "')";
+        var clauses = [];
+
+        if (!!district.state) {
+          clauses.push("STATE_ABBR = '" + district.state + "'");
+        }
+        if (!!district.district) {
+          clauses.push("CD113FIPS = '" + string.pad(district.district, 2, "0") + "'");
+        }
+
+        return "(" + clauses.join(" AND ") + ")";
       });
 
       if (!districts.length) {
@@ -391,7 +416,16 @@ define("loc/views/MapView", [
       districts.sort();
 
       districts = array.map(districts, function(district) {
-        return "(STATE_ABBR = '" + district.state + "' AND CD113FIPS='" + string.pad(district.district, 2, "0") + "')";
+        var clauses = [];
+
+        if (!!district.state) {
+          clauses.push("STATE_ABBR = '" + district.state + "'");
+        }
+        if (!!district.district) {
+          clauses.push("CD113FIPS = '" + string.pad(district.district, 2, "0") + "'");
+        }
+
+        return "(" + clauses.join(" AND ") + ")";
       });
 
       if (!districts.length) {
@@ -460,22 +494,6 @@ define("loc/views/MapView", [
         }));
 
       }));
-
-      // var states = array.map([].concat(geographies.states || [], function(state) {
-      //   return "STATE_ABBR='" + state + "'";
-      // });
-
-      // var districts = array.map([].concat(geographies.districts || []), function(district) {
-      //   return "(STATE_ABBR = '" + district.state + "' AND CD113FIPS='" + string.pad(district.district, 2, "0") + "')";
-      // });
-
-      // if (!!states.length) {
-      //   var q = new Query();
-      //   q.returnGeometry = true;
-      //   q.outSpatialReference = this.map.spatialReference;
-      //   q.where = states.join(" OR ");
-
-      // }
 
     }
 
