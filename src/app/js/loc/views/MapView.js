@@ -117,7 +117,7 @@ define("loc/views/MapView", [
       this.map = new Map(this.id + "_map", {
         basemap: config.app.basemap || "gray",
         extent: this.initialExtent,
-        slider: false,
+        //slider: false,
         showAttribution: false
       });
 

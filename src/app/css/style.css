@@ -231,16 +231,29 @@ ul.list-group li.list-group-item.active {
     background-color: #0078ae;
     color: white;
 }
-/*
+
+.esriSimpleSliderTL {
+    top: 15px !important;
+    left: 15px !important;
+}
+
 .esriSimpleSlider {
-  border-color: #00618d !important;
-  color: #00618d !important;
+  border-color: rgb(153, 153, 153) !important;
+  color: rgb(153, 153, 153) !important;
+}
+
+.esriSimpleSlider,
+.esriSimpleSlider:hover .esriSimpleSliderIncrementButton,
+.esriSimpleSlider:hover .esriSimpleSliderDecrementButton {
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
 }
 
 .esriSimpleSliderVertical .esriSimpleSliderIncrementButton {
-  border-bottom-color: #00618d !important;
+  border-bottom-color: rgb(153, 153, 153) !important;
 }
-*/
+
 .loc-location-search {
 }
 
