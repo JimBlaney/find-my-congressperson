@@ -1,16 +1,16 @@
 <li class="loc-committee-view loc-result-item-view">
-  <div class="pull-left">
+  <div class="pull-left loc-committee-info-container">
 
     <div class="loc-parent-committee-name loc-result-parent-item-name" data-view-model-property="parentCommitteeName"></div>
     <div class="loc-committee-name loc-result-item-name" data-view-model-property="name"></div>
 
     <div class="loc-committee-map-info">
-      <p><a href="#" data-dojo-attach-event="click: _showOnMap">View on map</a><p>
+        <p><a href="#" data-dojo-attach-event="click: _showOnMap"><i class="fa fa-location-arrow"></i>View on map</a><p>
     </div>
 
     <div class="loc-committee-member-info">
-      <span data-view-model-property="memberCount" data-view-element-tag="span"></span><span> Members</span>
-      <i data-dojo-attach-point="memberDisplayActionNode" data-dojo-attach-event="click: _toggleMemberDisplay" class="fa"></i>
+      <a href="#" data-dojo-attach-event="click: _toggleMemberDisplay"><i class="glyphicon glyphicon-user"></i><span data-view-model-property="memberCount" data-view-element-tag="span"></span><span> Members</span>
+      <i data-dojo-attach-point="memberDisplayActionNode" data-dojo-attach-event="click: _toggleMemberDisplay" class="fa"></i></a>
     </div>
 
   </div>

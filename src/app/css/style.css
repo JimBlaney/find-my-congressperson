@@ -471,7 +471,9 @@ ul.selectpicker>li:first-of-type>a>span {
     }
 
     .loc-result-item-view:nth-child(2n) {
-        background: #f7f7f7;
+        background: #fdfefe;
+        border-top: 1px solid #f5f5f5;
+        border-bottom: 1px solid #f5f5f5;
     }
 
 .loc-member-avatar {
@@ -726,8 +728,8 @@ ul.selectpicker>li:first-of-type>a>span {
 }
 
 .loc-committee-view-members {
-    background-color: #ccc;
-    margin-top: 5px;
+background-color: #f7f7f7;
+border-left: 1px solid #f0f0f0;
 }
 
 .loc-committee-view-members.collapsed {
@@ -742,11 +744,6 @@ ul.selectpicker>li:first-of-type>a>span {
     float: left;
 }
 
-.loc-committee-map-info {
-    float: left;
-    margin-right: 15px;
-}
-
 .loc-small-result-item-name {
     margin-bottom: 5px;
 }
@@ -759,4 +756,37 @@ ul.selectpicker>li:first-of-type>a>span {
 
 .loc-member-info-content-small {
     width: 80%;
+}
+
+/* Committee View */
+.loc-committee-info-container {
+    width: 100%;
+}
+
+.loc-committee-map-info, .loc-committee-member-info {
+    float: left;
+    width: 50%;
+    text-align: center;
+    background: #f7f7f7;
+    border: 1px solid #f0f0f0;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.loc-parent-committee-name,
+.loc-member-small-view .loc-member-contact {
+    color: #8792a4;
+}
+
+.loc-committee-map-info i, .loc-committee-member-info i {
+    margin-right: 10px;
+}
+
+.loc-member-small-view.loc-result-item-view {
+    border-left: 1px solid #f0f0f0;
+}
+
+.loc-member-small-view .loc-member-contact {
+    line-height: 1.4em;
 }
