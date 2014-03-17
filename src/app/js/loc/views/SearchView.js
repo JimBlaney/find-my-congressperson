@@ -151,7 +151,8 @@ define("loc/views/SearchView", [
         console.groupEnd("Geolocation Success");
 
         topic.publish("/loc/search/members/geometry", {
-          geometry: point
+          geometry: point,
+          source: "My Location"
         });
 
       }), lang.hitch(this, function(error) {

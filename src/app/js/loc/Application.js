@@ -261,7 +261,7 @@ console.log(method);
         return Math.floor(coord * 1000000) / 1000000.0;
       }
 
-      this.resultsLabel = "Location: " + roundCoord(geom.x) + ", " + roundCoord(geom.y);
+      this.resultsLabel = "Location: " + e.source; //roundCoord(geom.x) + ", " + roundCoord(geom.y);
 
       sunlight.getMembersAtLocation(geom).then(function(members) {
 
@@ -460,7 +460,6 @@ console.log(method);
       }
 
       this.resultsLabel = "Committee: " + e.committeeName || "";
-      console.log(this.resultsLabel);
 
       sunlight.getCommitteeById(committeeId).then(function(committees) {
 

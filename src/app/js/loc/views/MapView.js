@@ -133,7 +133,8 @@ define("loc/views/MapView", [
         this._clearMap();
 
         topic.publish("/loc/search/members/geometry", {
-          geometry: geom
+          geometry: geom,
+          source: "Map Click"
         });
 
       }));
